@@ -21,6 +21,27 @@ public class Home extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         String nome = ute.getUsername();
         
+        
+        
+        /**
+         * 
+         * 
+         * BACKEND
+         *      * VERIFICARE CHE QUANDO CREO UN GRUPPO QUESTO SIA VISUALIZZATO ANCHE NEI MIEI GRUPPI
+         * 
+         * 
+         * 
+         * FRONTEND
+         *      * INSERIRE DA QUALCHE PARTE LA SEZIONE "MODIFICA GRUPPO"
+         * 
+         */
+        
+        
+        
+        
+        
+        
+        
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<!--");
