@@ -23,28 +23,25 @@ public class creaGruppo extends HttpServlet {
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         
+
+        
+    }
+        
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        
             //param
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             HttpSession session = request.getSession();
-            
-            //Costruisco la lista degli utenti presenti nel DB
-            utenti = new ArrayList<Utente>();
-            utenti = DBManager.listaUtenti();
-        
-            
-            String nomeGruppo = request.getParameter("nomeGruppo");
+            Utente utenteLoggato = (Utente) session.getAttribute("utente");
             String adminGruppo = (String) session.getAttribute("username");
             
-            if(nomeGruppo != null){
-                request.setAttribute("nomeGruppo", nomeGruppo);
-                request.setAttribute("adminGruppo", adminGruppo);
-                request.setAttribute("listaUtenti", utenti);
-                RequestDispatcher rd = request.getRequestDispatcher("/creaGruppoAppoggio");
-                rd.forward(request, response);
-                return;
-            }
-            
+            try { utenti = DBManager.listaUtenti(); 
+            } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
+
             out.println("<!DOCTYPE html>");
             out.println("<!--");
             out.println("To change this license header, choose License Headers in Project Properties.");
@@ -60,17 +57,13 @@ public class creaGruppo extends HttpServlet {
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("           <form method=\"POST\">");
+            out.println("           <form action=\"creaGruppoAppoggio\" method=\"POST\">");
             out.println("                <div style=\"font-size: 40px; margin-top: 40px\">");
 
             
             // ALTRO FORM DA CONTROLLARE RISPETTO A QEULLO DI GIANNI
             out.println("NOME GRUPPO: ");                                  
                 out.println("<input name=\"nomeGruppo\" /><br>");
-            
-            
-            
-            
             
             out.println("                </div>");
             out.println("                <div  style=\"font-size: 40px;  float: left;\">");
@@ -79,10 +72,12 @@ public class creaGruppo extends HttpServlet {
             out.println("                <div style=\"font-size: 30px; float: left; margin-left: 20px; margin-top: 10px;\">");
             
                                             Iterator i = utenti.iterator(); 
+                                            int indiceCheck = 0;
                                             while(i.hasNext()) {
                                                 Utente ute = (Utente) i.next();
-                                                if(ute.getUsername() != adminGruppo){
-                                                out.println("<input type=\"checkbox\" name=\"invites\" value=\"Gabri\">"+ ute.getUsername() +"<br>");
+                                                if(!ute.getUsername().equals(utenteLoggato.getUsername())){
+                                                    out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" name=\"Gabri\" >"+ ute.getUsername() +"<br>");
+                                                    indiceCheck++;
                                                 }
                                             }
             out.println("                    <input type=\"submit\" value=\"Aggiungi\" class=\"stdsbmt\">");
@@ -91,28 +86,14 @@ public class creaGruppo extends HttpServlet {
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");
-
         
-    }
-        
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try { processRequest(request, response);
+            } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,20 +37,45 @@ public class creaGruppoAppoggio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-                        
-        System.out.println("----------------------NOME GRUPPO ");
-
-        //param
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
+        Utente ute = (Utente) session.getAttribute("utente");
         
-        ArrayList<Utente> utenti = new ArrayList<Utente>();
+        int stop = 0;
+        int id_group = 0;
+        String paramName;
+        
+        Enumeration paramNames = request.getParameterNames();
+        try {
+            while(paramNames.hasMoreElements()) {
+
+                paramName = (String)paramNames.nextElement();
+                String[] paramValues = request.getParameterValues(paramName);
+
+                // creazione del gruppo
+                if(stop==0){
+                    out.println("GRUPPO --- " + paramValues[0]);
+                    id_group = DBManager.creaGruppo(paramValues[0], ute);
+                    DBManager.inserisciInLista(ute, id_group);  //per inserire chi crea
+                    stop++;
+                }else{
+                    out.println("ID UTENTE --- " + paramName);
+                    Utente u = DBManager.searchUtenteByID(Integer.parseInt(paramName));
+                    DBManager.inserisciInLista(u, id_group);
+                    DBManager.inserisciInInviti(u, id_group);
+                }
+            }
+        } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+    }
+
+
+        
+        /*
+        ArrayList<Utente> utenti = (ArrayList<Utente>) request.getAttribute("listaUtenti");
         String nomeGruppo = request.getParameter("nomeGruppo");
         String admin = (String) session.getAttribute("username");
 
-
-        utenti = (ArrayList<Utente>) request.getAttribute("listaUtenti");
         Iterator i = utenti.iterator(); 
         
         out.println("<!DOCTYPE html>");
@@ -73,8 +99,7 @@ public class creaGruppoAppoggio extends HttpServlet {
                 Utente amministratore = DBManager.idUtente(admin);
                 DBManager.creaGruppo(nomeGruppo, amministratore,utenti);
             }catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-        
-        }    
+        */
 
 
     @Override

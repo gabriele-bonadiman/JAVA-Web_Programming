@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package servlet;
 
 import classi.Utente;
@@ -16,43 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Babol
- */
+
 public class iMieiDati extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+ 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       
         response.setContentType("text/html;charset=UTF-8");
         //session
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
-        
-        //request
-        String password = request.getParameter("password");
-        String passwordConfirm = request.getParameter("passwordConfirm");
-        String nomeModificato = request.getParameter("nomeModificato");
-
-        
-        if( nomeModificato!=null && password.equals(passwordConfirm)){
-            request.setAttribute("nomeModificato", nomeModificato);
-            request.setAttribute("password", password);
-            RequestDispatcher rd = request.getRequestDispatcher("/iMieiDatiAppoggio");
-            rd.forward(request, response);
-            return;
-        }
-        
         
         try (PrintWriter out = response.getWriter()) {
            out.println("<!DOCTYPE html>");
@@ -70,15 +44,15 @@ public class iMieiDati extends HttpServlet {
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("            <form>");
+            out.println("            <form action=\"iMieiDatiAppoggio\" method=\"POST\">");
             out.println("                <div style=\"font-size: 40px; margin-top: 40px;\">");
             out.println("                    Modifica Nome: <input name=\"nomeModificato\" placeholder="+ utente.getUsername()+" type=\"text\" class=\"stdinput\">");
             out.println("                </div>");
             out.println("                <div style=\"font-size: 40px;\">");
             out.println("                    <div style=\"float: left;\">Modifica Password:</div>");
             out.println("                    <div style=\"float: left; width: 310px;\">");
-            out.println("                        <input name=\"password\" type=\"password\" class=\"stdinput\">");
-            out.println("                        <input name=\"passwordConfirm\" type=\"password\" class=\"stdinput\">");
+            out.println("                        <input name=\"vecchiaPassword\" type=\"password\" class=\"stdinput\">");
+            out.println("                        <input name=\"nuovaPassword\" type=\"password\" class=\"stdinput\">");
             out.println("                    </div>");
             out.println("                </div>");
             out.println("                <div style=\"width: 800px;\">");
@@ -97,46 +71,16 @@ public class iMieiDati extends HttpServlet {
             out.println("    </body>");
             out.println("</html>");
             out.println("");
-        }
-    }
+        }    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

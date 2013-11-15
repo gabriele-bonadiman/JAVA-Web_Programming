@@ -1,5 +1,6 @@
 package servlet;
 
+import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,8 +18,8 @@ public class Home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 
-        //Prendo l'username dalla session per poterlo stampare
-        String nome = (String) session.getAttribute("username");     
+        Utente ute = (Utente) session.getAttribute("utente");
+        String nome = ute.getUsername();
         
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -47,8 +48,8 @@ public class Home extends HttpServlet {
             out.println("                <ul class=\"menuitem\"><img src=\"Images/inviteicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"listaInviti\">Inviti</a></ul>");
             out.println("                <ul class=\"menuitem\"><img src=\"Images/groupicon.png\" alt=\"\" class=\"menuimg\"/>Gruppi</ul>");
             out.println("                <ul class=\"menuitem\"><img src=\"Images/createicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"creaGruppo\">Crea Gruppo</a></ul>");
-            out.println("                <ul class=\"menuitem\"><img src=\"Images/singleicon.png\" alt=\"\" class=\"menuimg\"/>I miei dati</ul>");
-            out.println("                <ul class=\"menuitem\"><img src=\"Images/logouticon.png\" alt=\"\" class=\"menuimg\"/>Logout</ul>");
+            out.println("                <ul class=\"menuitem\"><img src=\"Images/singleicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"iMieiDati\">I miei dati</a></ul>");
+            out.println("                <ul class=\"menuitem\"><img src=\"Images/logouticon.png\" alt=\"\" class=\"menuimg\"/><a href=\"Logout\">Logout</a></ul>");
             out.println("            </li>");
             out.println("            ");
             out.println("        </div>");
@@ -60,12 +61,14 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("FACIO IL GET");
         processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("FACIO IL POST");
         processRequest(request, response);
     }
     @Override

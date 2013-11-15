@@ -27,7 +27,7 @@ public class listaInviti extends HttpServlet {
         String utente = (String) session.getAttribute("username");
         Utente ute = (Utente) session.getAttribute("utente");
 
-        List<Lista> listaInviti = DBManager.listaGruppiUtente(3);
+        List<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
         
         try (PrintWriter out = response.getWriter()) {
              out.println("<!DOCTYPE html>");
@@ -68,21 +68,6 @@ public class listaInviti extends HttpServlet {
 
             }
             
-            
-            out.println("                        <td>Prog web</td>");
-            out.println("                        <td>Marchese</td>");
-            out.println("                        <td class=\"nbr\">qui va lo switch</td>");
-            out.println("                    </tr>");
-            out.println("                    <tr>");
-            out.println("                        <td>Arch elaboratori</td>");
-            out.println("                        <td>Palopoli</td>");
-            out.println("                        <td class=\"nbr\">qui va lo switch</td>");
-            out.println("                    </tr>");
-            out.println("                    <tr>");
-            out.println("                        <td>Reti</td>");
-            out.println("                        <td>Lo Cigno</td>");
-            out.println("                        <td class=\"nbr\">qui va lo switch</td>");
-            out.println("                    </tr>");
             out.println("                    <tr>");
             out.println("                        <td class=\"endtd\"></td>");
             out.println("                        <td class=\"endtd\"></td>");
@@ -90,7 +75,7 @@ public class listaInviti extends HttpServlet {
             out.println("                    </tr>");
             out.println("                </tbody>");
             out.println("            </table>");
-            out.println("            <button class=\"retbtn\"><a href=\"home.html\">Fine</a></button>");
+            out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");

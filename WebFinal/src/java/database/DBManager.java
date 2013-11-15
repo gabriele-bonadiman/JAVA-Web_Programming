@@ -102,15 +102,31 @@ public class DBManager {
         } finally {stm.close();}
     }
     
+    public static Utente searchUtenteByID(int id) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM UTENTE WHERE ID = ?");
+        Utente ute = new Utente();
+             
+        try {
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                ute.setId(rs.getInt("ID"));
+                ute.setUsername(rs.getString("USERNAME"));
+                ute.setPassword(rs.getString("PASSWORD"));
+                ute.setAvatar(rs.getString("AVATAR"));
+            }
+        } finally {stm.close();}
+        return ute;
+    }
+    
+    
     /**
      *  Preso in input un utente, restituisce il suo ID
      */
     public static Utente idUtente(String nome) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT * FROM UTENTE WHERE username = ?");
         Utente ute = new Utente();
-        
-        System.out.println("UTENTE PASSATO AL DB " + nome);
-        
+             
         try {
             stm.setString(1, nome);
             ResultSet rs = stm.executeQuery();
@@ -254,7 +270,7 @@ public class DBManager {
      * 0 = sono iscritto
      * 1 = non sono iscritto
      */
-    public void iscrizione(int idUtente,int idGruppo,int choose) throws SQLException{
+    public void editIscrizione(int idUtente,int idGruppo,int choose) throws SQLException{
 
         PreparedStatement stm = con.prepareStatement("UPDATE" + Inviti + " SET invitato = ? WHERE UTENTE = ? AND GRUPPO = ?");
         try {
@@ -271,7 +287,7 @@ public class DBManager {
      * e la lista degli utenti di appartenenza,
      * retiruisce un booleano se tutto va bene
      */
-    public static boolean creaGruppo(String nomeGruppo ,Utente u, List<Utente> utenti) throws SQLException{
+    public static int creaGruppo(String nomeGruppo ,Utente u) throws SQLException{
         
         java.sql.Date data = null;
         java.util.Date data2 = new java.util.Date();
@@ -298,39 +314,63 @@ public class DBManager {
             key.close();
             stm.close();
         }
-        
-        //associo ad ogni utente la lista degli inviti
-        Iterator i = utenti.iterator(); 
-        while(i.hasNext()) {
-            Utente ute = (Utente) i.next();
-            PreparedStatement stm2 = con.prepareStatement
-            ("INSERT INTO "+ Lista + " (UTENTE,GRUPPO) VALUES (?,?)");
-            try {
-                stm2.setInt(1, ute.getId());
-                stm2.setInt(2, index);
-                stm2.executeUpdate();
-            } finally {stm.close();}
-        }
-        
-        //inserisco nella lista degli inviti il nome del gruppo, l'utente e il flag invitato
-        //associo ad ogni utente la lista degli inviti
-        Iterator iterator = utenti.iterator(); 
-        while(iterator.hasNext()) {
-            Utente ute = (Utente) iterator.next();
-            PreparedStatement stm3 = con.prepareStatement
+        return index;
+    }
+    
+    /**
+     * Una volta creato un gruppo manda a tutti i membri l'invito
+     */
+    public static void inserisciInInviti(Utente u, int IDgruppo) throws SQLException{
+     
+        PreparedStatement stm = con.prepareStatement
             ("INSERT INTO "+ Inviti + " (UTENTE,GRUPPO,INVITATO) VALUES (?,?,?)");
+        
         try {
-                stm3.setInt(1, ute.getId());
-                stm3.setInt(2, index);
-                stm3.setInt(3, 0);
-                stm3.executeUpdate();
-            } finally {stm3.close();}
-        }
-        
-        
-        
-        utenti.clear();
-        return true;
+            stm.setInt(1, u.getId());
+            stm.setInt(2, IDgruppo);
+            stm.setInt(3, 0);
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    /**
+     * Inserimento nella lista che collega l'utente con il gruppo
+     */
+    public static void inserisciInLista(Utente u, int IDgruppo) throws SQLException{
+    
+        PreparedStatement stm = con.prepareStatement
+            ("INSERT INTO "+ Lista + " (UTENTE,GRUPPO) VALUES (?,?)");
+        try {
+            stm.setInt(1, u.getId());
+            stm.setInt(2, IDgruppo);
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    /**
+     * Se l'utente modifica il nome prendo in input l'utente e il nuovo nome e UPDATE
+     */
+    public static void editNomeUtente(Utente u, String newName) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("UPDATE " + Utenti + " SET USERNAME = ? WHERE ID = ?");
+        try {
+            stm.setString(1, newName);
+            stm.setInt(2, u.getId());
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    /**
+     * Se l'utente modifica la password, prendo l'utente e la nuova password e UPDATE
+     */
+    public static void editPasswordUtente(Utente u, String newPassword) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("UPDATE " + Utenti + " SET PASSWORD = ? WHERE ID = ?");
+        try {
+            stm.setString(1, newPassword);
+            stm.setInt(2, u.getId());
+            stm.executeUpdate();
+        } finally {stm.close();}
     }
     
     
@@ -350,7 +390,6 @@ public class DBManager {
         
         return true;
     }
-    
-    
+ 
     
 }
