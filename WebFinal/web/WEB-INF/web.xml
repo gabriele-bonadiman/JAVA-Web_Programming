@@ -36,6 +36,18 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>servlet.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificaGruppo</servlet-name>
+        <servlet-class>servlet.modificaGruppo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificaGruppoAppoggio</servlet-name>
+        <servlet-class>servlet.modificaGruppoAppoggio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Gruppi</servlet-name>
+        <servlet-class>servlet.Gruppi</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +91,18 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificaGruppo</servlet-name>
+        <url-pattern>/modificaGruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificaGruppoAppoggio</servlet-name>
+        <url-pattern>/modificaGruppoAppoggio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Gruppi</servlet-name>
+        <url-pattern>/Gruppi</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
