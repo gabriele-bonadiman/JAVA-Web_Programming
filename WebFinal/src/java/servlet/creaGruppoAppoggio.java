@@ -58,12 +58,13 @@ public class creaGruppoAppoggio extends HttpServlet {
                     out.println("GRUPPO --- " + paramValues[0]);
                     id_group = DBManager.creaGruppo(paramValues[0], ute);
                     DBManager.inserisciInLista(ute, id_group);  //per inserire chi crea
+                    DBManager.inserisciInInviti(ute, id_group,1);
                     stop++;
                 }else{
                     out.println("ID UTENTE --- " + paramName);
                     Utente u = DBManager.searchUtenteByID(Integer.parseInt(paramName));
                     DBManager.inserisciInLista(u, id_group);
-                    DBManager.inserisciInInviti(u, id_group);
+                    DBManager.inserisciInInviti(u, id_group,0);
                 }
             }
         } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}

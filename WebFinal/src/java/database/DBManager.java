@@ -1,8 +1,3 @@
- /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package database;
 
@@ -24,10 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Babol
- */
+
 public class DBManager {
     
     public static transient Connection con;
@@ -142,13 +134,11 @@ public class DBManager {
 
     
     /**
-     *  Preso in input un gruppo, restituisce il suo ID
+     *  Preso in input un id, restituisce l'oggetto gruppo al quale e' associato
      */
-    public static Gruppo idGruppo(int ID) throws SQLException{
-        
+    public static Gruppo searchGruppoById(int ID) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT * FROM GRUPPO WHERE ID = ?");
         Gruppo g = new Gruppo();
-
         try {
             stm.setInt(1, ID);
             ResultSet rs = stm.executeQuery();
@@ -162,6 +152,7 @@ public class DBManager {
         return g;
     }
 
+    
     /**
      * Preso in input un gruppo, restituisce l'ID dell'amministratore
      * @param p
@@ -237,7 +228,8 @@ public class DBManager {
      *  Ritorna i gruppi al quale un utente e' invitato a partecipare
      */
     public static List<Lista> listaGruppiUtente(int IDutente)throws SQLException {
-        PreparedStatement stm = con.prepareStatement("SELECT * FROM INVITO WHERE UTENTE = ?");
+        PreparedStatement stm = con.prepareStatement
+        ("SELECT * FROM INVITO WHERE UTENTE = ?");
         List<Lista> listaGruppi = new ArrayList<Lista>();
         try {
             stm.setInt(1, IDutente);
@@ -255,6 +247,27 @@ public class DBManager {
         return listaGruppi;
     } 
  
+    /**
+     * Ritorna i gruppi ai quali l'utente ha deciso di partecipare
+     */
+    public static List<Integer> listaGruppiIscritto(int IDutente)throws SQLException {
+        PreparedStatement stm = con.prepareStatement
+        ("SELECT * FROM INVITO WHERE UTENTE = ? AND INVITATO = ?");
+        List<Integer> GruppiID = new ArrayList<Integer>();
+        try {
+            stm.setInt(1, IDutente);
+            stm.setInt(2, 1);
+            ResultSet rs = stm.executeQuery();
+            try {
+                while(rs.next()) {
+                    Integer singleReport = rs.getInt("gruppo");
+                    GruppiID.add(singleReport);
+                }
+            } finally { rs.close();}
+        } finally {stm.close();}
+        return GruppiID;
+    }
+    
     
     
     
@@ -320,7 +333,7 @@ public class DBManager {
     /**
      * Una volta creato un gruppo manda a tutti i membri l'invito
      */
-    public static void inserisciInInviti(Utente u, int IDgruppo) throws SQLException{
+    public static void inserisciInInviti(Utente u, int IDgruppo,int choose) throws SQLException{
      
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO "+ Inviti + " (UTENTE,GRUPPO,INVITATO) VALUES (?,?,?)");
@@ -328,7 +341,7 @@ public class DBManager {
         try {
             stm.setInt(1, u.getId());
             stm.setInt(2, IDgruppo);
-            stm.setInt(3, 0);
+            stm.setInt(3, choose);
             stm.executeUpdate();
         } finally {stm.close();}
     }
