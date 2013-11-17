@@ -59,13 +59,14 @@ public class listaInviti extends HttpServlet {
                 
                 Lista lista = (Lista) i.next();
                 Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
-                            out.println("                    <tr>");
-
-                out.println("                        <td>"+gr.getNome()+"</td>");
-                out.println("                        <td>"+gr.getProprietario()+"</td>");
-                out.println("                        <td class=\"nbr\">"+lista.getInvitato()+"</td>");
-                          out.println("                    </tr>");
-
+                
+                if (gr.getProprietario() != ute.getId()){
+                    out.println("                    <tr>");
+                    out.println("                        <td>"+gr.getNome()+"</td>");
+                    out.println("                        <td>"+gr.getProprietario()+"</td>");
+                    out.println("                        <td class=\"nbr\">"+lista.getInvitato()+"</td>");
+                    out.println("                    </tr>");
+                }
             }
             
             out.println("                    <tr>");

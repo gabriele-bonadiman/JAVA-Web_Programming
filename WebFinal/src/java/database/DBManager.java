@@ -152,55 +152,6 @@ public class DBManager {
         return g;
     }
 
-    
-    /**
-     * Preso in input un gruppo, restituisce l'ID dell'amministratore
-     * @param p
-     * @return
-     * @throws SQLException 
-     */    
-    public int adminGruppo (Gruppo p) throws SQLException{
-        return 0;
-        
-      /*  PreparedStatement stm = con.prepareStatement("SELECT proprietario FROM GRUPPO WHERE ID = ?");
-        int ID = idGruppo(p);
-        try {
-            stm.setInt(1, ID);
-            ResultSet rs = stm.executeQuery();
-            ID = rs.getInt("proprietario");
-        } finally {stm.close();}
-        return ID;*/
-    }
-    
-    
-    /**
-     *  Preso in input un utente, restituisce i gruppi al quale l'utente e' stato invitato
-     */
-    public List<Invito> listaInviti (Utente u) throws SQLException{
-        return null;
-/*        
-        PreparedStatement stm = con.prepareStatement("SELECT * FROM INVITO WHERE UTENTE = ?");
-        int ID = idUtente(u.getUsername());
-        List<Invito> listaInviti = new ArrayList<Invito>();
-
-       try {
-            stm.setInt(1,ID);
-            ResultSet rs = stm.executeQuery();
-            try {
-                while(rs.next()) {
-                    Invito in = new Invito();
-                    in.setGruppo(rs.getInt("gruppo"));
-                    in.setUtente(rs.getInt("utente"));
-                    in.setFlag_invito(rs.getInt("invitato"));
-                    listaInviti.add(in);
-                }
-            } finally { rs.close();}
-        } finally {stm.close();}
-        
-        return listaInviti;
-  */
-        }
-    
     /**
      * Ritorna la lista di utenti presenti nel DB
      * @return
@@ -266,6 +217,56 @@ public class DBManager {
             } finally { rs.close();}
         } finally {stm.close();}
         return GruppiID;
+    }
+    
+    
+    
+    
+    /**
+     * Preso in input un gruppo, restituisce le persone che vi appartengono
+     */
+    public static List<Utente> listaUtentiPresenti(Gruppo gr)throws SQLException{
+        
+        PreparedStatement stm = con.prepareStatement
+        ("SELECT * FROM INVITO WHERE GRUPPO = ? AND INVITATO = ?");
+       List<Utente> utenti = new ArrayList<Utente>();
+       try {
+            stm.setInt(1,gr.getID());
+            stm.setInt(2,1);
+            ResultSet rs = stm.executeQuery();
+           try {
+               while(rs.next()) {
+                   Utente p;
+                   p = DBManager.searchUtenteByID(rs.getInt("UTENTE"));
+                   utenti.add(p);
+               }
+           } finally { rs.close();}
+       } finally {stm.close();}
+       return utenti;
+    }
+    
+    /**
+     * Utenti presenti non ancora iscritti al gruppo G
+     */
+    public static List<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
+        
+         
+        PreparedStatement stm = con.prepareStatement
+        ("SELECT * FROM UTENTE NATURAL JOIN INVITO WHERE (GRUPPO<> ? AND INVITATO <> ?)");
+       List<Utente> utenti = new ArrayList<Utente>();
+       try {
+            stm.setInt(1,gr.getID());
+            stm.setInt(2,1);
+            ResultSet rs = stm.executeQuery();
+           try {
+               while(rs.next()) {
+                   Utente p;
+                   p = DBManager.searchUtenteByID(rs.getInt("UTENTE"));
+                   utenti.add(p);
+               }
+           } finally { rs.close();}
+       } finally {stm.close();}
+       return utenti;
     }
     
     
@@ -385,6 +386,21 @@ public class DBManager {
             stm.executeUpdate();
         } finally {stm.close();}
     }
+    
+    /**
+     *  Modifica del nome del gruppo
+     */
+    public static void editNomeGruppo(Gruppo g, String nuovoNome) throws SQLException{
+     PreparedStatement stm = con.prepareStatement
+            ("UPDATE " + Gruppo + " SET NOME = ? WHERE ID = ?");
+        try {
+            stm.setString(1, nuovoNome);
+            stm.setInt(2, g.getID());
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    
     
     
     /**

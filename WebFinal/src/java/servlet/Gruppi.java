@@ -52,18 +52,37 @@ public class Gruppi extends HttpServlet {
             out.println("                        <th>Link</th>");
             out.println("                        <th class=\"nbr\"><img src=\"Images/downloadicon.png\"></th> ");
             out.println("                    </tr>");
-
+            
+            
+            
+            
+            
+            
+            
             Iterator i = gruppi.iterator(); 
                     while(i.hasNext()) {
                         int ID = (int) i.next();
                         Gruppo g = DBManager.searchGruppoById(ID);
                         out.println("                    <tr>");
-                        out.println("                        <td>"+ g.getNome()+ "</td>");
+                        
+                        
+                        //solo se sono il proprietario risulta clicckabil eil link per andare a modifica gruppo
+                        if(g.getProprietario() == ute.getId()){
+                            out.println("                        <td> "+ g.getNome()+ "");
+
+                            out.println("<form  action=\"modificaGruppo\" >");
+                            out.println("<input name=\""+g.getID()+"\" type=\"submit\"/></br>");      
+                            out.println("</form></td>");
+
+                        }
+                        else{
+                            out.println("                        <td>"+ g.getNome()+ "</td>");
+                        }
+                        
                         out.println("                        <td>"+g.getData_creazione()+"</td>");
                         out.println("                        <td> LINK PORCA TROIA</td>");
                         out.println("                        <td class=\"nbr\">PDF</td>");
                         out.println("                    </tr>");
-
                     }
             
             
