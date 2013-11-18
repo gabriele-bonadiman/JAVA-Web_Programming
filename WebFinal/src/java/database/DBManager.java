@@ -335,16 +335,15 @@ public class DBManager {
      * Una volta creato un gruppo manda a tutti i membri l'invito
      */
     public static void inserisciInInviti(Utente u, int IDgruppo,int choose) throws SQLException{
-     
+        System.out.println("INSERISCO IN INVITI" + u.getUsername() +IDgruppo +choose);
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO "+ Inviti + " (UTENTE,GRUPPO,INVITATO) VALUES (?,?,?)");
-        
         try {
             stm.setInt(1, u.getId());
             stm.setInt(2, IDgruppo);
             stm.setInt(3, choose);
             stm.executeUpdate();
-        } finally {stm.close();}
+        }finally {stm.close();}
     }
     
     /**

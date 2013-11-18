@@ -15,6 +15,7 @@ public class Lista {
     private int utente;
     private int gruppo;
     private int invitato;
+    private int ID;
 
     public int getInvitato() {
         return invitato;
@@ -38,6 +39,14 @@ public class Lista {
 
     public void setGruppo(int gruppo) {
         this.gruppo = gruppo;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
 }

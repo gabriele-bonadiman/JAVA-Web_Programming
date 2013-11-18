@@ -64,8 +64,26 @@ public class listaInviti extends HttpServlet {
                     out.println("                    <tr>");
                     out.println("                        <td>"+gr.getNome()+"</td>");
                     out.println("                        <td>"+gr.getProprietario()+"</td>");
-                    out.println("                        <td class=\"nbr\">"+lista.getInvitato()+"</td>");
-                    out.println("                    </tr>");
+                    out.println("                        <td class=\"nbr\">");
+                    if(lista.getInvitato() == 1){
+                            out.println("<div class=\"onoffswitch\">\n" +
+                                        "<input type=\"checkbox\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"" +lista.getID()+ "\" checked>\n" +
+                                        "<label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n" +
+                                        "<div class=\"onoffswitch-inner\"> </div>\n" +
+                                        "<div class=\"onoffswitch-switch\"> </div>\n" +
+                                        "</label>\n" +
+                                        "</div>    ");
+                    }else{
+                            out.println("<div class=\"onoffswitch\">\n" +
+                                        "<input type=\"checkbox\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"" +lista.getID()+ "\">\n" +
+                                        "<label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n" +
+                                        "<div class=\"onoffswitch-inner\"> </div>\n" +
+                                        "<div class=\"onoffswitch-switch\"> </div>\n" +
+                                        "</label>\n" +
+                                        "</div>    ");
+                    }
+                    
+                    out.println("                    </td></tr>");
                 }
             }
             

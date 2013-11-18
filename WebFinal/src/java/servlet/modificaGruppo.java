@@ -44,6 +44,15 @@ public class modificaGruppo extends HttpServlet {
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
+            
+            
+            /**
+             *  FARE QUELLA CAZZO DI FUNZIONE CHE ESCLUDE GLI UTENTI GIA PRESENTI
+             */
+            
+            
+            
+            
             utentiMancanti = DBManager.listaPotenzialiIscritti(gr);
             utentiPresenti = DBManager.listaUtentiPresenti(gr);
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
