@@ -48,6 +48,10 @@
         <servlet-name>Gruppi</servlet-name>
         <servlet-class>servlet.Gruppi</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PDF_report</servlet-name>
+        <servlet-class>servlet.PDF_report</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>Gruppi</servlet-name>
         <url-pattern>/Gruppi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PDF_report</servlet-name>
+        <url-pattern>/PDF_report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

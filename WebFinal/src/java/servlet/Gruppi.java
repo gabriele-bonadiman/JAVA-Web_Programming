@@ -81,7 +81,17 @@ public class Gruppi extends HttpServlet {
                         
                         out.println("                        <td>"+g.getData_creazione()+"</td>");
                         out.println("                        <td> LINK PORCA TROIA</td>");
-                        out.println("                        <td class=\"nbr\">PDF</td>");
+                        
+                        if(g.getProprietario() == ute.getId()){
+                            out.println("");
+                            out.println("<td>");
+                            out.println("<form  action=\"PDF_report\" >");
+                            out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficon.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                            out.println("</form></td>");
+
+                        }
+                        
+                        //out.println("                        <td class=\"nbr\">PDF</td>");
                         out.println("                    </tr>");
                     }
             
