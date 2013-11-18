@@ -68,10 +68,10 @@ public class Gruppi extends HttpServlet {
                         
                         //solo se sono il proprietario risulta clicckabil eil link per andare a modifica gruppo
                         if(g.getProprietario() == ute.getId()){
-                            out.println("                        <td> "+ g.getNome()+ "");
-
+                            out.println("");
+                            out.println("<td>"+ g.getNome()+ "");
                             out.println("<form  action=\"modificaGruppo\" >");
-                            out.println("<input name=\""+g.getID()+"\" type=\"submit\"/></br>");      
+                            out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
                             out.println("</form></td>");
 
                         }

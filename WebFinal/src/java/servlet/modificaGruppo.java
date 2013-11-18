@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import classi.Gruppo;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,8 @@ public class modificaGruppo extends HttpServlet {
         Utente utenteLoggato = (Utente) session.getAttribute("utente");
         String adminGruppo = (String) session.getAttribute("username");
         
-        List<Utente> utentiMancanti = null;
-        List<Utente> utentiPresenti = null;
+        ArrayList<Utente> utentiMancanti = null;
+        ArrayList<Utente> utentiPresenti = null;
         
         String paramName = null;
         Enumeration paramNames = request.getParameterNames();
@@ -44,17 +45,11 @@ public class modificaGruppo extends HttpServlet {
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
-            
-            
-            /**
-             *  FARE QUELLA CAZZO DI FUNZIONE CHE ESCLUDE GLI UTENTI GIA PRESENTI
-             */
-            
-            
-            
-            
+            System.out.println("START ----- ");
             utentiMancanti = DBManager.listaPotenzialiIscritti(gr);
+            System.out.println("MEDIUM ----- ");
             utentiPresenti = DBManager.listaUtentiPresenti(gr);
+            System.out.println("END ----- ");
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
         
@@ -88,14 +83,21 @@ public class modificaGruppo extends HttpServlet {
         out.println("                    Utenti PRESENTI NEL DB:");
         out.println("                </div>");
         
-        Iterator i = utentiMancanti.iterator(); 
-        while(i.hasNext()) {
-            Utente ute = (Utente) i.next();
-            if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" name=\"Gabri\" >"+ ute.getUsername() +"<br>");
+        
+        if(utentiMancanti.isEmpty()){
+            out.println(" Tutti gli utenti sono stati invitati a questo gruppo ");
+        }else{
+            Iterator i = utentiMancanti.iterator(); 
+            while(i.hasNext()) {
+                Utente ute = (Utente) i.next();
+                if(!utentiPresenti.contains(ute)){
+                    System.out.println("utenti presenti non contiene l'utente "+ute.getUsername());
+                    if(!ute.getUsername().equals(utenteLoggato.getUsername())){
+                        out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" name=\"Gabri\" >"+ ute.getUsername() +"<br>");
+                    }
+                }
             }
         }
-
                                             
                     /**
                      *      QUI AL POSTO DI UNA CHECKBOX CI CACCEREI UNA X DA PREMERE PER ELIMINARE 
@@ -105,18 +107,19 @@ public class modificaGruppo extends HttpServlet {
         out.println("                </div>");
      
         
-        
-        Iterator i2 = utentiPresenti.iterator(); 
-        while(i2.hasNext()) {
-            Utente ute2 = (Utente) i2.next();
-            if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\" checked>"+ ute2.getUsername() +"<br>");
+        if(utentiPresenti.isEmpty()){
+            out.println("nessuno ha ancora accettato l'invito a questo gruppo");
+        }else{
+            Iterator i2 = utentiPresenti.iterator(); 
+            while(i2.hasNext()) {
+                Utente ute2 = (Utente) i2.next();
+            if(!utentiMancanti.contains(ute2)){
+            }                                    
+                if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
+                    out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\" checked>"+ ute2.getUsername() +"<br>");
+                }
             }
-        }
-                                            
-                                            
-                                            
-                                            
+        }       
         out.println("<input type=\"submit\"/></br>");      
 
         

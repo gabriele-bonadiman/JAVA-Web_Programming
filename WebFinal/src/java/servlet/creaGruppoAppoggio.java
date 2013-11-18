@@ -68,44 +68,12 @@ public class creaGruppoAppoggio extends HttpServlet {
                 }
             }
         } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+        response.sendRedirect("Home");
     }
-
-
-        
-        /*
-        ArrayList<Utente> utenti = (ArrayList<Utente>) request.getAttribute("listaUtenti");
-        String nomeGruppo = request.getParameter("nomeGruppo");
-        String admin = (String) session.getAttribute("username");
-
-        Iterator i = utenti.iterator(); 
-        
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet creaGruppoAppoggio</title>");            
-        out.println("</head>");
-        out.println("<body>");
-        
-        while(i.hasNext()) {
-           Utente ute = (Utente) i.next();
-           out.println("<input type=\"checkbox\" name=\"invites\" value=\"Gabri\">"+ ute.getUsername() +"<br>");
-        }
-        
-        out.println("</body>");
-        out.println("</html>");
-            
-        
-        //ricavo l'ID amministratore e creo il gruppo
-        try {
-                Utente amministratore = DBManager.idUtente(admin);
-                DBManager.creaGruppo(nomeGruppo, amministratore,utenti);
-            }catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-        */
 
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

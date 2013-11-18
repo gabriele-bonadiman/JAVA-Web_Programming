@@ -94,6 +94,12 @@ public class DBManager {
         } finally {stm.close();}
     }
     
+    /**
+     * Preso in input un ID restituisco l'utente asso
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
     public static Utente searchUtenteByID(int id) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT * FROM UTENTE WHERE ID = ?");
         Utente ute = new Utente();
@@ -110,7 +116,6 @@ public class DBManager {
         } finally {stm.close();}
         return ute;
     }
-    
     
     /**
      *  Preso in input un utente, restituisce il suo ID
@@ -131,7 +136,6 @@ public class DBManager {
         } finally {stm.close();}
         return ute;
     }
-
     
     /**
      *  Preso in input un id, restituisce l'oggetto gruppo al quale e' associato
@@ -157,9 +161,9 @@ public class DBManager {
      * @return
      * @throws SQLException 
      */
-    public static List<Utente> listaUtenti() throws SQLException {
+    public static ArrayList<Utente> listaUtenti() throws SQLException {
        PreparedStatement stm = con.prepareStatement("SELECT * FROM UTENTE");
-       List<Utente> utenti = new ArrayList<Utente>();
+       ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
            ResultSet rs = stm.executeQuery();
            try {
@@ -219,17 +223,14 @@ public class DBManager {
         return GruppiID;
     }
     
-    
-    
-    
     /**
      * Preso in input un gruppo, restituisce le persone che vi appartengono
      */
-    public static List<Utente> listaUtentiPresenti(Gruppo gr)throws SQLException{
+    public static ArrayList<Utente> listaUtentiPresenti(Gruppo gr)throws SQLException{
         
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM INVITO WHERE GRUPPO = ? AND INVITATO = ?");
-       List<Utente> utenti = new ArrayList<Utente>();
+       ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
             stm.setInt(1,gr.getID());
             stm.setInt(2,1);
@@ -248,20 +249,20 @@ public class DBManager {
     /**
      * Utenti presenti non ancora iscritti al gruppo G
      */
-    public static List<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
-        
-         
-        PreparedStatement stm = con.prepareStatement
-        ("SELECT * FROM UTENTE NATURAL JOIN INVITO WHERE (GRUPPO<> ? AND INVITATO <> ?)");
-       List<Utente> utenti = new ArrayList<Utente>();
+    public static ArrayList<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
+        System.out.println("inizio funzione ----- ");
+
+        PreparedStatement stm = con.prepareStatement("select id from utente except(select invito.utente from invito where gruppo = 18)");
+    
+        ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
-            stm.setInt(1,gr.getID());
-            stm.setInt(2,1);
+//            stm.setInt(1,gr.getID());
             ResultSet rs = stm.executeQuery();
            try {
                while(rs.next()) {
                    Utente p;
-                   p = DBManager.searchUtenteByID(rs.getInt("UTENTE"));
+                   System.out.println("stampo valore ----- " + rs.getInt(1));
+                   p = DBManager.searchUtenteByID(rs.getInt(1));
                    utenti.add(p);
                }
            } finally { rs.close();}
@@ -398,9 +399,6 @@ public class DBManager {
             stm.executeUpdate();
         } finally {stm.close();}
     }
-    
-    
-    
     
     /**
      * Preso in input un utente, ne modifica i parametri
