@@ -30,18 +30,6 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
-       
-        /**
-         * COOKIES
-         */
-        /*
-        Cookie usernameCookie = new Cookie("username", request.getParameter("username"));
-        Cookie passwordCookie = new Cookie("password", request.getParameter("password"));
-        usernameCookie.setMaxAge(60*60*1); 
-        passwordCookie.setMaxAge(60*60*1); 
-        response.addCookie( usernameCookie );
-        response.addCookie( passwordCookie );*/
-        
         
         /**
          *  PARAMETERS
@@ -74,18 +62,6 @@ public class Login extends HttpServlet {
         out.println("    <body>");
         out.println("        <div class=\"container\">");
         out.println("            <div class=\"logform\">");
-
-        
-        
-        //   CONTROLLARE QUESTO FORM PERCHE' NON VA QUELLO DI GIANNI
-        /*
-        out.println("<form method=\"POST\">");
-            out.println("USERNAME: ");                                  
-                out.println("<input name=\"username\" /><br>");
-            out.println("PASSWORD: ");                              
-                out.println("<input name=\"password\" /><br>");
-                out.println("<input type=\"submit\" /></br>");      
-            out.println("</form>");*/
         
         //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
         Cookie cookie = null;
