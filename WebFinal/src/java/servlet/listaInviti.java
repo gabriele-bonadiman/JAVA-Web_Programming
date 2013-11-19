@@ -66,21 +66,15 @@ public class listaInviti extends HttpServlet {
                     out.println("                        <td>"+gr.getProprietario()+"</td>");
                     out.println("                        <td class=\"nbr\">");
                     if(lista.getInvitato() == 1){
-                            out.println("<div class=\"onoffswitch\">\n" +
-                                        "<input type=\"checkbox\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"" +lista.getID()+ "\" checked>\n" +
-                                        "<label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n" +
-                                        "<div class=\"onoffswitch-inner\"> </div>\n" +
-                                        "<div class=\"onoffswitch-switch\"> </div>\n" +
-                                        "</label>\n" +
-                                        "</div>    ");
+                            out.println("<div class=\"custom-container\">\n" +
+"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +lista.getID()+ "\"  checked />\n" +
+"                                           <label class=\"custom-label\" for=\"" +lista.getID()+ "\" > </label>\n" +
+"                                       </div>");
                     }else{
-                            out.println("<div class=\"onoffswitch\">\n" +
-                                        "<input type=\"checkbox\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"" +lista.getID()+ "\">\n" +
-                                        "<label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n" +
-                                        "<div class=\"onoffswitch-inner\"> </div>\n" +
-                                        "<div class=\"onoffswitch-switch\"> </div>\n" +
-                                        "</label>\n" +
-                                        "</div>    ");
+                            out.println("<div class=\"custom-container\">\n" +
+"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +lista.getID()+ "\" />\n" +
+"                                           <label class=\"custom-label\" for=\"" +lista.getID()+ "\" > </label>\n" +
+"                                       </div>");
                     }
                     
                     out.println("                    </td></tr>");
