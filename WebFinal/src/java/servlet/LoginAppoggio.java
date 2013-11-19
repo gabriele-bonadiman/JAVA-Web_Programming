@@ -56,6 +56,7 @@ public class LoginAppoggio extends HttpServlet {
             /**
              * COOKIES
              * Mi crea i cookies per l'username e la password dell'utente
+             * Tali cookies durano 1 ora
              */
             Cookie usernameCookie = new Cookie("username", username);
             Cookie passwordCookie = new Cookie("password", password);
