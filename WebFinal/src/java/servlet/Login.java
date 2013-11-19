@@ -47,11 +47,6 @@ public class Login extends HttpServlet {
         }
             
         out.println("<!DOCTYPE html>");
-        out.println("<!--");
-        out.println("To change this license header, choose License Headers in Project Properties.");
-        out.println("To change this template file, choose Tools | Templates");
-        out.println("and open the template in the editor.");
-        out.println("-->");
         out.println("<html>");
         out.println("    <head>");
         out.println("        <title>Login</title>");
@@ -61,7 +56,7 @@ public class Login extends HttpServlet {
         out.println("    </head>");
         out.println("    <body>");
         out.println("        <div class=\"container\">");
-        out.println("            <div class=\"logform\">");
+        out.println("            <div class=\"logform center\">");
         
         //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
         Cookie cookie = null;
@@ -89,15 +84,15 @@ public class Login extends HttpServlet {
         //}
         
         //if (cookies != null) {
-            out.println("<form align=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
-            out.println("Username: <input type=\"text\" name=\"username\" value=" + usernameCookie + " /><br>");
-            out.println("Password: <input type=\"password\" name=\"password\" value=" + passwordCookie + " /><br>");
-            out.println("<input type=\"submit\" value=\"Login\"/> </form> ");
+            out.println("<form class=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
+            out.println("<label for=\"usr\" class=\"stdlabel\">Username:</label> <input type=\"text\" id=\"usr\" class=\"stdinput\" name=\"username\" value=" + usernameCookie + " /><br>");
+            out.println("<label for=\"usr\" class=\"stdlabel\">Password:</label> <input type=\"password\" id=\"psw\" class=\"stdinput\" name=\"password\" value=" + passwordCookie + " /><br>");
+            out.println("<div class=\"center center-sbmt\" ><input type=\"submit\" class=\"stdsbmt\" value=\"Login\"/></div> </form> ");
         } else {
-            out.println("<form  align=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
-            out.println("Username: <input type=\"text\" name=\"username\"/><br>");
-            out.println("Password: <input type=\"password\" name=\"password\"/><br>");
-            out.println("<input type=\"submit\" value=\"Login\"/> </form> ");
+            out.println("<form  class=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
+            out.println("<label for=\"usr\" class=\"stdlabel\">Username:</label> <input type=\"text\" class=\"stdinput\" name=\"username\"/><br>");
+            out.println("<label for=\"usr\" class=\"stdlabel\">Password:</label> <input type=\"password\" class=\"stdinput\" name=\"password\"/><br>");
+            out.println("<div class=\"center center-sbmt\" ><input type=\"submit\" class=\"stdsbmt center\" value=\"Login\"/></div> </form> ");
         }
         
         out.println("            </div>");

@@ -38,29 +38,42 @@ a
 
 .stdinput
 {
-    width: 300px;
-    height: 50px;
-    margin-bottom: 30px;
-    font-size: 35px;
-    text-align: left;
-    
+    width: 200px;
+    height: 35px;
+    font-size: 25px;
+    text-align: left;   
+    margin-bottom: 10px;
 }
 .stdsbmt
 {
     width: 150px;
-    height: 50px;
-    margin-bottom: 30px;
-    margin-left: 75px;
-    font-size: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+    font-size: 25px;
 }
 
+.stdlabel
+{
+    font-size: 25px;
+}
+
+.center
+{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .logform   
 {
     position: relative;
-    width: 300px;
-    margin-left: 320px;
+    width: 320px;
     margin-top: 150px;
+}
+
+.center-sbmt
+{
+    width:150px;
 }
 
 .maintitle
