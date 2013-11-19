@@ -80,7 +80,7 @@ public class Gruppi extends HttpServlet {
                         }
                         
                         out.println("                        <td>"+g.getData_creazione()+"</td>");
-                        out.println("                        <td> LINK PORCA TROIA</td>");
+                        out.println("                        <td> <a href=\"Forum\">LINK AL GRUPPO</a></td>");
                         
                         if(g.getProprietario() == ute.getId()){
                             out.println("");
