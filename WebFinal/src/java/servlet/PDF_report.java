@@ -20,6 +20,8 @@ import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import database.DBManager;
 import java.io.ByteArrayOutputStream;
@@ -27,6 +29,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -62,6 +65,8 @@ public class PDF_report extends HttpServlet {
         int numeroGruppo=Integer.parseInt(numeroGruppoString);
         gruppo=DBManager.searchGruppoById(numeroGruppo);
         String nomeGruppo = gruppo.getNome();
+        ArrayList utentiIscritti= new ArrayList();
+        utentiIscritti=DBManager.listaUtentiPresenti(gruppo);
         
         //PrintWriter out = response.getWriter();
         //response.setContentType("application/pdf");
@@ -104,9 +109,40 @@ public class PDF_report extends HttpServlet {
         p1.add(new Phrase("Unless you change the leading with the method setLeading, the leading doesn't change if you add text with another leading. This can lead to some problems.",
                 FontFactory.getFont(FontFactory.HELVETICA, 18)));*/
         document.add(p1);
-        Paragraph p2 = new Paragraph(new Phrase("This is the second paragraph. Now we'll start with the enumeration of our users:",
+        
+        Paragraph p2 = new Paragraph(new Phrase(" ",
                 FontFactory.getFont(FontFactory.HELVETICA, 10)));
         document.add(p2);
+        
+        PdfPTable table = new PdfPTable(3);
+        PdfPCell cell = new PdfPCell(new Paragraph("header with colspan 3"));
+        cell.setColspan(3);
+        table.addCell(cell);
+        
+        while (!utentiIscritti.isEmpty()) {
+            int index= utentiIscritti.size()-1;
+            Utente myUser=(Utente)utentiIscritti.get(index);
+            String name=myUser.getUsername();
+            //NUMERO DI POST DELL'UTENTE
+            //String avatar= myUser.getAvatar();
+            Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
+            myAvatar.scaleToFit(50,50);
+            myAvatar.setAlignment(Element.ALIGN_CENTER);
+            //document.add(myAvatar);
+            table.addCell(myAvatar);
+            table.addCell(name);
+            table.addCell("Numero post");
+            utentiIscritti.remove(index);
+        }
+        /*cell = new PdfPCell(new Paragraph("cell test1"));
+        cell.setBorderColor(BaseColor.BLACK);
+        table.addCell(cell);
+        cell = new PdfPCell(new Paragraph("cell test2"));
+        cell.setColspan(2);
+        cell.setBackgroundColor(BaseColor.WHITE);
+        table.addCell(cell);*/
+        document.add(table);
+        
         /*Paragraph p2 = new Paragraph(new Phrase(
                 "This is my second paragraph. ", FontFactory.getFont(
                         FontFactory.HELVETICA, 12)));
@@ -115,6 +151,7 @@ public class PDF_report extends HttpServlet {
         Paragraph p3 = new Paragraph("This is my third paragraph.",
                 FontFactory.getFont(FontFactory.HELVETICA, 12));
         document.add(p3);*/
+        /*
         List list=new List(false, 20);
         list.setListSymbol(new Chunk("\u2022", FontFactory.getFont(FontFactory.HELVETICA,20,Font.BOLD)));
         for (int i=0; i<5; i++) {
@@ -122,7 +159,7 @@ public class PDF_report extends HttpServlet {
             ListItem listItem = new ListItem (name);
             list.add(listItem);
         }
-        document.add(list);
+        document.add(list);*/
         // step 5: we close the document
         document.close();
 
