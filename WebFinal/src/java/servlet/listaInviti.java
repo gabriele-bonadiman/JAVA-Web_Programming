@@ -67,13 +67,13 @@ public class listaInviti extends HttpServlet {
                     out.println("                        <td class=\"nbr\">");
                     if(lista.getInvitato() == 1){
                             out.println("<div class=\"custom-container\">\n" +
-"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +lista.getID()+ "\"  checked />\n" +
-"                                           <label class=\"custom-label\" for=\"" +lista.getID()+ "\" > </label>\n" +
+"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
+"                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
 "                                       </div>");
                     }else{
-                            out.println("<div class=\"custom-container\">\n" +
-"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +lista.getID()+ "\" />\n" +
-"                                           <label class=\"custom-label\" for=\"" +lista.getID()+ "\" > </label>\n" +
+                            out.println("<div class=\"custom-container  \">\n" +
+"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
+"                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
 "                                       </div>");
                     }
                     

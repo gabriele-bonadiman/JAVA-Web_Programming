@@ -93,7 +93,8 @@ public class modificaGruppo extends HttpServlet {
                 if(!utentiPresenti.contains(ute)){
                     System.out.println("utenti presenti non contiene l'utente "+ute.getUsername());
                     if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                        out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" name=\"Gabri\" >"+ ute.getUsername() +"<br>");
+                        out.println("<input id=\""+ute.getId()+"\" type=\"checkbox\" class=\"css-checkbox\"/>\n" +
+"                                   <label  for=\""+ute.getId()+"\" class=\"css-label\">"+ute.getUsername()+" </label></br>");
                     }
                 }
             }
