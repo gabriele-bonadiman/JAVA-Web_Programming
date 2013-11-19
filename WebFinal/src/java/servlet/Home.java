@@ -65,7 +65,7 @@ public class Home extends HttpServlet {
             out.println("                Ultimo accesso il 12/11/2013 alle ore 12.34");
             out.println("            </div>");
             out.println("            <div class=\"dummy\"></div>");
-            out.println("            <li class=\"menu\">");
+            out.println("            <li class=\"menu center\">");
             out.println("                <ul class=\"menuitem\"><img src=\"Images/inviteicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"listaInviti\">Inviti</a></ul>");
             out.println("                <ul class=\"menuitem\"><img src=\"Images/groupicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"Gruppi\">Gruppi</a></ul>");
             out.println("                <ul class=\"menuitem\"><img src=\"Images/createicon.png\" alt=\"\" class=\"menuimg\"/><a href=\"creaGruppo\">Crea Gruppo</a></ul>");

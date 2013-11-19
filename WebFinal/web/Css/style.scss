@@ -7,7 +7,19 @@ and open the template in the editor.
     Created on : 11-nov-2013, 16.19.37
     Author     : Gianni
 */
+a
+{
+    color: black;
+}
 
+a:link 
+{
+    color: black;
+}
+a:visited 
+{
+    color: black;
+}
 @font-face
 {
 }
@@ -79,13 +91,15 @@ a
 .maintitle
 {
     position: relative;
-    font-size: 60px;
+    font-size: 35px;
+    text-align: center;
 }
 
 .subtitle
 {
     position: relative;
-    font-size: 30px;
+    font-size: 25px;
+    text-align: center;
 }
 
 .dummy
@@ -97,19 +111,20 @@ a
 .menuitem
 {
     list-style-type: none;
-    font-size: 30px;
+    font-size: 25px;
     height: 40px;
 }
 .menu
 {
     position: relative;
     list-style: none;
+    width: 250px;
 }
 
 .menuimg
 {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin-right: 20px;
 }
 
