@@ -88,23 +88,31 @@ public class Login extends HttpServlet {
             out.println("</form>");*/
         
         //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
-            Cookie cookie = null;
+        Cookie cookie = null;
         Cookie[] cookies = request.getCookies();
-        HttpSession sessions = request.getSession(true);
-        String usernameCookie = null;
-        String passwordCookie = null;
+        Boolean usernameCookieBool=false;
+        Boolean passwordCookieBool=false;
+        String usernameCookie = " ";
+        String passwordCookie = " ";
 
         for (int i = 0; i < cookies.length; i++) {
             cookie = cookies[i];
             if (cookie.getName().equals("username")) {
                 usernameCookie = cookie.getValue();
+                usernameCookieBool=true;
             }
             if (cookie.getName().equals("password")) {
                 passwordCookie = cookie.getValue();
+                passwordCookieBool=true;
             }
-        }
+                }
+        //HttpSession sessions = request.getSession(true);
+        if (usernameCookieBool && passwordCookieBool) {
+            
+            
+        //}
         
-        if (cookies != null) {
+        //if (cookies != null) {
             out.println("<form align=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
             out.println("Username: <input type=\"text\" name=\"username\" value=" + usernameCookie + " /><br>");
             out.println("Password: <input type=\"password\" name=\"password\" value=" + passwordCookie + " /><br>");
