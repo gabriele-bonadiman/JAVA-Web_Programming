@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +52,17 @@ public class LoginAppoggio extends HttpServlet {
             String username = (String) request.getParameter("username");
             String password = (String) request.getParameter("password");
             boolean check=false;
+            
+            /**
+             * COOKIES
+             * Mi crea i cookies per l'username e la password dell'utente
+             */
+            Cookie usernameCookie = new Cookie("username", username);
+            Cookie passwordCookie = new Cookie("password", password);
+            usernameCookie.setMaxAge(60 * 60 * 1);
+            passwordCookie.setMaxAge(60 * 60 * 1);
+            response.addCookie(usernameCookie);
+            response.addCookie(passwordCookie);
 
             //controllo che l'utente sia presente nel DB con il seguente metodo
             try {

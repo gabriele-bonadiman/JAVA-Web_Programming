@@ -34,12 +34,14 @@ public class Login extends HttpServlet {
         /**
          * COOKIES
          */
+        /*
         Cookie usernameCookie = new Cookie("username", request.getParameter("username"));
         Cookie passwordCookie = new Cookie("password", request.getParameter("password"));
         usernameCookie.setMaxAge(60*60*1); 
         passwordCookie.setMaxAge(60*60*1); 
         response.addCookie( usernameCookie );
-        response.addCookie( passwordCookie );
+        response.addCookie( passwordCookie );*/
+        
         
         /**
          *  PARAMETERS
@@ -76,14 +78,44 @@ public class Login extends HttpServlet {
         
         
         //   CONTROLLARE QUESTO FORM PERCHE' NON VA QUELLO DI GIANNI
-        
+        /*
         out.println("<form method=\"POST\">");
             out.println("USERNAME: ");                                  
                 out.println("<input name=\"username\" /><br>");
             out.println("PASSWORD: ");                              
                 out.println("<input name=\"password\" /><br>");
                 out.println("<input type=\"submit\" /></br>");      
-            out.println("</form>");
+            out.println("</form>");*/
+        
+        //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
+            Cookie cookie = null;
+        Cookie[] cookies = request.getCookies();
+        HttpSession sessions = request.getSession(true);
+        String usernameCookie = null;
+        String passwordCookie = null;
+
+        for (int i = 0; i < cookies.length; i++) {
+            cookie = cookies[i];
+            if (cookie.getName().equals("username")) {
+                usernameCookie = cookie.getValue();
+            }
+            if (cookie.getName().equals("password")) {
+                passwordCookie = cookie.getValue();
+            }
+        }
+        
+        if (cookies != null) {
+            out.println("<form align=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
+            out.println("Username: <input type=\"text\" name=\"username\" value=" + usernameCookie + " /><br>");
+            out.println("Password: <input type=\"password\" name=\"password\" value=" + passwordCookie + " /><br>");
+
+            out.println("<input type=\"submit\" value=\"Login\"/> </form> ");
+        } else {
+            out.println("<form  align=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
+            out.println("Username: <input type=\"text\" name=\"username\"/><br>");
+            out.println("Password: <input type=\"password\" name=\"password\"/><br>");
+            out.println("<input type=\"submit\" value=\"Login\"/> </form> ");
+        }
         
         out.println("            </div>");
         out.println("        </div>");
