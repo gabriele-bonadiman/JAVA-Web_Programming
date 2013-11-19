@@ -121,25 +121,25 @@ public class PDF_report extends HttpServlet {
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);*/
         
-        PdfPCell cell= new PdfPCell(new Paragraph("Avatar"));
+        PdfPCell cell= new PdfPCell(new Paragraph("Avatar",FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.RED)));
         cell.setColspan(1);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        cell = new PdfPCell(new Paragraph("Nome utente"));
+        cell = new PdfPCell(new Paragraph("Nome utente",FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.RED)));
         cell.setColspan(1);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        cell = new PdfPCell(new Paragraph("Numero post"));
+        cell = new PdfPCell(new Paragraph("Numero post",FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.RED)));
         cell.setColspan(1);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        cell = new PdfPCell(new Paragraph("Data ultimo post"));
+        cell = new PdfPCell(new Paragraph("Data ultimo post",FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.RED)));
         cell.setColspan(1);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -157,10 +157,37 @@ public class PDF_report extends HttpServlet {
             myAvatar.scaleToFit(50,50);
             myAvatar.setAlignment(Element.ALIGN_CENTER);
             //document.add(myAvatar);
+            
+            PdfPCell myCell= new PdfPCell();
+            myCell.addElement(myAvatar);
+            myCell.setColspan(1);
+            myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            myCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(myCell);
+            
+            myCell= new PdfPCell(new Paragraph (name));
+            myCell.setColspan(1);
+            myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(myCell);
+            
+            myCell= new PdfPCell(new Paragraph ("Numero post"));
+            myCell.setColspan(1);
+            myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(myCell);
+            
+            myCell= new PdfPCell(new Paragraph ("11-12-13"));
+            myCell.setColspan(1);
+            myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(myCell);
+            
+            /*
             table.addCell(myAvatar);
             table.addCell(name);
             table.addCell("Numero post");
-            table.addCell("11-12-13");
+            table.addCell("11-12-13");*/
             utentiIscritti.remove(index);
         }
         /*cell = new PdfPCell(new Paragraph("cell test1"));
