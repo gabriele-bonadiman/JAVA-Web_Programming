@@ -98,32 +98,60 @@ public class PDF_report extends HttpServlet {
         userJpg.scaleToFit(100,100);
         userJpg.setAlignment(Element.ALIGN_CENTER);
         document.add(userJpg);
-        
-        Paragraph p1 = new Paragraph(new Phrase("This is my first paragraph. It's only a try. I don't have anything to say.",
-                FontFactory.getFont(FontFactory.HELVETICA, 10)));
         /*
+        Paragraph p1 = new Paragraph(new Phrase(" ",
+                FontFactory.getFont(FontFactory.HELVETICA, 10)));
+        
         p1.add("The leading of this paragraph is calculated automagically. ");
         p1.add("The default leading is 1.5 times the fontsize. ");
         p1.add(new Chunk("You can add chunks "));
         p1.add(new Phrase("or you can add phrases. "));
         p1.add(new Phrase("Unless you change the leading with the method setLeading, the leading doesn't change if you add text with another leading. This can lead to some problems.",
-                FontFactory.getFont(FontFactory.HELVETICA, 18)));*/
-        document.add(p1);
+                FontFactory.getFont(FontFactory.HELVETICA, 18)));
+        document.add(p1);*/
         
         Paragraph p2 = new Paragraph(new Phrase(" ",
-                FontFactory.getFont(FontFactory.HELVETICA, 10)));
+                FontFactory.getFont(FontFactory.HELVETICA, 30)));
         document.add(p2);
         
-        PdfPTable table = new PdfPTable(3);
-        PdfPCell cell = new PdfPCell(new Paragraph("header with colspan 3"));
-        cell.setColspan(3);
+        PdfPTable table = new PdfPTable(4);
+        /*PdfPCell cell = new PdfPCell(new Paragraph("REPORT GRUPPO"));
+        cell.setColspan(4);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);*/
+        
+        PdfPCell cell= new PdfPCell(new Paragraph("Avatar"));
+        cell.setColspan(1);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
+        
+        cell = new PdfPCell(new Paragraph("Nome utente"));
+        cell.setColspan(1);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        
+        cell = new PdfPCell(new Paragraph("Numero post"));
+        cell.setColspan(1);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        
+        cell = new PdfPCell(new Paragraph("Data ultimo post"));
+        cell.setColspan(1);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        
         
         while (!utentiIscritti.isEmpty()) {
             int index= utentiIscritti.size()-1;
             Utente myUser=(Utente)utentiIscritti.get(index);
             String name=myUser.getUsername();
             //NUMERO DI POST DELL'UTENTE
+            //DATA ULTIMO POST
             //String avatar= myUser.getAvatar();
             Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
             myAvatar.scaleToFit(50,50);
@@ -132,6 +160,7 @@ public class PDF_report extends HttpServlet {
             table.addCell(myAvatar);
             table.addCell(name);
             table.addCell("Numero post");
+            table.addCell("11-12-13");
             utentiIscritti.remove(index);
         }
         /*cell = new PdfPCell(new Paragraph("cell test1"));
