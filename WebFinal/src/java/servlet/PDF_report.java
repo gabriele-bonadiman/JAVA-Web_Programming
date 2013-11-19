@@ -134,6 +134,7 @@ public class PDF_report extends HttpServlet {
             String name=myUser.getUsername();
             //DEVO RECUPERARE DAL DATABASE IL NUMERO DI POST DELL'UTENTE
             //DEVO RECUPERARE DAL DATABASE LA DATA DELL'ULTIMO POST DELL'UTENTE
+            //DEVO RECUPERARE DAL DATABASE LA PATH DELL'AVATAR DELL'UTENTE
             
             Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
             myAvatar.scaleToFit(50,50);
