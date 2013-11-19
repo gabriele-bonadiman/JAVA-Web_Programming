@@ -68,8 +68,6 @@ public class PDF_report extends HttpServlet {
         ArrayList utentiIscritti= new ArrayList();
         utentiIscritti=DBManager.listaUtentiPresenti(gruppo);
         
-        //PrintWriter out = response.getWriter();
-        //response.setContentType("application/pdf");
         // step 1: creation of a document-object
         Document document = new Document();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -98,28 +96,12 @@ public class PDF_report extends HttpServlet {
         userJpg.scaleToFit(100,100);
         userJpg.setAlignment(Element.ALIGN_CENTER);
         document.add(userJpg);
-        /*
-        Paragraph p1 = new Paragraph(new Phrase(" ",
-                FontFactory.getFont(FontFactory.HELVETICA, 10)));
-        
-        p1.add("The leading of this paragraph is calculated automagically. ");
-        p1.add("The default leading is 1.5 times the fontsize. ");
-        p1.add(new Chunk("You can add chunks "));
-        p1.add(new Phrase("or you can add phrases. "));
-        p1.add(new Phrase("Unless you change the leading with the method setLeading, the leading doesn't change if you add text with another leading. This can lead to some problems.",
-                FontFactory.getFont(FontFactory.HELVETICA, 18)));
-        document.add(p1);*/
         
         Paragraph p2 = new Paragraph(new Phrase(" ",
                 FontFactory.getFont(FontFactory.HELVETICA, 30)));
         document.add(p2);
         
         PdfPTable table = new PdfPTable(4);
-        /*PdfPCell cell = new PdfPCell(new Paragraph("REPORT GRUPPO"));
-        cell.setColspan(4);
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setVerticalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);*/
         
         PdfPCell cell= new PdfPCell(new Paragraph("Avatar",FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.RED)));
         cell.setColspan(1);
@@ -150,13 +132,12 @@ public class PDF_report extends HttpServlet {
             int index= utentiIscritti.size()-1;
             Utente myUser=(Utente)utentiIscritti.get(index);
             String name=myUser.getUsername();
-            //NUMERO DI POST DELL'UTENTE
-            //DATA ULTIMO POST
-            //String avatar= myUser.getAvatar();
+            //DEVO RECUPERARE DAL DATABASE IL NUMERO DI POST DELL'UTENTE
+            //DEVO RECUPERARE DAL DATABASE LA DATA DELL'ULTIMO POST DELL'UTENTE
+            
             Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
             myAvatar.scaleToFit(50,50);
             myAvatar.setAlignment(Element.ALIGN_CENTER);
-            //document.add(myAvatar);
             
             PdfPCell myCell= new PdfPCell();
             myCell.addElement(myAvatar);
@@ -168,54 +149,22 @@ public class PDF_report extends HttpServlet {
             myCell= new PdfPCell(new Paragraph (name));
             myCell.setColspan(1);
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);
             
             myCell= new PdfPCell(new Paragraph ("Numero post"));
             myCell.setColspan(1);
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);
             
             myCell= new PdfPCell(new Paragraph ("11-12-13"));
             myCell.setColspan(1);
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            //myCell.setVerticalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);
-            
-            /*
-            table.addCell(myAvatar);
-            table.addCell(name);
-            table.addCell("Numero post");
-            table.addCell("11-12-13");*/
             utentiIscritti.remove(index);
         }
-        /*cell = new PdfPCell(new Paragraph("cell test1"));
-        cell.setBorderColor(BaseColor.BLACK);
-        table.addCell(cell);
-        cell = new PdfPCell(new Paragraph("cell test2"));
-        cell.setColspan(2);
-        cell.setBackgroundColor(BaseColor.WHITE);
-        table.addCell(cell);*/
+        
         document.add(table);
         
-        /*Paragraph p2 = new Paragraph(new Phrase(
-                "This is my second paragraph. ", FontFactory.getFont(
-                        FontFactory.HELVETICA, 12)));
-        p2.add("As you can see, it started on a new line.");
-        document.add(p2);
-        Paragraph p3 = new Paragraph("This is my third paragraph.",
-                FontFactory.getFont(FontFactory.HELVETICA, 12));
-        document.add(p3);*/
-        /*
-        List list=new List(false, 20);
-        list.setListSymbol(new Chunk("\u2022", FontFactory.getFont(FontFactory.HELVETICA,20,Font.BOLD)));
-        for (int i=0; i<5; i++) {
-            String name= ("User"+i);
-            ListItem listItem = new ListItem (name);
-            list.add(listItem);
-        }
-        document.add(list);*/
         // step 5: we close the document
         document.close();
 
