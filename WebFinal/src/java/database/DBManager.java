@@ -388,6 +388,19 @@ public class DBManager {
     }
     
     /**
+     * Se l'utente modifica l'avatar, prendo l'utente e la nuova path e UPDATE
+     */
+    public static void editAvatarUtente(Utente u, String newPath) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("UPDATE " + Utenti + " SET AVATAR = ? WHERE ID = ?");
+        try {
+            stm.setString(1, newPath);
+            stm.setInt(2, u.getId());
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    /**
      *  Modifica del nome del gruppo
      */
     public static void editNomeGruppo(Gruppo g, String nuovoNome) throws SQLException{
