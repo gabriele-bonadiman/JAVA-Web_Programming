@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static listener.contextListener.uploadAvatarPathAssoluta;
 
 public class iMieiDatiAppoggio extends HttpServlet {
 
@@ -50,10 +51,10 @@ public class iMieiDatiAppoggio extends HttpServlet {
 	File f = multi.getFile("avatar"); 
 	String fileName = multi.getFilesystemName("avatar");
         
-	String uploadAvatarDir = request.getServletContext().getRealPath("/UploadedAvatar");
+	//String uploadAvatarDir = uploadAvatarPathAssoluta;//request.getServletContext().getRealPath("/UploadedAvatar");
         
-	if (f!=null) { 
-		File fOUT = new File(uploadAvatarDir,fileName);
+	if (f!=null) {
+		File fOUT = new File(uploadAvatarPathAssoluta,fileName);
 		FileInputStream fIS = new FileInputStream(f); 
 		FileOutputStream fOS = new FileOutputStream(fOUT); 
 		while (fIS.available()>0) 
@@ -61,12 +62,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
 		fIS.close(); 
 		fOS.close(); 
 	}
-        
-        
-        
-        
-        
-        
         
         /**
          * CAMBIARE IL CONTROLLO SULLA LUNGHEZZA DELLA PASSWORD!!!
@@ -81,13 +76,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
          * BACKEND
          *      * IMPLEMENTARE L'UPLOAD DELLA FOTO 
          */
-        
-        
-        //  QUI VA INSERITO IL NUOVO CODICE (FABIO)
-        
-        
-        
-        
+             
         //primo controllo sulla password
         if(!vecchiaPassword.equals(ute.getPassword()) || nuovaPassword.length()<3){
             out.println("<!DOCTYPE html>");
