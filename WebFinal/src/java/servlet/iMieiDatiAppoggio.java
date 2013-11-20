@@ -113,8 +113,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
             response.addCookie(passwordCookie);
         }
         
-        
-        
         //inserimento nome utente
         if(!nuovoNome.equals(ute.getUsername()) && nuovoNome!=null && nuovoNome.length()>4){
             try {
@@ -126,8 +124,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
         }
-        
-            
         
         session.setAttribute("utente", ute);
         response.sendRedirect("Home");
