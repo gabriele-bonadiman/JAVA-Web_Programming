@@ -43,12 +43,14 @@ public class PDF_report extends HttpServlet {
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
         String nomeUtente = ute.getUsername();
+        String avatarUtente = ute.getAvatar();
         Gruppo gruppo= new Gruppo();
         int numeroGruppo=Integer.parseInt(numeroGruppoString);
         gruppo=DBManager.searchGruppoById(numeroGruppo);
         String nomeGruppo = gruppo.getNome();
         ArrayList utentiIscritti= new ArrayList();
         utentiIscritti=DBManager.listaUtentiPresenti(gruppo);
+        String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         
         // step 1: creation of a document-object
         Document document = new Document();
@@ -74,7 +76,7 @@ public class PDF_report extends HttpServlet {
         p02.setAlignment(Element.ALIGN_CENTER);
         document.add(p02);
         
-        Image userJpg = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
+        Image userJpg = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatarUtente);
         userJpg.scaleToFit(100,100);
         userJpg.setAlignment(Element.ALIGN_CENTER);
         document.add(userJpg);
@@ -109,13 +111,13 @@ public class PDF_report extends HttpServlet {
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        
         while (!utentiIscritti.isEmpty()) {
             int index= utentiIscritti.size()-1;
             Utente myUser=(Utente)utentiIscritti.get(index);
-            String name=myUser.getUsername();
+            String name= myUser.getUsername();
+            String avatar= myUser.getAvatar();
             
-            Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
+            Image myAvatar = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatar);
             myAvatar.scaleToFit(50,50);
             myAvatar.setAlignment(Element.ALIGN_CENTER);
             
