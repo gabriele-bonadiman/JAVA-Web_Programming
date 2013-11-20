@@ -29,80 +29,94 @@ public class Gruppi extends HttpServlet {
             Utente ute = (Utente) session.getAttribute("utente");
             List<Integer> gruppi = DBManager.listaGruppiIscritto(ute.getId());
             
-            out.println("<!DOCTYPE html>");
-            out.println("<!--");
-            out.println("To change this license header, choose License Headers in Project Properties.");
-            out.println("To change this template file, choose Tools | Templates");
-            out.println("and open the template in the editor.");
-            out.println("-->");
-            out.println("<html>");
-            out.println("    <head>");
-            out.println("        <title>Gruppi</title>");
-            out.println("        <meta charset=\"UTF-8\">");
-            out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
-            out.println("    </head>");
-            out.println("    <body>");
-            out.println("        <div class=\"container\">");
-            out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
-            out.println("                <tbody>");
-            out.println("                    <tr class=\"titlerow\">");
-            out.println("                        <th>Gruppi</th>");
-            out.println("                        <th>Data</th>");
-            out.println("                        <th>Link</th>");
-            out.println("                        <th class=\"nbr\"><img src=\"Images/downloadicon.png\"></th> ");
-            out.println("                    </tr>");
-            
-            
-            
-            
-            
-            
-            
-            Iterator i = gruppi.iterator(); 
-                    while(i.hasNext()) {
-                        int ID = (int) i.next();
-                        Gruppo g = DBManager.searchGruppoById(ID);
-                        out.println("                    <tr>");
-                        
-                        
-                        //solo se sono il proprietario risulta clicckabil eil link per andare a modifica gruppo
-                        if(g.getProprietario() == ute.getId()){
-                            out.println("");
-                            out.println("<td>"+ g.getNome()+ "");
-                            out.println("<form  action=\"modificaGruppo\" >");
-                            out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
-                            out.println("</form></td>");
+            if(!gruppi.isEmpty()){
+                    out.println("<!DOCTYPE html>");
+                    out.println("<!--");
+                    out.println("To change this license header, choose License Headers in Project Properties.");
+                    out.println("To change this template file, choose Tools | Templates");
+                    out.println("and open the template in the editor.");
+                    out.println("-->");
+                    out.println("<html>");
+                    out.println("    <head>");
+                    out.println("        <title>Gruppi</title>");
+                    out.println("        <meta charset=\"UTF-8\">");
+                    out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
+                    out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                    out.println("    </head>");
+                    out.println("    <body>");
+                    out.println("        <div class=\"container\">");
+                    out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
+                    out.println("                <tbody>");
+                    out.println("                    <tr class=\"titlerow\">");
+                    out.println("                        <th>Gruppi</th>");
+                    out.println("                        <th>Data</th>");
+                    out.println("                        <th>Link</th>");
+                    out.println("                        <th class=\"nbr\"><img src=\"Images/downloadicon.png\"></th> ");
+                    out.println("                    </tr>");
 
-                        }
-                        else{
-                            out.println("                        <td>"+ g.getNome()+ "</td>");
-                        }
-                        
-                        out.println("                        <td>"+g.getData_creazione()+"</td>");
-                        out.println("                        <td> <a href=\"Forum\">LINK AL GRUPPO</a></td>");
-                        
-                        if(g.getProprietario() == ute.getId()){
-                            out.println("");
-                            out.println("<td>");
-                            out.println("<form  action=\"PDF_report\" >");
-                            out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficon.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
-                            out.println("</form></td>");
 
-                        }
-                        
-                        //out.println("                        <td class=\"nbr\">PDF</td>");
-                        out.println("                    </tr>");
-                    }
-            
-            
-            out.println("                </tbody>");
-            out.println("            </table>");
-            out.println("            <button class=\"retbtn\"><a href=\"Home\">Fine</a></button>");
-            out.println("        </div>");
-            out.println("    </body>");
-            out.println("</html>");
-            out.println("");
+
+
+
+
+
+                    Iterator i = gruppi.iterator(); 
+                            while(i.hasNext()) {
+                                int ID = (int) i.next();
+                                Gruppo g = DBManager.searchGruppoById(ID);
+                                out.println("                    <tr>");
+
+
+                                //solo se sono il proprietario risulta clicckabil eil link per andare a modifica gruppo
+                                if(g.getProprietario() == ute.getId()){
+                                    out.println("");
+                                    out.println("<td>"+ g.getNome()+ "");
+                                    out.println("<form  action=\"modificaGruppo\" >");
+                                    out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("</form></td>");
+
+                                }
+                                else{
+                                    out.println("                        <td>"+ g.getNome()+ "</td>");
+                                }
+
+                                out.println("                        <td>"+g.getData_creazione()+"</td>");
+                                out.println("                        <td> <a href=\"Forum\">LINK AL GRUPPO</a></td>");
+
+                                if(g.getProprietario() == ute.getId()){
+                                    out.println("");
+                                    out.println("<td>");
+                                    out.println("<form  action=\"PDF_report\" >");
+                                    out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficon.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("</form></td>");
+
+                                }
+
+                                //out.println("                        <td class=\"nbr\">PDF</td>");
+                                out.println("                    </tr>");
+                            }
+
+
+                    out.println("                </tbody>");
+                    out.println("            </table>");
+                    out.println("            <button class=\"retbtn\"><a href=\"Home\">Fine</a></button>");
+                    out.println("        </div>");
+                    out.println("    </body>");
+                    out.println("</html>");
+                    out.println("");
+                }else{
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("    <head>");
+                    out.println("        <title>Inviti</title>");
+                    out.println("        <meta charset=\"UTF-8\">");
+                    out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
+                    out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                    out.println("    </head>");
+                    out.println("    <body>");
+                    out.println("    LA LISTA DEI TUOI GRUPPI E' VUOTA");
+                    out.println("    </body>");
+                }
 
         }
     }
