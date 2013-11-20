@@ -58,7 +58,7 @@ public class creaGruppoAppoggio extends HttpServlet {
                     out.println("GRUPPO --- " + paramValues[0]);
                     if(paramValues[0].equals("")){
                         creaGruppo.errorName=true;
-                        response.sendRedirect("creaGruppo");
+                        response.sendRedirect("GruppoVuoto");
                         return;
                     }
                     id_group = DBManager.creaGruppo(paramValues[0], ute);

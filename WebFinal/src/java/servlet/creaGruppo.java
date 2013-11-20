@@ -60,10 +60,6 @@ public class creaGruppo extends HttpServlet {
             // ALTRO FORM DA CONTROLLARE RISPETTO A QEULLO DI GIANNI
             out.println("NOME GRUPPO: ");                                  
             out.println("<input name=\"nomeGruppo\" /><br>");
-            if(errorName){
-                out.println("<div style=\"color:#0000FF\"> UN GRUPPO SENZA NOME? </div>");
-                errorName=false;
-            }
             
             out.println("                </div>");
             out.println("                <div  style=\"font-size: 40px;  float: left;\">");

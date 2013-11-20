@@ -44,11 +44,6 @@ public class Home extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
-            out.println("<!--");
-            out.println("To change this license header, choose License Headers in Project Properties.");
-            out.println("To change this template file, choose Tools | Templates");
-            out.println("and open the template in the editor.");
-            out.println("-->");
             out.println("<html>");
             out.println("    <head>");
             out.println("        <title>Home</title>");
