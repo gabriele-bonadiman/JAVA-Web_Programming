@@ -1,0 +1,34 @@
+
+
+
+
+
+
+		GENERALE
+* aggiungere filtri
+* aggiungere pagine di errore
+* mettere il controllo su tutte le text edit che non siano vuote!
+* modularizzazione database
+* sistemare gli switch Iscritto/nonIscritto
+* upload avatar/file
+* PDF
+*sistemare i cookie
+* servlet di errori
+
+		GRUPPI
+* sistemare front-end nel caso la lista fosse vuota
+
+
+		LISTA INVITI
+* sistemare front-end nel caso la lista fosse vuota
+
+
+		CREAGRUPPO
+
+* aggiungere pulsante indietro
+
+
+
+		I MIEI DATI
+
+* aggiungere pulsante "Torna Indietro"
