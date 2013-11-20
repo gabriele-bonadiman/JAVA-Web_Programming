@@ -60,6 +60,7 @@ public class DBManager {
     
     
     
+    
     /**********************************************
      *                    GETTER                  *
      **********************************************/
@@ -252,11 +253,11 @@ public class DBManager {
     public static ArrayList<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
         System.out.println("inizio funzione ----- ");
 
-        PreparedStatement stm = con.prepareStatement("select id from utente except(select invito.utente from invito where gruppo = 18)");
+        PreparedStatement stm = con.prepareStatement("select id from utente except(select invito.utente from invito where gruppo = ?)");
     
         ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
-//            stm.setInt(1,gr.getID());
+            stm.setInt(1,gr.getID());
             ResultSet rs = stm.executeQuery();
            try {
                while(rs.next()) {
@@ -269,6 +270,62 @@ public class DBManager {
        } finally {stm.close();}
        return utenti;
     }
+    
+    
+    
+    
+    /**
+     * Preso in input gruppo e utente, resituisco #post singolo utente
+     */
+    public static int numeroPostSingoloUtente(Utente u, Gruppo gr) throws SQLException{   
+        PreparedStatement stm = con.prepareStatement
+            ("select * from POST where GRUPPO = ? AND UTENTE = ?");
+        int num=0;
+        try {
+             stm.setInt(1,gr.getID());
+             stm.setInt(2, u.getId());
+             ResultSet rs = stm.executeQuery();
+            try {
+                while(rs.next()) {
+                    num++;
+                }
+            } finally { rs.close();}
+        } finally {stm.close();}
+        return num;
+    }
+ 
+    /**
+     * Preso in input utente e gruppo restituisco data ultimo post utente
+     */
+    public static java.sql.Date dataUltimoPostUtente(Utente u, Gruppo gr) throws SQLException{
+        
+        java.sql.Date data = null;
+        java.util.Date data2 = new java.util.Date();
+        data = new java.sql.Date(data2.getTime());
+
+          PreparedStatement stm = con.prepareStatement
+            ("select * from POST where GRUPPO = ? AND UTENTE = ? ORDER BY id DESC");
+        int num=0;
+        try {
+             stm.setInt(1,gr.getID());
+             stm.setInt(2, u.getId());
+             ResultSet rs = stm.executeQuery();
+            try {
+                if(rs.next()) {
+                    data = rs.getDate("data");
+                }else{
+                    return null;
+                }
+            } finally { rs.close();}
+        } finally {stm.close();}
+
+        return data;
+        
+    }
+    
+    
+    
+    
     
     
     
@@ -429,6 +486,7 @@ public class DBManager {
         
         return true;
     }
- 
+    
+    
     
 }
