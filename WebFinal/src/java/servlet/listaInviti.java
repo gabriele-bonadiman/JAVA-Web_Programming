@@ -58,8 +58,11 @@ public class listaInviti extends HttpServlet {
                 out.println("                        <th class=\"nbr\">Iscritto</th>");
                 out.println("                    </tr>");
                 out.println("                    <tr>");
+                //LA RIGA SUCCESSIVA è STATA AGGIUNTA DA FABIO
+                out.println("<form class=\"center\" action= \"listaInvitiAppoggio\" method=\"POST\">");
 
                 Iterator i = listaInviti.iterator(); 
+                
                 while(i.hasNext()) {
 
                     Lista lista = (Lista) i.next();
@@ -70,14 +73,16 @@ public class listaInviti extends HttpServlet {
                         out.println("                        <td>"+gr.getNome()+"</td>");
                         out.println("                        <td>"+gr.getProprietario()+"</td>");
                         out.println("                        <td class=\"nbr\">");
-                        if(lista.getInvitato() == 1){
+                        if(lista.getInvitato()==1){
+                            System.out.print("=1");
                                 out.println("<div class=\"custom-container\">\n" +
-    "                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
+    "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
-                        }else{
+                        } else {
+                            System.out.print("=0");
                                 out.println("<div class=\"custom-container  \">\n" +
-    "                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
+    "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
                         }
@@ -93,8 +98,11 @@ public class listaInviti extends HttpServlet {
                 out.println("                    </tr>");
                 out.println("                </tbody>");
                 out.println("            </table>");
-                out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
+                //out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
+                //LA RIGA SUCCESSIVA è STATA AGGIUNTA DA FABIO
+                out.println("<input type=\"submit\" class=\"retbtn\" value=\"Conferma\"/>");
                 out.println("        </div>");
+                out.println("</form>");
                 out.println("    </body>");
                 out.println("</html>");
                 out.println("");

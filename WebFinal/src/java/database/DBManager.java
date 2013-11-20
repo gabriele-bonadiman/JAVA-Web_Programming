@@ -195,7 +195,7 @@ public class DBManager {
                     Lista singleReport = new Lista();
                     singleReport.setUtente(rs.getInt("utente"));
                     singleReport.setGruppo(rs.getInt("gruppo"));
-                    singleReport.setInvitato(0);
+                    singleReport.setInvitato(rs.getInt("INVITATO"));
                     listaGruppi.add(singleReport);
                 }
             } finally { rs.close();}
@@ -342,9 +342,9 @@ public class DBManager {
      * 0 = sono iscritto
      * 1 = non sono iscritto
      */
-    public void editIscrizione(int idUtente,int idGruppo,int choose) throws SQLException{
+    public static void editIscrizione(int idUtente,int idGruppo,int choose) throws SQLException{
 
-        PreparedStatement stm = con.prepareStatement("UPDATE" + Inviti + " SET invitato = ? WHERE UTENTE = ? AND GRUPPO = ?");
+        PreparedStatement stm = con.prepareStatement("UPDATE " + Inviti + " SET invitato = ? WHERE UTENTE = ? AND GRUPPO = ?");
         try {
             stm.setInt(1, choose);
             stm.setInt(2, idUtente);
