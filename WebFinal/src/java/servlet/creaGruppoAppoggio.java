@@ -53,9 +53,14 @@ public class creaGruppoAppoggio extends HttpServlet {
                 paramName = (String)paramNames.nextElement();
                 String[] paramValues = request.getParameterValues(paramName);
 
-                // creazione del gruppo
+                // creazione del gruppo. Prendo il nome(il primo parametro)
                 if(stop==0){
                     out.println("GRUPPO --- " + paramValues[0]);
+                    if(paramValues[0].equals("")){
+                        creaGruppo.errorName=true;
+                        response.sendRedirect("creaGruppo");
+                        return;
+                    }
                     id_group = DBManager.creaGruppo(paramValues[0], ute);
                     DBManager.inserisciInLista(ute, id_group);  //per inserire chi crea
                     DBManager.inserisciInInviti(ute, id_group,1);
@@ -68,7 +73,9 @@ public class creaGruppoAppoggio extends HttpServlet {
                 }
             }
         } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-        response.sendRedirect("Home");
+       
+            response.sendRedirect("Home");
+       
     }
 
 

@@ -29,70 +29,88 @@ public class listaInviti extends HttpServlet {
 
         List<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
         
+        
         try (PrintWriter out = response.getWriter()) {
-             out.println("<!DOCTYPE html>");
-            out.println("<!--");
-            out.println("To change this license header, choose License Headers in Project Properties.");
-            out.println("To change this template file, choose Tools | Templates");
-            out.println("and open the template in the editor.");
-            out.println("-->");
-            out.println("<html>");
-            out.println("    <head>");
-            out.println("        <title>Inviti</title>");
-            out.println("        <meta charset=\"UTF-8\">");
-            out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
-            out.println("    </head>");
-            out.println("    <body>");
-            out.println("        <div class=\"container\">");
-            out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
-            out.println("                <tbody>");
-            out.println("                    <tr class=\"titlerow\">");
-            out.println("                        <th>Gruppo</th>");
-            out.println("                        <th>Proprietario</th>");
-            out.println("                        <th class=\"nbr\">Iscritto</th>");
-            out.println("                    </tr>");
-            out.println("                    <tr>");
+        
             
-            Iterator i = listaInviti.iterator(); 
-            while(i.hasNext()) {
-                
-                Lista lista = (Lista) i.next();
-                Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
-                
-                if (gr.getProprietario() != ute.getId()){
-                    out.println("                    <tr>");
-                    out.println("                        <td>"+gr.getNome()+"</td>");
-                    out.println("                        <td>"+gr.getProprietario()+"</td>");
-                    out.println("                        <td class=\"nbr\">");
-                    if(lista.getInvitato() == 1){
-                            out.println("<div class=\"custom-container\">\n" +
-"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
-"                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
-"                                       </div>");
-                    }else{
-                            out.println("<div class=\"custom-container  \">\n" +
-"                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
-"                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
-"                                       </div>");
+            
+            if(!listaInviti.isEmpty()){
+                out.println("<!DOCTYPE html>");
+                out.println("<!--");
+                out.println("To change this license header, choose License Headers in Project Properties.");
+                out.println("To change this template file, choose Tools | Templates");
+                out.println("and open the template in the editor.");
+                out.println("-->");
+                out.println("<html>");
+                out.println("    <head>");
+                out.println("        <title>Inviti</title>");
+                out.println("        <meta charset=\"UTF-8\">");
+                out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
+                out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                out.println("    </head>");
+                out.println("    <body>");
+                out.println("        <div class=\"container\">");
+                out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
+                out.println("                <tbody>");
+                out.println("                    <tr class=\"titlerow\">");
+                out.println("                        <th>Gruppo</th>");
+                out.println("                        <th>Proprietario</th>");
+                out.println("                        <th class=\"nbr\">Iscritto</th>");
+                out.println("                    </tr>");
+                out.println("                    <tr>");
+
+                Iterator i = listaInviti.iterator(); 
+                while(i.hasNext()) {
+
+                    Lista lista = (Lista) i.next();
+                    Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
+
+                    if (gr.getProprietario() != ute.getId()){
+                        out.println("                    <tr>");
+                        out.println("                        <td>"+gr.getNome()+"</td>");
+                        out.println("                        <td>"+gr.getProprietario()+"</td>");
+                        out.println("                        <td class=\"nbr\">");
+                        if(lista.getInvitato() == 1){
+                                out.println("<div class=\"custom-container\">\n" +
+    "                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
+    "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
+    "                                       </div>");
+                        }else{
+                                out.println("<div class=\"custom-container  \">\n" +
+    "                                           <input type=\"checkbox\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
+    "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
+    "                                       </div>");
+                        }
+
+                        out.println("                    </td></tr>");
                     }
-                    
-                    out.println("                    </td></tr>");
                 }
+
+                out.println("                    <tr>");
+                out.println("                        <td class=\"endtd\"></td>");
+                out.println("                        <td class=\"endtd\"></td>");
+                out.println("                        <td class=\"nbr endtd\"></td>");
+                out.println("                    </tr>");
+                out.println("                </tbody>");
+                out.println("            </table>");
+                out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
+                out.println("        </div>");
+                out.println("    </body>");
+                out.println("</html>");
+                out.println("");
+            }else{
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("    <head>");
+                out.println("        <title>Inviti</title>");
+                out.println("        <meta charset=\"UTF-8\">");
+                out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
+                out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                out.println("    </head>");
+                out.println("    <body>");
+                out.println("    LA LISTA DEI TUOI INVITI E' VUOTA");
+                out.println("    </body>");
             }
-            
-            out.println("                    <tr>");
-            out.println("                        <td class=\"endtd\"></td>");
-            out.println("                        <td class=\"endtd\"></td>");
-            out.println("                        <td class=\"nbr endtd\"></td>");
-            out.println("                    </tr>");
-            out.println("                </tbody>");
-            out.println("            </table>");
-            out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
-            out.println("        </div>");
-            out.println("    </body>");
-            out.println("</html>");
-            out.println("");
         }
     }
 
