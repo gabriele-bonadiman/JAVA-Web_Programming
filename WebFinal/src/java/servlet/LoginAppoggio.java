@@ -56,12 +56,12 @@ public class LoginAppoggio extends HttpServlet {
             /**
              * COOKIES
              * Mi crea i cookies per l'username e la password dell'utente
-             * Tali cookies durano 1 ora
+             * Tali cookies durano 24 ore
              */
             Cookie usernameCookie = new Cookie("username", username);
             Cookie passwordCookie = new Cookie("password", password);
-            usernameCookie.setMaxAge(60 * 60 * 1);
-            passwordCookie.setMaxAge(60 * 60 * 1);
+            usernameCookie.setMaxAge(60 * 60 * 24);
+            passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
             response.addCookie(passwordCookie);
 

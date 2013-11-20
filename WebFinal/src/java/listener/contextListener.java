@@ -18,7 +18,6 @@ import javax.servlet.ServletContextListener;
  */
 public class contextListener implements ServletContextListener{
     public static String uploadFilePathAssoluta;
-    public static String uploadAvatarPathAssoluta;
     
  @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -32,8 +31,6 @@ public class contextListener implements ServletContextListener{
         }
         
         uploadFilePathAssoluta =sce.getServletContext().getRealPath("/UploadedFile");
-        
-        uploadAvatarPathAssoluta =sce.getServletContext().getRealPath("/UploadedAvatar");
 }
     
     @Override

@@ -41,7 +41,7 @@ public class iMieiDati extends HttpServlet {
             out.println("        <div class=\"container\">");
             out.println("            <form action=\"iMieiDatiAppoggio\" method=\"POST\" enctype='multipart/form-data'>");
             out.println("              <div class=\"center\" style=\"width:150px;\">");
-            out.println("                   <image src=\"Images/singleicon.png\" style=\"height:150px; width: 150px;\" >");
+            out.println("                   <image src=\"UploadedAvatar/"+utente.getAvatar()+"  \" style=\"height:150px; width: 150px;\" >");
             out.println("              </div>");
             out.println("              <div style=\"font-size: 40px; margin-top: 40px; position:relative;\" >");
             out.println("                    <label class=\"stdlabel\">Modifica Nome:</label><input name=\"username\" placeholder="+ utente.getUsername()+" type=\"text\" class=\"stdinput\">");

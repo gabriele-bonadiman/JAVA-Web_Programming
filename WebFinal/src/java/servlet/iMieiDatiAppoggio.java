@@ -12,11 +12,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import static listener.contextListener.uploadAvatarPathAssoluta;
 
 public class iMieiDatiAppoggio extends HttpServlet {
 
@@ -50,8 +50,21 @@ public class iMieiDatiAppoggio extends HttpServlet {
 
 	File f = multi.getFile("avatar"); 
 	String fileName = multi.getFilesystemName("avatar");
+	String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         
-	//String uploadAvatarDir = uploadAvatarPathAssoluta;//request.getServletContext().getRealPath("/UploadedAvatar");
+        File file = new File(uploadAvatarPathAssoluta);
+        if (!file.exists()){
+            file.mkdir();
+        }
+        
+        if (fileName!=null){
+            try {
+                DBManager.editAvatarUtente(ute, fileName);
+                ute.setAvatar(fileName);
+            } catch (SQLException ex) {
+                Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
 	if (f!=null) {
 		File fOUT = new File(uploadAvatarPathAssoluta,fileName);
@@ -89,11 +102,16 @@ public class iMieiDatiAppoggio extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             //response.sendRedirect("ERRORE PASSWORD");
-        }else
+        }else {
             try {
                 DBManager.editPasswordUtente(ute, nuovaPassword);
                 ute.setPassword(nuovaPassword);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+            
+            Cookie passwordCookie = new Cookie("password", nuovaPassword);
+            passwordCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(passwordCookie);
+        }
         
         
         
@@ -103,7 +121,13 @@ public class iMieiDatiAppoggio extends HttpServlet {
                 DBManager.editNomeUtente(ute, nuovoNome);
                 ute.setUsername(nuovoNome);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+            
+            Cookie usernameCookie = new Cookie("username", nuovoNome);
+            usernameCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(usernameCookie);
         }
+        
+            
         
         session.setAttribute("utente", ute);
         response.sendRedirect("Home");
