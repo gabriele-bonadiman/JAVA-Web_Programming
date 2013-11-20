@@ -56,6 +56,10 @@
         <servlet-name>Forum</servlet-name>
         <servlet-class>servlet.Forum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GruppoVuoto</servlet-name>
+        <servlet-class>servlet.GruppoVuoto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>Forum</servlet-name>
         <url-pattern>/Forum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GruppoVuoto</servlet-name>
+        <url-pattern>/GruppoVuoto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
