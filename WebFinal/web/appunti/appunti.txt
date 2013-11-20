@@ -13,6 +13,7 @@
 * upload file
 * PDF data ultimo post/numero post
 * servlet di errori
+*l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
