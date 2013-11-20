@@ -10,9 +10,8 @@
 * mettere il controllo su tutte le text edit che non siano vuote!
 * modularizzazione database
 * sistemare gli switch Iscritto/nonIscritto
-* upload avatar/file
-* PDF
-*sistemare i cookie
+* upload file
+* PDF data ultimo post/numero post
 * servlet di errori
 
 		GRUPPI
