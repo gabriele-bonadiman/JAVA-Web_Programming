@@ -5,6 +5,7 @@ import classi.Utente;
 import classi.Gruppo;
 import classi.Invito;
 import classi.Lista;
+import classi.Post;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -18,6 +19,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.xml.crypto.Data;
 
 
 public class DBManager {
@@ -251,10 +253,7 @@ public class DBManager {
      * Utenti presenti non ancora iscritti al gruppo G
      */
     public static ArrayList<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
-        System.out.println("inizio funzione ----- ");
-
         PreparedStatement stm = con.prepareStatement("select id from utente except(select invito.utente from invito where gruppo = ?)");
-    
         ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
             stm.setInt(1,gr.getID());
@@ -262,7 +261,6 @@ public class DBManager {
            try {
                while(rs.next()) {
                    Utente p;
-                   System.out.println("stampo valore ----- " + rs.getInt(1));
                    p = DBManager.searchUtenteByID(rs.getInt(1));
                    utenti.add(p);
                }
@@ -318,13 +316,33 @@ public class DBManager {
                 }
             } finally { rs.close();}
         } finally {stm.close();}
-
         return data;
-        
     }
     
-    
-    
+    /**
+     * Preso in input un gruppo restituisce una lista dei suoi post
+     */
+    public static ArrayList<Post> listaDeiPost(Gruppo g) throws SQLException{
+        
+        PreparedStatement stm = con.prepareStatement
+        ("SELECT * FROM POST WHERE GRUPPO = ?");
+        ArrayList<Post> postGr = new ArrayList<Post>();
+       try {
+            stm.setInt(1,g.getID());
+            ResultSet rs = stm.executeQuery();
+           try {
+               while(rs.next()) {
+                   Post p = new Post();
+                    p.setData(rs.getDate("data"));
+                    p.setGruppo(rs.getInt("gruppo"));
+                    p.setTesto(rs.getString("testo"));
+                    p.setUtente(rs.getInt("utente"));
+                   postGr.add(p);
+               }
+           } finally { rs.close();}
+       } finally {stm.close();}
+       return postGr;
+    }
     
     
     

@@ -72,14 +72,12 @@ public class Gruppi extends HttpServlet {
                                     out.println("<form  action=\"modificaGruppo\" >");
                                     out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
                                     out.println("</form></td>");
-
-                                }
-                                else{
+                                }else{
                                     out.println("                        <td>"+ g.getNome()+ "</td>");
                                 }
 
                                 out.println("                        <td>"+g.getData_creazione()+"</td>");
-                                out.println("                        <td> <a href=\"Forum\">LINK AL GRUPPO</a></td>");
+                                out.println("                        <td> <a href=\"Forum?id="+g.getID()+"\">LINK AL GRUPPO</a></td>");
 
                                 if(g.getProprietario() == ute.getId()){
                                     out.println("");

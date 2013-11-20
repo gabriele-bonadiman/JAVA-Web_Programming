@@ -9,8 +9,7 @@
 * aggiungere pagine di errore
 * mettere il controllo su tutte le text edit che non siano vuote!
 * modularizzazione database
-* sistemare gli switch Iscritto/nonIscritto
-* upload file
+* upload file su tutte le pagine
 * PDF data ultimo post/numero post
 * servlet di errori
 *l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
@@ -28,7 +27,18 @@
 * aggiungere pulsante indietro
 
 
-
 		I MIEI DATI
 
 * aggiungere pulsante "Torna Indietro"
+
+                FORUM
+                
+* aggiungere pulsante per tornare alla home
+* il pulsante "FINE" a cosa serve?
+
+
+                ADD POST
+* aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi
+
+
+

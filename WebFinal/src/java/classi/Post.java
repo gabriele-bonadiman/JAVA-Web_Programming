@@ -6,23 +6,23 @@
 
 package classi;
 
-import javax.xml.crypto.Data; 
+import java.sql.Date;
 
-/**
- *
- * @author Babol
- */
+
+
 public class Post {
-    private Data data;
+    
+    
+    private Date data;
     private String testo;
-    private Utente utente;
-    private Gruppo gruppo;
+    private int utente;
+    private int gruppo;
 
-    public Data getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -34,19 +34,23 @@ public class Post {
         this.testo = testo;
     }
 
-    public Utente getUtente() {
+    public int getUtente() {
         return utente;
     }
 
-    public void setUtente(Utente utente) {
+    public void setUtente(int utente) {
         this.utente = utente;
     }
 
-    public Gruppo getGruppo() {
+    public int getGruppo() {
         return gruppo;
     }
 
-    public void setGruppo(Gruppo gruppo) {
+    public void setGruppo(int gruppo) {
         this.gruppo = gruppo;
     }
+
+    
+    
+    
 }

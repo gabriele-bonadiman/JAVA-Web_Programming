@@ -59,10 +59,10 @@ public class listaInvitiAppoggio extends HttpServlet {
                 
                 if ("on".equals(request.getParameter(gr.getNome()))) {
                     DBManager.editIscrizione(ute.getId(), gr.getID(), 1);
-                    System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
+                    //System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
                 } else {
                     DBManager.editIscrizione(ute.getId(), gr.getID(), 0);
-                    System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
+                    //System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
                 }
             }
             response.sendRedirect("Home");
