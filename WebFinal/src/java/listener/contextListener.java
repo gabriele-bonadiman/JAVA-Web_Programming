@@ -17,6 +17,9 @@ import javax.servlet.ServletContextListener;
  * @author Babol
  */
 public class contextListener implements ServletContextListener{
+    public static String uploadFilePathAssoluta;
+    public static String uploadAvatarPathAssoluta;
+    
  @Override
     public void contextInitialized(ServletContextEvent sce) {
         String dburl = sce.getServletContext().getInitParameter("dburl");
@@ -27,6 +30,10 @@ public class contextListener implements ServletContextListener{
             Logger.getLogger(getClass().getName()).severe(ex.toString());
             throw new RuntimeException(ex);
         }
+        
+        uploadFilePathAssoluta =sce.getServletContext().getRealPath("/UploadedFile");
+        
+        uploadAvatarPathAssoluta =sce.getServletContext().getRealPath("/UploadedAvatar");
 }
     
     @Override

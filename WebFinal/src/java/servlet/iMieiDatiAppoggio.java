@@ -1,7 +1,11 @@
 package servlet;
 
 import classi.Utente;
+import com.oreilly.servlet.MultipartRequest;
 import database.DBManager;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -34,9 +38,29 @@ public class iMieiDatiAppoggio extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
-        String nuovoNome = (String) request.getParameter("nomeModificato");
-        String vecchiaPassword = (String) request.getParameter("vecchiaPassword");
-        String nuovaPassword = (String) request.getParameter("nuovaPassword");
+        //String nuovoNome = (String) request.getParameter("nomeModificato");
+        //String vecchiaPassword = (String) request.getParameter("vecchiaPassword");
+        //String nuovaPassword = (String) request.getParameter("nuovaPassword");
+        
+        MultipartRequest multi = new MultipartRequest(request,"."); 
+	String nuovoNome = (String) multi.getParameter("username"); 
+	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
+	String nuovaPassword = (String) multi.getParameter("newPassword");
+
+	File f = multi.getFile("avatar"); 
+	String fileName = multi.getFilesystemName("avatar");
+        
+	String uploadAvatarDir = request.getServletContext().getRealPath("/UploadedAvatar");
+        
+	if (f!=null) { 
+		File fOUT = new File(uploadAvatarDir,fileName);
+		FileInputStream fIS = new FileInputStream(f); 
+		FileOutputStream fOS = new FileOutputStream(fOUT); 
+		while (fIS.available()>0) 
+			fOS.write(fIS.read());
+		fIS.close(); 
+		fOS.close(); 
+	}
         
         
         
@@ -91,6 +115,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
                 ute.setUsername(nuovoNome);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         }
+        
         session.setAttribute("utente", ute);
         response.sendRedirect("Home");
 

@@ -115,9 +115,6 @@ public class PDF_report extends HttpServlet {
             Utente myUser=(Utente)utentiIscritti.get(index);
             String name=myUser.getUsername();
             
-            //DATO L'UTENTE E IL GRUPPO DEVO RECUPERARE DAL DATABASE IL NUMERO DI POST DELL'UTENTE NEL GRUPPO
-            //DATO L'UTENTE E IL GRUPPO DEVO RECUPERARE DAL DATABASE LA DATA DELL'ULTIMO POST DELL'UTENTE NEL GRUPPO
-            
             Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
             myAvatar.scaleToFit(50,50);
             myAvatar.setAlignment(Element.ALIGN_CENTER);

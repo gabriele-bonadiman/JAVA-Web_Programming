@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.jboss.weld.context.http.Http;
 
 public class Gruppi extends HttpServlet {
 
@@ -28,7 +27,6 @@ public class Gruppi extends HttpServlet {
             HttpSession session = request.getSession();
             Utente ute = (Utente) session.getAttribute("utente");
             List<Integer> gruppi = DBManager.listaGruppiIscritto(ute.getId());
-            
             if(!gruppi.isEmpty()){
                     out.println("<!DOCTYPE html>");
                     out.println("<!--");
