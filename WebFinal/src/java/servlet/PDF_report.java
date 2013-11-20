@@ -114,9 +114,10 @@ public class PDF_report extends HttpServlet {
             int index= utentiIscritti.size()-1;
             Utente myUser=(Utente)utentiIscritti.get(index);
             String name=myUser.getUsername();
+            
             //DATO L'UTENTE E IL GRUPPO DEVO RECUPERARE DAL DATABASE IL NUMERO DI POST DELL'UTENTE NEL GRUPPO
             //DATO L'UTENTE E IL GRUPPO DEVO RECUPERARE DAL DATABASE LA DATA DELL'ULTIMO POST DELL'UTENTE NEL GRUPPO
-            //DEVO RECUPERARE DAL DATABASE LA PATH DELL'AVATAR DELL'UTENTE
+            //DEVO RECUPERARE DAL DATABASE LA PATH DELL'AVATAR DELL'UTENTE FATOOOOO!!
             
             Image myAvatar = Image.getInstance("/Users/FMalesani/NetBeansProjects/Steeeee/web/images/user_icon.jpg");
             myAvatar.scaleToFit(50,50);
