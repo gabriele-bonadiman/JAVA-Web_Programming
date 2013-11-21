@@ -76,7 +76,7 @@ public class Login extends HttpServlet {
                 passwordCookie = cookie.getValue();
                 passwordCookieBool=true;
             }
-                }
+        }
         //HttpSession sessions = request.getSession(true);
         if (usernameCookieBool && passwordCookieBool) {
             

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +38,18 @@ public class Home extends HttpServlet {
          */
         
         
-        
+        Cookie cookie = null;
+            Cookie[] cookies = request.getCookies();
+            Boolean dateCookieBool=false;
+            String dateToShow=null;
+
+            for (int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                if (cookie.getName().equals("dateToShow")) {
+                    dateToShow = cookie.getValue();
+                    dateCookieBool=true;
+                }
+            }
         
         
         
@@ -57,7 +69,11 @@ public class Home extends HttpServlet {
             out.println("                Bentornato "+nome+"!");
             out.println("            </div>");
             out.println("            <div class=\"subtitle\">");
-            out.println("                Ultimo accesso il 12/11/2013 alle ore 12.34");
+            if (dateCookieBool==true) {
+                out.println(dateToShow);
+            } else {
+                out.println("                Non sono disponibili dati relativi all'ultimo accesso");
+            }
             out.println("            </div>");
             out.println("            <div class=\"dummy\"></div>");
             out.println("            <li class=\"menu center\">");

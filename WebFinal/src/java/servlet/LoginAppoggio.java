@@ -5,7 +5,11 @@ import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -53,17 +57,57 @@ public class LoginAppoggio extends HttpServlet {
             String password = (String) request.getParameter("password");
             boolean check=false;
             
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+            Date date = new Date();
+            
+            String lastAccessDate= ("Ultimo accesso il "+dateFormat.format(date)+" alle ore "+hourFormat.format(date));
+            
             /**
              * COOKIES
              * Mi crea i cookies per l'username e la password dell'utente
              * Tali cookies durano 24 ore
              */
             Cookie usernameCookie = new Cookie("username", username);
-            Cookie passwordCookie = new Cookie("password", password);
             usernameCookie.setMaxAge(60 * 60 * 24);
-            passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
+            
+            Cookie passwordCookie = new Cookie("password", password);
+            passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
+            
+            
+            
+            Cookie cookie = null;
+            Cookie[] cookies = request.getCookies();
+            Boolean dateCookieBool=false;
+            String dateCookieString="";
+            String dateToShow="";
+
+            for (int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                if (cookie.getName().equals("lastAccessDate")) {
+                    dateCookieString = cookie.getValue();
+                    dateCookieBool=true;
+                }
+            }
+            
+            if (dateCookieBool==true) {
+                dateToShow=dateCookieString;
+            } else {
+                dateToShow=lastAccessDate;
+            }
+            
+            Cookie dateCookie = new Cookie("lastAccessDate", lastAccessDate);
+            dateCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(dateCookie);
+            
+            Cookie dateToShowCookie = new Cookie("dateToShow", dateToShow);
+            dateToShowCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(dateToShowCookie);
+            
+        
+
 
             //controllo che l'utente sia presente nel DB con il seguente metodo
             try {
