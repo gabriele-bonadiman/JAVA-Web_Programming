@@ -35,11 +35,6 @@ public class Gruppi extends HttpServlet {
             
             if(!gruppi.isEmpty()){
                     out.println("<!DOCTYPE html>");
-                    out.println("<!--");
-                    out.println("To change this license header, choose License Headers in Project Properties.");
-                    out.println("To change this template file, choose Tools | Templates");
-                    out.println("and open the template in the editor.");
-                    out.println("-->");
                     out.println("<html>");
                     out.println("    <head>");
                     out.println("        <title>Gruppi</title>");
@@ -101,7 +96,7 @@ public class Gruppi extends HttpServlet {
 
                     out.println("                </tbody>");
                     out.println("            </table>");
-                    out.println("            <button class=\"retbtn\"><a href=\"Home\">Fine</a></button>");
+                    out.println("            <a href=\"Home\"><button class=\"retbtn\">Fine</button></a>");
                     out.println("        </div>");
                     out.println("    </body>");
                     out.println("</html>");
