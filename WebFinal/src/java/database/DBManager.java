@@ -185,10 +185,10 @@ public class DBManager {
     /**
      *  Ritorna i gruppi al quale un utente e' invitato a partecipare
      */
-    public static List<Lista> listaGruppiUtente(int IDutente)throws SQLException {
+    public static ArrayList<Lista> listaGruppiUtente(int IDutente)throws SQLException {
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM INVITO WHERE UTENTE = ?");
-        List<Lista> listaGruppi = new ArrayList<Lista>();
+        ArrayList<Lista> listaGruppi = new ArrayList<Lista>();
         try {
             stm.setInt(1, IDutente);
             ResultSet rs = stm.executeQuery();
@@ -506,5 +506,25 @@ public class DBManager {
     }
     
     
-    
+    /**
+     * Preso in input utente,gruppo e testo, inserisce il post nel db
+     */
+    public static void insertPost(Gruppo g, Utente u, String testo) throws SQLException{
+        java.sql.Date data = null;
+        java.util.Date data2 = new java.util.Date();
+        data = new java.sql.Date(data2.getTime());
+        
+        PreparedStatement stm = con.prepareStatement
+            ("INSERT INTO "+ Post + " (DATA,TESTO,UTENTE,GRUPPO) VALUES (?,?,?,?)");
+
+        try {
+            stm.setDate(1, data);
+            stm.setString(2, testo);
+            stm.setInt(3, u.getId());
+            stm.setInt(3, g.getID());
+            stm.executeUpdate();
+        }finally {stm.close();}
+    }
+
+
 }

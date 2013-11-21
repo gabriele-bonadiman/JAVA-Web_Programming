@@ -26,7 +26,13 @@ public class Gruppi extends HttpServlet {
 
             HttpSession session = request.getSession();
             Utente ute = (Utente) session.getAttribute("utente");
+            
+            
+            System.out.println("cerco di creare la lista");
             List<Integer> gruppi = DBManager.listaGruppiIscritto(ute.getId());
+            System.out.println("lista creata");
+            
+            
             if(!gruppi.isEmpty()){
                     out.println("<!DOCTYPE html>");
                     out.println("<!--");

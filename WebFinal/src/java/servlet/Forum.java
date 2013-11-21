@@ -58,14 +58,6 @@ public class Forum extends HttpServlet {
             out.println("            </div>");
             out.println("            <div class=\"newscontainer\">");
 
-            
-            
-            
-            
-            
-            
-            
-
             Iterator i = listaPost.iterator(); 
             while(i.hasNext()) {
                 Post p = (Post) i.next();
@@ -81,9 +73,13 @@ public class Forum extends HttpServlet {
                 out.println("                    </div>");
                 out.println("                </div>");
             }
-            
             out.println("            </div>");
-            out.println("            <button class=\"retbtn\" style=\"width: 200px;\">Aggiungi Post</button>");
+            out.println("            <form action=\"addPost\">"); 
+            out.println("               <input name = \""+g.getID()+"\"type=\"submit\">");
+            out.println("            </form>");
+             
+             
+             
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");   

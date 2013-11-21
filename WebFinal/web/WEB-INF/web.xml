@@ -64,6 +64,10 @@
         <servlet-name>listaInvitiAppoggio</servlet-name>
         <servlet-class>servlet.listaInvitiAppoggio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addPost</servlet-name>
+        <servlet-class>servlet.addPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>listaInvitiAppoggio</servlet-name>
         <url-pattern>/listaInvitiAppoggio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addPost</servlet-name>
+        <url-pattern>/addPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

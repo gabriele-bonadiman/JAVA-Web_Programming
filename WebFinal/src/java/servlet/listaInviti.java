@@ -27,7 +27,7 @@ public class listaInviti extends HttpServlet {
         String utente = (String) session.getAttribute("username");
         Utente ute = (Utente) session.getAttribute("utente");
 
-        List<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
+        ArrayList<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
         
         
         try (PrintWriter out = response.getWriter()) {
@@ -62,25 +62,31 @@ public class listaInviti extends HttpServlet {
                 out.println("<form class=\"center\" action= \"listaInvitiAppoggio\" method=\"POST\">");
 
                 Iterator i = listaInviti.iterator(); 
-                
+                System.out.println("iteratore");
                 while(i.hasNext()) {
-
                     Lista lista = (Lista) i.next();
                     Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
-
+                    
+                    
+                    
+                    
+                    
+                    /**
+                     *     e l'ELSE ndo cazz sta?
+                     */
+                    
+                    
                     if (gr.getProprietario() != ute.getId()){
                         out.println("                    <tr>");
                         out.println("                        <td>"+gr.getNome()+"</td>");
                         out.println("                        <td>"+gr.getProprietario()+"</td>");
                         out.println("                        <td class=\"nbr\">");
-                        if(lista.getInvitato()==1){
-                            System.out.print("=1");
+                        if(lista.getInvitato() == 1){
                                 out.println("<div class=\"custom-container\">\n" +
     "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
-                        } else {
-                            System.out.print("=0");
+                        }else{
                                 out.println("<div class=\"custom-container  \">\n" +
     "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
@@ -106,6 +112,8 @@ public class listaInviti extends HttpServlet {
                 out.println("    </body>");
                 out.println("</html>");
                 out.println("");
+            
+            
             }else{
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");

@@ -12,7 +12,8 @@
 * upload file su tutte le pagine
 * PDF data ultimo post/numero post
 * servlet di errori
-*l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
+* l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
+* controllo estensione dei file caricati come immagini e delle dimensioni in generale
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
