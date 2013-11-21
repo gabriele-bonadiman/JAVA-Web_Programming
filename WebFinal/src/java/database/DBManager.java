@@ -269,9 +269,6 @@ public class DBManager {
        return utenti;
     }
     
-    
-    
-    
     /**
      * Preso in input gruppo e utente, resituisco #post singolo utente
      */
@@ -504,8 +501,7 @@ public class DBManager {
         
         return true;
     }
-    
-    
+        
     /**
      * Preso in input utente,gruppo e testo, inserisce il post nel db
      */
