@@ -57,12 +57,14 @@ public class listaInvitiAppoggio extends HttpServlet {
                 Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
                 System.err.println(request.getParameter(gr.getNome()));
                 
-                if ("on".equals(request.getParameter(gr.getNome()))) {
-                    DBManager.editIscrizione(ute.getId(), gr.getID(), 1);
-                    //System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
-                } else {
-                    DBManager.editIscrizione(ute.getId(), gr.getID(), 0);
-                    //System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
+                if (gr.getProprietario() != ute.getId()) {
+                    if ("on".equals(request.getParameter(gr.getNome()))) {
+                        DBManager.editIscrizione(ute.getId(), gr.getID(), 1);
+                        System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
+                    } else {
+                        DBManager.editIscrizione(ute.getId(), gr.getID(), 0);
+                        System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
+                    }
                 }
             }
             response.sendRedirect("Home");
