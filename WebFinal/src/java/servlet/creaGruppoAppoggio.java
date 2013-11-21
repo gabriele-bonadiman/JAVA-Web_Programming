@@ -66,8 +66,9 @@ public class creaGruppoAppoggio extends HttpServlet {
                     DBManager.inserisciInInviti(ute, id_group,1);
                     stop++;
                 }else{
-                    out.println("ID UTENTE --- " + paramName);
-                    Utente u = DBManager.searchUtenteByID(Integer.parseInt(paramName));
+                    System.err.println("ID UTENTE --- " + request.getParameter(paramName));
+                    out.println("ID UTENTE --- " + 1);
+                    Utente u = DBManager.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
                     DBManager.inserisciInLista(u, id_group);
                     DBManager.inserisciInInviti(u, id_group,0);
                 }

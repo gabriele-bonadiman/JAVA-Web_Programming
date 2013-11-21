@@ -72,7 +72,7 @@ public class creaGruppo extends HttpServlet {
                                             while(i.hasNext()) {
                                                 Utente ute = (Utente) i.next();
                                                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                                                    out.println("<input name=gruppo value=\""+ ute.getId() +"\" />"+ ute.getUsername() +"<br>");
+                                                    out.println("<input type=\"checkbox\" name='gruppo' value=\""+ ute.getId() +"\" />"+ ute.getUsername() +"<br>");
                                                     indiceCheck++;
                                                 }
                                             }
