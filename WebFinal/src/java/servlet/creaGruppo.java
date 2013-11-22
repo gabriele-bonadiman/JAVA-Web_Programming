@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiUtenti;
 
 public class creaGruppo extends HttpServlet {
 
@@ -41,7 +42,7 @@ public class creaGruppo extends HttpServlet {
             String adminGruppo = (String) session.getAttribute("username");
             
             
-            try { utenti = services.servicesUtenti.listaUtenti();
+            try { utenti = MetodiUtenti.listaUtenti();
             } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
             out.println("<!DOCTYPE html>");

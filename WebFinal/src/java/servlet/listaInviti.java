@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 public class listaInviti extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +28,7 @@ public class listaInviti extends HttpServlet {
         String utente = (String) session.getAttribute("username");
         Utente ute = (Utente) session.getAttribute("utente");
 
-        ArrayList<Lista> listaInviti = services.servicesGruppi.listaGruppiUtente(ute.getId());
+        ArrayList<Lista> listaInviti = MetodiGruppi.listaGruppiUtente(ute.getId());
                 
         
         
@@ -66,7 +67,7 @@ public class listaInviti extends HttpServlet {
                 System.out.println("iteratore");
                 while(i.hasNext()) {
                     Lista lista = (Lista) i.next();
-                    Gruppo gr = services.servicesGruppi.searchGruppoById(lista.getGruppo());
+                    Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
                     
                     
                     

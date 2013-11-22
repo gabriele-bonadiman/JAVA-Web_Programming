@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiUtenti;
 
 public class iMieiDatiAppoggio extends HttpServlet {
 
@@ -56,7 +57,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
         
         if (fileName!=null){
             try {
-                services.servicesUtenti.editAvatarUtente(ute, fileName);
+                MetodiUtenti.editAvatarUtente(ute, fileName);
                 ute.setAvatar(fileName);
             } catch (SQLException ex) {
                 Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +102,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
             //response.sendRedirect("ERRORE PASSWORD");
         }else {
             try {
-                services.servicesUtenti.editPasswordUtente(ute, nuovaPassword);
+                MetodiUtenti.editPasswordUtente(ute, nuovaPassword);
                 ute.setPassword(nuovaPassword);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             
@@ -113,7 +114,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
         //inserimento nome utente
         if(!nuovoNome.equals(ute.getUsername()) && nuovoNome!=null && nuovoNome.length()>4){
             try {
-                services.servicesUtenti.editNomeUtente(ute, nuovoNome);
+                MetodiUtenti.editNomeUtente(ute, nuovoNome);
                 ute.setUsername(nuovoNome);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             

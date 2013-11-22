@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 
 public class addPost extends HttpServlet {
 
@@ -30,7 +31,7 @@ public class addPost extends HttpServlet {
        while(paramNames.hasMoreElements()) {
             idGruppo = (String)paramNames.nextElement();
         }
-        Gruppo gr = services.servicesGruppi.searchGruppoById(Integer.parseInt(idGruppo));
+        Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(idGruppo));
         session.setAttribute("gruppo", gr);
         
         out.println("<!DOCTYPE html>");

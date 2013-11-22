@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 
 public class modificaGruppoAppoggio extends HttpServlet {
 
@@ -62,7 +63,7 @@ public class modificaGruppoAppoggio extends HttpServlet {
         try {
             //controllo che il nuovo nome e quello vecchio siano diversi
             if(!nuovoNome.equals(gr.getNome()))            
-                services.servicesGruppi.editNomeGruppo(gr, nuovoNome);
+                MetodiGruppi.editNomeGruppo(gr, nuovoNome);
         }
         catch (SQLException ex) {Logger.getLogger(modificaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         session.removeAttribute("gruppoCorrente");

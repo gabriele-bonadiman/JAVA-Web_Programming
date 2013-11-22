@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 
 /**
  *
@@ -46,7 +47,7 @@ public class listaInvitiAppoggio extends HttpServlet {
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
 
-        List<Lista> listaInviti = services.servicesGruppi.listaGruppiUtente(ute.getId());
+        List<Lista> listaInviti = MetodiGruppi.listaGruppiUtente(ute.getId());
 
         if (!listaInviti.isEmpty()) {
 
@@ -54,15 +55,15 @@ public class listaInvitiAppoggio extends HttpServlet {
             
             while (i.hasNext()) {
                 Lista lista = (Lista) i.next();
-                Gruppo gr = services.servicesGruppi.searchGruppoById(lista.getGruppo());
+                Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
                 System.err.println(request.getParameter(gr.getNome()));
                 
                 if (gr.getProprietario() != ute.getId()) {
                     if ("on".equals(request.getParameter(gr.getNome()))) {
-                        services.servicesGruppi.editIscrizione(ute.getId(), gr.getID(), 1);
+                        MetodiGruppi.editIscrizione(ute.getId(), gr.getID(), 1);
                         System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
                     } else {
-                        services.servicesGruppi.editIscrizione(ute.getId(), gr.getID(), 0);
+                        MetodiGruppi.editIscrizione(ute.getId(), gr.getID(), 0);
                         System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
                     }
                 }

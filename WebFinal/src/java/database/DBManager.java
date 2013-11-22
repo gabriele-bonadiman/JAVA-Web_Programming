@@ -1,31 +1,15 @@
 
 package database;
 
-import classi.Utente;
-import classi.Gruppo;
-import java.util.Date;
-import classi.Lista;
-import classi.Post;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 
 public class DBManager {
     
     public static transient Connection con;
-    private static final String Utenti = "UTENTE";
-    private static final String Gruppo = "GRUPPO";
-    private static final String Inviti = "INVITO";
-    private static final String Lista = "LISTA";
-    private static final String Post = "POST";
-    private static final String Fpost = "FILE_POST";
     
     /**********************************************
      *                  DATABASE                  *

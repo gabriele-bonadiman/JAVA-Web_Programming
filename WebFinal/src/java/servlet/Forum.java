@@ -16,6 +16,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.MetodiGruppi;
+import services.MetodiPost;
+import services.MetodiUtenti;
 
 public class Forum extends HttpServlet {
 
@@ -28,9 +31,9 @@ public class Forum extends HttpServlet {
             String grid = request.getParameter("id");
             ArrayList<Post> listaPost = new ArrayList<Post>();
             
-            Gruppo g = services.servicesGruppi.searchGruppoById((Integer.parseInt(grid)));
-            Utente u = services.servicesUtenti.searchUtenteByID(g.getProprietario());
-            listaPost = services.servicesPost.listaDeiPost(g);
+            Gruppo g = MetodiGruppi.searchGruppoById((Integer.parseInt(grid)));
+            Utente u = MetodiUtenti.searchUtenteByID(g.getProprietario());
+            listaPost = MetodiPost.listaDeiPost(g);
             
             out.println("<!DOCTYPE html>");
             out.println("<html> ");
@@ -60,7 +63,7 @@ public class Forum extends HttpServlet {
             Iterator i = listaPost.iterator(); 
             while(i.hasNext()) {
                 Post p = (Post) i.next();
-                Utente utentePost =  services.servicesUtenti.searchUtenteByID(p.getUtente());
+                Utente utentePost =  MetodiUtenti.searchUtenteByID(p.getUtente());
                 out.println("                <div class=\"post\">");
                 out.println("                    <div class=\"postinfo\">");
                 out.println("                        <p>"+utentePost.getUsername()+"</p>");

@@ -1,15 +1,12 @@
 package servlet;
 
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -20,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiUtenti;
 
 
 public class LoginAppoggio extends HttpServlet {
@@ -111,13 +109,13 @@ public class LoginAppoggio extends HttpServlet {
 
             //controllo che l'utente sia presente nel DB con il seguente metodo
             try {
-                check = services.servicesUtenti.checkUtente(username, password);                
+                check = MetodiUtenti.checkUtente(username, password);                
             } catch (SQLException ex) {Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             
             //se e' presente l'utente, metto in session l'username e vado alla Home
             if(check==true){
                 try {
-                    ute = services.servicesUtenti.idUtente(username);
+                    ute = MetodiUtenti.idUtente(username);
                 } catch (SQLException ex) {
                     Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 
 public class Gruppi extends HttpServlet {
 
@@ -28,9 +29,14 @@ public class Gruppi extends HttpServlet {
             Utente ute = (Utente) session.getAttribute("utente");
             
             
-            System.out.println("cerco di creare la lista");
-            List<Integer> gruppi = services.servicesGruppi.listaGruppiIscritto(ute.getId());
-            System.out.println("lista creata");
+            
+            System.out.println("maio");
+            MetodiGruppi.searchGruppoById(49);
+            System.out.println("maio");
+            
+            
+            List<Integer> gruppi = MetodiGruppi.listaGruppiIscritto(ute.getId());
+            
             
             
             if(!gruppi.isEmpty()){
@@ -62,7 +68,7 @@ public class Gruppi extends HttpServlet {
                     Iterator i = gruppi.iterator(); 
                             while(i.hasNext()) {
                                 int ID = (int) i.next();
-                                Gruppo g = services.servicesGruppi.searchGruppoById(ID);
+                                Gruppo g = MetodiGruppi.searchGruppoById(ID);
                                 out.println("                    <tr>");
 
 

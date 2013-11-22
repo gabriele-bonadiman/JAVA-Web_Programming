@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
 
 public class PDF_report extends HttpServlet {
 
@@ -41,11 +42,11 @@ public class PDF_report extends HttpServlet {
         String avatarUtente = ute.getAvatar();
         Gruppo gruppo= new Gruppo();
         int numeroGruppo=Integer.parseInt(numeroGruppoString);
-        gruppo= services.servicesGruppi.searchGruppoById(numeroGruppo);
+        gruppo= MetodiGruppi.searchGruppoById(numeroGruppo);
         String nomeGruppo = gruppo.getNome();
         ArrayList utentiIscritti= new ArrayList();
         
-        utentiIscritti = services.servicesGruppi.listaUtentiPresenti(gruppo);
+        utentiIscritti = MetodiGruppi.listaUtentiPresenti(gruppo);
         
         String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         

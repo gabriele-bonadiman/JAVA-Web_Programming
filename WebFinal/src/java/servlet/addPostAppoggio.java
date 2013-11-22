@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiPost;
 
 public class addPostAppoggio extends HttpServlet {
 
@@ -41,7 +42,7 @@ public class addPostAppoggio extends HttpServlet {
         out.println(text);
         
         try {
-            services.servicesPost.insertPost(gr, ute, text);
+            MetodiPost.insertPost(gr, ute, text);
             response.sendRedirect("Forum?id="+gr.getID());        
         } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
     

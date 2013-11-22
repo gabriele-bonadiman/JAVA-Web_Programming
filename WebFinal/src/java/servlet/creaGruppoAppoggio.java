@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
+import services.MetodiUtenti;
 
 public class creaGruppoAppoggio extends HttpServlet {
 
@@ -61,14 +63,14 @@ public class creaGruppoAppoggio extends HttpServlet {
                         response.sendRedirect("GruppoVuoto");
                         return;
                     }
-                    id_group = services.servicesGruppi.creaGruppo(paramValues[0], ute);
-                    services.servicesGruppi.inserisciInLista(ute, id_group);
-                    services.servicesGruppi.inserisciInInviti(ute, id_group,1);
+                    id_group = MetodiGruppi.creaGruppo(paramValues[0], ute);
+                    MetodiGruppi.inserisciInLista(ute, id_group);
+                    MetodiGruppi.inserisciInInviti(ute, id_group,1);
                     stop++;
                 }else{
-                    Utente u = services.servicesUtenti.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
-                    services.servicesGruppi.inserisciInLista(u, id_group);
-                    services.servicesGruppi.inserisciInInviti(u, id_group,0);
+                    Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
+                    MetodiGruppi.inserisciInLista(u, id_group);
+                    MetodiGruppi.inserisciInInviti(u, id_group,0);
                 }
             }
         } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
