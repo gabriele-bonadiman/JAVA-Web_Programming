@@ -41,10 +41,12 @@ public class PDF_report extends HttpServlet {
         String avatarUtente = ute.getAvatar();
         Gruppo gruppo= new Gruppo();
         int numeroGruppo=Integer.parseInt(numeroGruppoString);
-        gruppo=DBManager.searchGruppoById(numeroGruppo);
+        gruppo= services.servicesGruppi.searchGruppoById(numeroGruppo);
         String nomeGruppo = gruppo.getNome();
         ArrayList utentiIscritti= new ArrayList();
-        utentiIscritti=DBManager.listaUtentiPresenti(gruppo);
+        
+        utentiIscritti = services.servicesGruppi.listaUtentiPresenti(gruppo);
+        
         String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         
         // step 1: creation of a document-object

@@ -1,5 +1,6 @@
 package servlet;
 
+import services.servicesGruppi;
 import classi.Utente;
 import database.DBManager;
 import java.io.IOException;
@@ -41,14 +42,14 @@ public class modificaGruppo extends HttpServlet {
         while(paramNames.hasMoreElements()) {
             paramName = (String)paramNames.nextElement();
         }
-        Gruppo gr = DBManager.searchGruppoById(Integer.parseInt(paramName));
+        Gruppo gr = services.servicesGruppi.searchGruppoById(Integer.parseInt(paramName));
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
             System.out.println("START ----- ");
-            utentiMancanti = DBManager.listaPotenzialiIscritti(gr);
+            utentiMancanti = services.servicesGruppi.listaPotenzialiIscritti(gr);            
             System.out.println("MEDIUM ----- ");
-            utentiPresenti = DBManager.listaUtentiPresenti(gr);
+            utentiPresenti = services.servicesGruppi.listaUtentiPresenti(gr);
             System.out.println("END ----- ");
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 

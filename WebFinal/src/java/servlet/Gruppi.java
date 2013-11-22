@@ -29,7 +29,7 @@ public class Gruppi extends HttpServlet {
             
             
             System.out.println("cerco di creare la lista");
-            List<Integer> gruppi = DBManager.listaGruppiIscritto(ute.getId());
+            List<Integer> gruppi = services.servicesGruppi.listaGruppiIscritto(ute.getId());
             System.out.println("lista creata");
             
             
@@ -62,7 +62,7 @@ public class Gruppi extends HttpServlet {
                     Iterator i = gruppi.iterator(); 
                             while(i.hasNext()) {
                                 int ID = (int) i.next();
-                                Gruppo g = DBManager.searchGruppoById(ID);
+                                Gruppo g = services.servicesGruppi.searchGruppoById(ID);
                                 out.println("                    <tr>");
 
 

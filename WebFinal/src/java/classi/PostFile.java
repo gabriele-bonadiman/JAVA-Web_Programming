@@ -13,16 +13,16 @@ import javax.xml.crypto.Data;
  * @author Babol
  */
 public class PostFile {
-    private Data data;
+    private String data;
     private String path;
     private Utente utente;
     private Gruppo guppo;
 
-    public Data getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(String data) {
         this.data = data;
     }
 

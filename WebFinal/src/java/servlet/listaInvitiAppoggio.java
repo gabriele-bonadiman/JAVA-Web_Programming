@@ -46,7 +46,7 @@ public class listaInvitiAppoggio extends HttpServlet {
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
 
-        List<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
+        List<Lista> listaInviti = services.servicesGruppi.listaGruppiUtente(ute.getId());
 
         if (!listaInviti.isEmpty()) {
 
@@ -54,15 +54,15 @@ public class listaInvitiAppoggio extends HttpServlet {
             
             while (i.hasNext()) {
                 Lista lista = (Lista) i.next();
-                Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
+                Gruppo gr = services.servicesGruppi.searchGruppoById(lista.getGruppo());
                 System.err.println(request.getParameter(gr.getNome()));
                 
                 if (gr.getProprietario() != ute.getId()) {
                     if ("on".equals(request.getParameter(gr.getNome()))) {
-                        DBManager.editIscrizione(ute.getId(), gr.getID(), 1);
+                        services.servicesGruppi.editIscrizione(ute.getId(), gr.getID(), 1);
                         System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
                     } else {
-                        DBManager.editIscrizione(ute.getId(), gr.getID(), 0);
+                        services.servicesGruppi.editIscrizione(ute.getId(), gr.getID(), 0);
                         System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
                     }
                 }

@@ -13,7 +13,7 @@ public class Gruppo implements Serializable{
     
     private String nome;
     private int proprietario;
-    private Date data_creazione;
+    private String data_creazione;
     private int ID;
 
     public String getNome() {
@@ -43,11 +43,11 @@ public class Gruppo implements Serializable{
         this.ID = ID;
     }
 
-    public Date getData_creazione() {
+    public String getData_creazione() {
         return data_creazione;
     }
 
-    public void setData_creazione(Date data_creazione) {
+    public void setData_creazione(String data_creazione) {
         this.data_creazione = data_creazione;
     }
 

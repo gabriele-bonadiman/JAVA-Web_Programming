@@ -41,8 +41,8 @@ public class addPostAppoggio extends HttpServlet {
         out.println(text);
         
         try {
-            DBManager.insertPost(gr, ute, text);
-        
+            services.servicesPost.insertPost(gr, ute, text);
+            response.sendRedirect("Forum?id="+gr.getID());        
         } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
     
     }

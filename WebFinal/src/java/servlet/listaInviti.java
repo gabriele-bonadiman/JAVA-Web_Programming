@@ -27,7 +27,8 @@ public class listaInviti extends HttpServlet {
         String utente = (String) session.getAttribute("username");
         Utente ute = (Utente) session.getAttribute("utente");
 
-        ArrayList<Lista> listaInviti = DBManager.listaGruppiUtente(ute.getId());
+        ArrayList<Lista> listaInviti = services.servicesGruppi.listaGruppiUtente(ute.getId());
+                
         
         
         try (PrintWriter out = response.getWriter()) {
@@ -65,7 +66,7 @@ public class listaInviti extends HttpServlet {
                 System.out.println("iteratore");
                 while(i.hasNext()) {
                     Lista lista = (Lista) i.next();
-                    Gruppo gr = DBManager.searchGruppoById(lista.getGruppo());
+                    Gruppo gr = services.servicesGruppi.searchGruppoById(lista.getGruppo());
                     
                     
                     

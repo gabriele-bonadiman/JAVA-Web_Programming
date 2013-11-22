@@ -19,12 +19,10 @@ public class addPost extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         
-        
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         
         try (PrintWriter out = response.getWriter()) {
-      
             
         String idGruppo = null;
         Enumeration paramNames = request.getParameterNames();
@@ -32,7 +30,7 @@ public class addPost extends HttpServlet {
        while(paramNames.hasMoreElements()) {
             idGruppo = (String)paramNames.nextElement();
         }
-        Gruppo gr = DBManager.searchGruppoById(Integer.parseInt(idGruppo));
+        Gruppo gr = services.servicesGruppi.searchGruppoById(Integer.parseInt(idGruppo));
         session.setAttribute("gruppo", gr);
         
         out.println("<!DOCTYPE html>");

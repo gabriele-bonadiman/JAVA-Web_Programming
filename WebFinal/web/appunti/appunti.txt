@@ -4,6 +4,27 @@
 
 
 
+
+
+MODIFCARE IL DB PER RENDERE LA DATA UNA STRINGA
+
+ALTER TABLE gabri.psot DROP COLUMN data;
+ALTER TABLE gabri.post ADD avatar VARCHAR(50);
+
+
+ALTER TABLE gabri.file_post DROP COLUMN data;
+ALTER TABLE gabri.file_post ADD data VARCHAR(50);
+
+ALTER TABLE gabri.gruppo DROP COLUMN datacreazione;
+ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
+
+
+
+
+
+
+
+
 		GENERALE
 * aggiungere filtri
 * aggiungere pagine di errore
@@ -17,6 +38,8 @@
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
+* includere la lista dei gruppi all'interno di una view scrollabile. Nel caso infatti
+ci fossero troppi gruppi, la pagina viene un po' schifosina
 
 
 		LISTA INVITI

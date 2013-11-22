@@ -41,7 +41,7 @@ public class creaGruppo extends HttpServlet {
             String adminGruppo = (String) session.getAttribute("username");
             
             
-            try { utenti = DBManager.listaUtenti(); 
+            try { utenti = services.servicesUtenti.listaUtenti();
             } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
             out.println("<!DOCTYPE html>");

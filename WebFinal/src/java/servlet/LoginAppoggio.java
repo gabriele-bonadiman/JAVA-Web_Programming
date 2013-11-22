@@ -111,13 +111,13 @@ public class LoginAppoggio extends HttpServlet {
 
             //controllo che l'utente sia presente nel DB con il seguente metodo
             try {
-                check = DBManager.checkUtente(username, password);
+                check = services.servicesUtenti.checkUtente(username, password);                
             } catch (SQLException ex) {Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             
             //se e' presente l'utente, metto in session l'username e vado alla Home
             if(check==true){
                 try {
-                    ute = DBManager.idUtente(username);
+                    ute = services.servicesUtenti.idUtente(username);
                 } catch (SQLException ex) {
                     Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);
                 }

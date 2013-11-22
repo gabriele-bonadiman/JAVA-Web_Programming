@@ -62,7 +62,7 @@ public class modificaGruppoAppoggio extends HttpServlet {
         try {
             //controllo che il nuovo nome e quello vecchio siano diversi
             if(!nuovoNome.equals(gr.getNome()))            
-                    DBManager.editNomeGruppo(gr, nuovoNome);
+                services.servicesGruppi.editNomeGruppo(gr, nuovoNome);
         }
         catch (SQLException ex) {Logger.getLogger(modificaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         session.removeAttribute("gruppoCorrente");

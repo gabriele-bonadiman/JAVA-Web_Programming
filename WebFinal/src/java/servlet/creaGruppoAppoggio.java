@@ -61,16 +61,14 @@ public class creaGruppoAppoggio extends HttpServlet {
                         response.sendRedirect("GruppoVuoto");
                         return;
                     }
-                    id_group = DBManager.creaGruppo(paramValues[0], ute);
-                    DBManager.inserisciInLista(ute, id_group);  //per inserire chi crea
-                    DBManager.inserisciInInviti(ute, id_group,1);
+                    id_group = services.servicesGruppi.creaGruppo(paramValues[0], ute);
+                    services.servicesGruppi.inserisciInLista(ute, id_group);
+                    services.servicesGruppi.inserisciInInviti(ute, id_group,1);
                     stop++;
                 }else{
-                    System.err.println("ID UTENTE --- " + request.getParameter(paramName));
-                    out.println("ID UTENTE --- " + 1);
-                    Utente u = DBManager.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
-                    DBManager.inserisciInLista(u, id_group);
-                    DBManager.inserisciInInviti(u, id_group,0);
+                    Utente u = services.servicesUtenti.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
+                    services.servicesGruppi.inserisciInLista(u, id_group);
+                    services.servicesGruppi.inserisciInInviti(u, id_group,0);
                 }
             }
         } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
