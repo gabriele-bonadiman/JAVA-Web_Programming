@@ -13,16 +13,16 @@ import java.sql.Date;
 public class Post {
     
     
-    private Date data;
+    private String data;
     private String testo;
     private int utente;
     private int gruppo;
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
