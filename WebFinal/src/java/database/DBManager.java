@@ -290,6 +290,25 @@ public class DBManager {
     }
  
     /**
+     * Preso in input un gruppo, restituisce il numero di post associato
+     */
+    public static int numeroPostGruppo(Gruppo g) throws SQLException{
+       PreparedStatement stm = con.prepareStatement
+            ("select * from POST where GRUPPO = ?");
+        int num=0;
+        try {
+             stm.setInt(1,g.getID());
+             ResultSet rs = stm.executeQuery();
+            try {
+                while(rs.next()) {
+                    num++;
+                }
+            } finally { rs.close();}
+        } finally {stm.close();}
+        return num;
+    }
+    
+    /**
      * Preso in input utente e gruppo restituisco data ultimo post utente
      */
     public static java.sql.Date dataUltimoPostUtente(Utente u, Gruppo gr) throws SQLException{
@@ -321,6 +340,9 @@ public class DBManager {
      */
     public static ArrayList<Post> listaDeiPost(Gruppo g) throws SQLException{
         
+        
+        
+        
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM POST WHERE GRUPPO = ?");
         ArrayList<Post> postGr = new ArrayList<Post>();
@@ -330,7 +352,7 @@ public class DBManager {
            try {
                while(rs.next()) {
                    Post p = new Post();
-                    p.setData(rs.getDate("data"));
+                    p.setData(rs.getString("data"));
                     p.setGruppo(rs.getInt("gruppo"));
                     p.setTesto(rs.getString("testo"));
                     p.setUtente(rs.getInt("utente"));
@@ -506,19 +528,23 @@ public class DBManager {
      * Preso in input utente,gruppo e testo, inserisce il post nel db
      */
     public static void insertPost(Gruppo g, Utente u, String testo) throws SQLException{
+        
         java.sql.Date data = null;
         java.util.Date data2 = new java.util.Date();
         data = new java.sql.Date(data2.getTime());
+        System.out.println
+        ("testo = " + testo +" utente = " + u.getId() + " gruppo = " + g.getID());
         
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO "+ Post + " (DATA,TESTO,UTENTE,GRUPPO) VALUES (?,?,?,?)");
 
         try {
-            stm.setDate(1, data);
+            stm.setString(1, "asdas");
             stm.setString(2, testo);
             stm.setInt(3, u.getId());
-            stm.setInt(3, g.getID());
+            stm.setInt(4, g.getID());
             stm.executeUpdate();
+                    System.out.println("INSERITO IL TESO");
         }finally {stm.close();}
     }
 
