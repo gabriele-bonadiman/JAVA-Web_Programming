@@ -1,13 +1,11 @@
 package servlet;
 
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import classi.Gruppo;
@@ -46,11 +44,8 @@ public class modificaGruppo extends HttpServlet {
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
-            System.out.println("START ----- ");
             utentiMancanti = MetodiGruppi.listaPotenzialiIscritti(gr);            
-            System.out.println("MEDIUM ----- ");
             utentiPresenti = MetodiGruppi.listaUtentiPresenti(gr);
-            System.out.println("END ----- ");
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
         

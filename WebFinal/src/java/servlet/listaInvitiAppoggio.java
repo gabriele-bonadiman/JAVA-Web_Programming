@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package servlet;
 
@@ -13,6 +9,7 @@ import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,18 +44,30 @@ public class listaInvitiAppoggio extends HttpServlet {
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
 
+        //recupero la lista dei gruppi al quale l'ute e' iscritto
         List<Lista> listaInviti = MetodiGruppi.listaGruppiUtente(ute.getId());
 
+        
+        
+
+        
+        
+        
+        //se la lista non e' vuota stampo i riusltati trovati
         if (!listaInviti.isEmpty()) {
 
             Iterator i = listaInviti.iterator();
-            
             while (i.hasNext()) {
+            
                 Lista lista = (Lista) i.next();
+
+                //creo un gruppo in base al valore contenuto nella colonna GRUPPO di LISTA
                 Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
-                System.err.println(request.getParameter(gr.getNome()));
                 
+                //se il proprietario del gruppo e' diverso dall'utente in sessione
                 if (gr.getProprietario() != ute.getId()) {
+                
+                
                     if ("on".equals(request.getParameter(gr.getNome()))) {
                         MetodiGruppi.editIscrizione(ute.getId(), gr.getID(), 1);
                         System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
@@ -68,11 +77,11 @@ public class listaInvitiAppoggio extends HttpServlet {
                     }
                 }
             }
-            response.sendRedirect("Home");
+            //response.sendRedirect("Home");
         } else{ 
             response.sendRedirect("Home");
         }
-//        response.sendRedirect("Home");
+        response.sendRedirect("Home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

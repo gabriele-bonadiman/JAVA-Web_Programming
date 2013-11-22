@@ -23,9 +23,6 @@ public class MetodiUtenti {
     
         PreparedStatement stm = 
                 con.prepareStatement("SELECT * FROM utente WHERE username = ? AND password = ?");
-        
-        System.out.println("entrato nel metodo");
-
         try {
             stm.setString(1, username);
             stm.setString(2, password);

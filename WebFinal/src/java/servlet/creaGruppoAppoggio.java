@@ -57,7 +57,6 @@ public class creaGruppoAppoggio extends HttpServlet {
 
                 // creazione del gruppo. Prendo il nome(il primo parametro)
                 if(stop==0){
-                    out.println("GRUPPO --- " + paramValues[0]);
                     if(paramValues[0].equals("")){
                         creaGruppo.errorName=true;
                         response.sendRedirect("GruppoVuoto");

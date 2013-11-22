@@ -57,13 +57,9 @@ public class MetodiPost {
     /**
      * Preso in input utente e gruppo restituisco data ultimo post utente
      */
-    public static java.sql.Date dataUltimoPostUtente(Utente u, Gruppo gr) throws SQLException{
-        
-        java.sql.Date data = null;
-        java.util.Date data2 = new java.util.Date();
-        data = new java.sql.Date(data2.getTime());
-
-          PreparedStatement stm = con.prepareStatement
+    public static String dataUltimoPostUtente(Utente u, Gruppo gr) throws SQLException{
+        String data;
+        PreparedStatement stm = con.prepareStatement
             ("select * from POST where GRUPPO = ? AND UTENTE = ? ORDER BY id DESC");
         int num=0;
         try {
@@ -72,7 +68,7 @@ public class MetodiPost {
              ResultSet rs = stm.executeQuery();
             try {
                 if(rs.next()) {
-                    data = rs.getDate("data");
+                    data = rs.getString("data");
                 }else{
                     return null;
                 }
@@ -112,8 +108,10 @@ public class MetodiPost {
      * Preso in input utente,gruppo e testo, inserisce il post nel db
      */
     public static void insertPost(Gruppo g, Utente u, String testo) throws SQLException{
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
+        
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO POST (DATA,TESTO,UTENTE,GRUPPO) VALUES (?,?,?,?)");
 
@@ -123,7 +121,6 @@ public class MetodiPost {
             stm.setInt(3, u.getId());
             stm.setInt(4, g.getID());
             stm.executeUpdate();
-                    System.out.println("INSERITO IL TESO");
         }finally {stm.close();}
     }
 }

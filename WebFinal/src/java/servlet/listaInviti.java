@@ -3,13 +3,11 @@ package servlet;
 import classi.Gruppo;
 import classi.Lista;
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -69,20 +67,19 @@ public class listaInviti extends HttpServlet {
                     Lista lista = (Lista) i.next();
                     Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
                     
-                    
-                    
-                    
-                    
-                    /**
-                     *     e l'ELSE ndo cazz sta?
-                     */
-                    
-                    
                     if (gr.getProprietario() != ute.getId()){
                         out.println("                    <tr>");
                         out.println("                        <td>"+gr.getNome()+"</td>");
                         out.println("                        <td>"+gr.getProprietario()+"</td>");
                         out.println("                        <td class=\"nbr\">");
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         if(lista.getInvitato() == 1){
                                 out.println("<div class=\"custom-container\">\n" +
     "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
@@ -94,6 +91,12 @@ public class listaInviti extends HttpServlet {
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
                         }
+                        
+                        
+                        
+                        
+                        
+                        
 
                         out.println("                    </td></tr>");
                     }

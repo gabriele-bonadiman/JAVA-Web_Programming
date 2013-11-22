@@ -31,10 +31,9 @@ public class MetodiGruppi {
      */
     public static int creaGruppo(String nomeGruppo ,Utente u) throws SQLException{
         
-        java.sql.Date data = null;
-        java.util.Date data2 = new java.util.Date();
-        data = new java.sql.Date(data2.getTime());
-        
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+         
         int index = 0;
         ResultSet  key = null;
         
@@ -45,7 +44,7 @@ public class MetodiGruppi {
         try {
             stm.setString(1, nomeGruppo);
             stm.setInt(2, u.getId());
-            stm.setDate(3, data);
+            stm.setString(3, dateFormat.format(date));
             stm.executeUpdate();
             
             key = stm.getGeneratedKeys();
@@ -64,7 +63,6 @@ public class MetodiGruppi {
      */
     public static Gruppo searchGruppoById(int ID) throws SQLException{
         
-        System.out.println("  ENTRO NEL METODO BANDITO E TI ATTACCHI AL CAZZOOOOO ");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         PreparedStatement stm = con.prepareStatement
@@ -110,17 +108,13 @@ public class MetodiGruppi {
      * Ritorna i gruppi ai quali l'utente ha deciso di partecipare
      */
     public static List<Integer> listaGruppiIscritto(int IDutente)throws SQLException {
-        System.out.println("passato l'utente " + IDutente);
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM INVITO WHERE UTENTE = ? AND INVITATO = ?");
         List<Integer> GruppiID = new ArrayList<Integer>();
         try {
             stm.setInt(1, IDutente);
             stm.setInt(2, 1);
-            System.out.println("query creata");
-            ResultSet rs = stm.executeQuery();
-            System.out.println("query eseguita");
-            
+            ResultSet rs = stm.executeQuery();            
             try {
                 while(rs.next()) {
                     Integer singleReport = rs.getInt("gruppo");
@@ -130,6 +124,13 @@ public class MetodiGruppi {
         } finally {stm.close();}
         return GruppiID;
     }
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * Preso in input un gruppo, restituisce le persone che vi appartengono
@@ -175,6 +176,13 @@ public class MetodiGruppi {
        return utenti;
     }
     
+    
+    
+    
+    
+    
+    
+    
     /**
      *  Preso in input id utente,idGruppo e scelta
      * o meno ad un gruppo.
@@ -198,7 +206,6 @@ public class MetodiGruppi {
      * Una volta creato un gruppo manda a tutti i membri l'invito
      */
     public static void inserisciInInviti(Utente u, int IDgruppo,int choose) throws SQLException{
-        System.out.println("INSERISCO IN INVITI" + u.getUsername() +IDgruppo +choose);
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO INVITO (UTENTE,GRUPPO,INVITATO) VALUES (?,?,?)");
         try {
