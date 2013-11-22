@@ -39,7 +39,8 @@ public class addPostAppoggio extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         String text = (String) request.getParameter("post");
         
-        out.println(text);
+        text = services.ParsingText.parsing(text);
+        
         
         try {
             MetodiPost.insertPost(gr, ute, text);
