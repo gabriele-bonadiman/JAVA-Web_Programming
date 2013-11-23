@@ -3,12 +3,10 @@ package servlet;
 import classi.Gruppo;
 import classi.Post;
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,10 +74,18 @@ public class Forum extends HttpServlet {
                 out.println("                </div>");
             }
             out.println("            </div>");
+            
+            
+            
+            //aggiungere un post
             out.println("            <form action=\"addPost\">"); 
             out.println("               <input name = \""+g.getID()+"\"type=\"submit\">");
             out.println("            </form>");
-             
+            
+            //eliminare il gruppo
+            out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
+            out.println("               <input name = \""+g.getID()+"\"type=\"submit\">");
+            out.println("            </form>");
              
              
             out.println("        </div>");

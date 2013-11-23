@@ -1,7 +1,6 @@
 package servlet;
 
 import classi.Gruppo;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,7 +26,8 @@ public class addPost extends HttpServlet {
             
         String idGruppo = null;
         Enumeration paramNames = request.getParameterNames();
-       //recupero il numero del gruppo
+       
+        //recupero il numero del gruppo
        while(paramNames.hasMoreElements()) {
             idGruppo = (String)paramNames.nextElement();
         }

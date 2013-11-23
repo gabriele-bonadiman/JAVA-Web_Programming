@@ -1,11 +1,8 @@
 package services;
 
-
 import classi.Gruppo;
 import classi.Lista;
 import classi.Utente;
-import database.DBManager;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,12 +14,7 @@ import static database.DBManager.con;
 
 
 
-
-
-
 public class MetodiGruppi {
-
-    
     
     /**
      *  Preso in input l'utente che lo crea e i parametri del gruppo
@@ -239,6 +231,33 @@ public class MetodiGruppi {
         try {
             stm.setString(1, nuovoNome);
             stm.setInt(2, g.getID());
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
+    
+    
+    /**
+     * Preso in input l'id di un gruppo lo elimina dal database
+     */
+    public static void  deleteGroup(int id) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("DELETE FROM lista WHERE gruppo = ?");
+        try {
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } finally {stm.close();}
+        stm = con.prepareStatement("DELETE FROM invito WHERE gruppo = ?");
+        try {
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } finally {stm.close();}
+        stm = con.prepareStatement("DELETE FROM post WHERE gruppo = ?");
+        try {
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } finally {stm.close();}
+        stm = con.prepareStatement("DELETE FROM gruppo WHERE id = ?");
+        try {
+            stm.setInt(1, id);
             stm.executeUpdate();
         } finally {stm.close();}
     }

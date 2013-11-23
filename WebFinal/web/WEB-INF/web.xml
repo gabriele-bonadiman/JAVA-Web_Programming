@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
     <welcome-file-list>
         <welcome-file>
             Login
         </welcome-file>
     </welcome-file-list>
-    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
@@ -78,6 +76,10 @@
     <servlet>
         <servlet-name>addPostAppoggio</servlet-name>
         <servlet-class>servlet.addPostAppoggio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminaGruppo</servlet-name>
+        <servlet-class>servlet.eliminaGruppo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -158,6 +160,10 @@
     <servlet-mapping>
         <servlet-name>addPostAppoggio</servlet-name>
         <url-pattern>/addPostAppoggio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminaGruppo</servlet-name>
+        <url-pattern>/eliminaGruppo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
