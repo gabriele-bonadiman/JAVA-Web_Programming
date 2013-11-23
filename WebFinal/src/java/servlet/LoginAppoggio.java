@@ -121,9 +121,11 @@ public class LoginAppoggio extends HttpServlet {
                 }
                 session.setAttribute("utente", ute);
                 session.setAttribute("username", username);
-                RequestDispatcher rd = request.getRequestDispatcher("/Home");
-                rd.forward(request, response);
-            }else{ response.sendRedirect("Login");}
+                response.sendRedirect("Home");
+            }else { 
+                response.sendRedirect("Login");
+            }
+            
         } finally {out.close();}
     }
     

@@ -47,7 +47,7 @@ public class Forum extends HttpServlet {
             out.println("                "+g.getNome()+"");
             out.println("            </div>");
             out.println("            <div class=\"imgdiv\">");
-            out.println("                <img class=\"adminimg\" src=\"Images/singleicon.png\">");
+            out.println("                <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
             out.println("                <div class=\"imgdescriptor\">");
             out.println("                    <b>Admin</b><br>");
             out.println("                    "+u.getUsername()+"");
