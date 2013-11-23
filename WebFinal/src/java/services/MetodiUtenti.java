@@ -1,14 +1,11 @@
 package services;
 
-import classi.Gruppo;
 import classi.Utente;
 import static database.DBManager.con;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 

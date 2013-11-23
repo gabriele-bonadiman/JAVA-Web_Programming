@@ -11,7 +11,9 @@ public class ParsingText {
         String res = "";
         for (int j=0; j<result.length; j++){
             String singleWord = result[j];
-            if('$' == singleWord.charAt(0) && '$' == singleWord.charAt(1)){
+            int length = singleWord.length();
+            if('$' == singleWord.charAt(0) && '$' == singleWord.charAt(1) && 
+                    '$' == singleWord.charAt(length-1) && '$' == singleWord.charAt(length-2)){
                 singleWord = singleWord.replace("$$","");
                 singleWord = "<a href=\"UploadedFile/"+singleWord+"\" >"+singleWord+"</a>";
             }

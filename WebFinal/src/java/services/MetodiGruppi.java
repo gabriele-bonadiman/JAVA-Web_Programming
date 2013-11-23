@@ -23,7 +23,7 @@ public class MetodiGruppi {
      */
     public static int creaGruppo(String nomeGruppo ,Utente u) throws SQLException{
         
-       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
          
         int index = 0;
@@ -127,7 +127,7 @@ public class MetodiGruppi {
     /**
      * Preso in input un gruppo, restituisce le persone che vi appartengono
      */
-    public static ArrayList<Utente> listaUtentiPresenti(Gruppo gr)throws SQLException{
+    public static ArrayList<Utente> listaUtentiIscritti(Gruppo gr)throws SQLException{
         
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM INVITO WHERE GRUPPO = ? AND INVITATO = ?");
@@ -150,9 +150,9 @@ public class MetodiGruppi {
     /**
      * Utenti presenti non ancora iscritti al gruppo G
      */
-    public static ArrayList<Utente> listaPotenzialiIscritti(Gruppo gr) throws SQLException{
+    public static ArrayList<Utente> listaIscritti(Gruppo gr) throws SQLException{
         PreparedStatement stm = con.prepareStatement
-        ("select id from utente except(select invito.utente from invito where gruppo = ?)");
+        ("SELECT utente FROM LISTA WHERE GRUPPO = ?");
         ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
             stm.setInt(1,gr.getID());
@@ -184,7 +184,8 @@ public class MetodiGruppi {
      */
     public static void editIscrizione(int idUtente,int idGruppo,int choose) throws SQLException{
 
-        PreparedStatement stm = con.prepareStatement("UPDATE INVITO SET invitato = ? WHERE UTENTE = ? AND GRUPPO = ?");
+        PreparedStatement stm = con.prepareStatement
+        ("UPDATE INVITO SET invitato = ? WHERE UTENTE = ? AND GRUPPO = ?");
         try {
             stm.setInt(1, choose);
             stm.setInt(2, idUtente);
@@ -221,6 +222,9 @@ public class MetodiGruppi {
             stm.executeUpdate();
         } finally {stm.close();}
     }
+    
+    
+    
     
     /**
      *  Modifica del nome del gruppo

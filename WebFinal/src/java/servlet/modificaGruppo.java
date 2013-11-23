@@ -44,8 +44,8 @@ public class modificaGruppo extends HttpServlet {
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
-            utentiMancanti = MetodiGruppi.listaPotenzialiIscritti(gr);            
-            utentiPresenti = MetodiGruppi.listaUtentiPresenti(gr);
+            utentiMancanti = MetodiGruppi.listaIscritti(gr);            
+            utentiPresenti = MetodiGruppi.listaUtentiIscritti(gr);
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
         
@@ -79,22 +79,18 @@ public class modificaGruppo extends HttpServlet {
         out.println("                    Utenti PRESENTI NEL DB:");
         out.println("                </div>");
         
-        
-        if(utentiMancanti.isEmpty()){
-            out.println(" Tutti gli utenti sono stati invitati a questo gruppo ");
-        }else{
-            Iterator i = utentiMancanti.iterator(); 
-            while(i.hasNext()) {
-                Utente ute = (Utente) i.next();
-                if(!utentiPresenti.contains(ute)){
-                    System.out.println("utenti presenti non contiene l'utente "+ute.getUsername());
-                    if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                        out.println("<input id=\""+ute.getId()+"\" type=\"checkbox\" class=\"css-checkbox\"/>\n" +
+
+        Iterator i = utentiMancanti.iterator(); 
+        while(i.hasNext()) {
+            Utente ute = (Utente) i.next();
+            if(!utentiPresenti.contains(ute)){
+                if(!ute.getUsername().equals(utenteLoggato.getUsername())){
+                    out.println("<input id=\""+ute.getId()+"\" type=\"checkbox\" class=\"css-checkbox\"/>\n" +
 "                                   <label  for=\""+ute.getId()+"\" class=\"css-label\">"+ute.getUsername()+" </label></br>");
-                    }
                 }
             }
         }
+
                                             
                     /**
                      *      QUI AL POSTO DI UNA CHECKBOX CI CACCEREI UNA X DA PREMERE PER ELIMINARE 

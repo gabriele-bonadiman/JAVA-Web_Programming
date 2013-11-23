@@ -45,7 +45,7 @@ public class PDF_report extends HttpServlet {
         String nomeGruppo = gruppo.getNome();
         ArrayList utentiIscritti= new ArrayList();
         
-        utentiIscritti = MetodiGruppi.listaUtentiPresenti(gruppo);
+        utentiIscritti = MetodiGruppi.listaUtentiIscritti(gruppo);
         
         String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         

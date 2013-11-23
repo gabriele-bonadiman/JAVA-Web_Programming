@@ -1,15 +1,11 @@
 
 package servlet;
 
-import classi.Gruppo;
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,34 +42,33 @@ public class creaGruppoAppoggio extends HttpServlet {
         
         int stop = 0;
         int id_group = 0;
-        String paramName;
         
-        Enumeration paramNames = request.getParameterNames();
-        try {
-            while(paramNames.hasMoreElements()) {
+        //String paramName;
+        //Enumeration paramNames = request.getParameterNames();
+        
+            Enumeration paramNames = request.getParameterNames();
+            
+            try{
+                while(paramNames.hasMoreElements()) {
+                    String paramName = (String)paramNames.nextElement();
+                    String[] paramValues = request.getParameterValues(paramName);
 
-                paramName = (String)paramNames.nextElement();
-                String[] paramValues = request.getParameterValues(paramName);
-
-                // creazione del gruppo. Prendo il nome(il primo parametro)
-                if(stop==0){
-                    if(paramValues[0].equals("")){
-                        creaGruppo.errorName=true;
-                        response.sendRedirect("GruppoVuoto");
-                        return;
+                    if(stop==0){
+                            String paramValue = paramValues[0];
+                            System.out.print("creo il gruppo con il nome= " + paramValue);
+                            id_group = MetodiGruppi.creaGruppo(paramValue, ute);
+                            MetodiGruppi.inserisciInLista(ute, id_group);
+                            MetodiGruppi.inserisciInInviti(ute, id_group,1);
+                            stop++;
                     }
-                    id_group = MetodiGruppi.creaGruppo(paramValues[0], ute);
-                    MetodiGruppi.inserisciInLista(ute, id_group);
-                    MetodiGruppi.inserisciInInviti(ute, id_group,1);
-                    stop++;
-                }else{
-                    Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(request.getParameter(paramName)));
-                    MetodiGruppi.inserisciInLista(u, id_group);
-                    MetodiGruppi.inserisciInInviti(u, id_group,0);
-                }
-            }
-        } catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-       
+                    if(!paramName.equals("nomeGruppo")){
+                            System.out.println("UTENTE NUMERO = " + paramName);
+                            Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(paramName));
+                            MetodiGruppi.inserisciInLista(u, id_group);
+                            MetodiGruppi.inserisciInInviti(u, id_group,0);
+                        }
+                } 
+            }catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             response.sendRedirect("Home");
        
     }

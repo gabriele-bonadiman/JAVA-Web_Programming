@@ -1,15 +1,12 @@
 package servlet;
 
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +21,7 @@ public class creaGruppo extends HttpServlet {
     
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        
-
-        
-    }
+            }
         
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +67,7 @@ public class creaGruppo extends HttpServlet {
                                             while(i.hasNext()) {
                                                 Utente ute = (Utente) i.next();
                                                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                                                    out.println("<input type=\"checkbox\" name='gruppo' value=\""+ ute.getId() +"\" />"+ ute.getUsername() +"<br>");
+                                                    out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" />"+ ute.getUsername() +"<br>");
                                                     indiceCheck++;
                                                 }
                                             }
