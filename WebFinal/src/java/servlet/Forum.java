@@ -79,12 +79,12 @@ public class Forum extends HttpServlet {
             
             //aggiungere un post
             out.println("            <form action=\"addPost\">"); 
-            out.println("               <input name = \""+g.getID()+"\"type=\"submit\">");
+            out.println("               <input name = \""+g.getID()+"\"type=\"submit\" value=\"aggiungipost\">");
             out.println("            </form>");
             
             //eliminare il gruppo
             out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-            out.println("               <input name = \""+g.getID()+"\"type=\"submit\">");
+            out.println("               <input name = \""+g.getID()+"\"type=\"submit\" value=\"elimina gruppo\">");
             out.println("            </form>");
              
              

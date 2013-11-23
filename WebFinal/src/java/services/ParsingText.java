@@ -13,7 +13,7 @@ public class ParsingText {
             String singleWord = result[j];
             if('$' == singleWord.charAt(0) && '$' == singleWord.charAt(1)){
                 singleWord = singleWord.replace("$$","");
-                singleWord = "<a href=\"UploadedFile/"+singleWord+"\" >"+singleWord+"</>";
+                singleWord = "<a href=\"UploadedFile/"+singleWord+"\" >"+singleWord+"</a>";
             }
             res = res + " " +singleWord;
         }

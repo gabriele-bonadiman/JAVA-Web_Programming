@@ -123,4 +123,18 @@ public class MetodiPost {
             stm.executeUpdate();
         }finally {stm.close();}
     }
+    
+    public static boolean fileExist(String name) throws SQLException{
+          PreparedStatement stm = con.prepareStatement
+            ("select * from POST_FILE where path = ?");
+        int num=0;
+        try {
+             stm.setString(1,name);
+             ResultSet rs = stm.executeQuery();
+             while(rs.next()) {
+                    return true;
+                }
+        } finally {stm.close();}
+        return false;
+    }
 }
