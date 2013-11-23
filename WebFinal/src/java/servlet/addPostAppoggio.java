@@ -79,6 +79,7 @@ public class addPostAppoggio extends HttpServlet {
         
         //come gestiamo le stringhe nulle?
         
+        //NON FUNZIONA L'INSERIMENTO DEL POST NEL DB, PENSO CHE SIA UN ERRORE NEL METODO INSERTPOST O SIMILI
         try {
             MetodiPost.insertPost(gr, ute, testoPost);
             response.sendRedirect("Forum?id="+gr.getID());        
@@ -104,6 +105,9 @@ public class addPostAppoggio extends HttpServlet {
                 if (!file2.exists()) {
                     file2.mkdir();
                 }
+                
+                //QUI BISOGNA AGGIUNGERE AL DB IL FILE, PER ORA IO LO CARICO SOLO NELLA CARTELLA
+                //MA BISOGNA INSERIRNE IL NOME ECC ECC NEL DB
 
                 File fOUT = new File(pathUpload, fileName);
                 FileInputStream fIS = new FileInputStream(f);
