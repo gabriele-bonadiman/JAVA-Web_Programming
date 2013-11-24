@@ -55,7 +55,7 @@ public class creaGruppoAppoggio extends HttpServlet {
                             String paramValue = paramValues[0];
                             
                             
-                            if(paramValue.equals("")){
+                            if(paramValue.equals("") || paramValue.equals(" ")){
                                 creaGruppo.errorName=true;
                                 response.sendRedirect("creaGruppo");
                                 return;

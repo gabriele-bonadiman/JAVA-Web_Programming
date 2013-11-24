@@ -100,15 +100,29 @@
         <filter-name>controlGroup</filter-name>
         <filter-class>filter.controlGroup</filter-class>
     </filter>
+    <filter>
+        <filter-name>controlUserData</filter-name>
+        <filter-class>filter.controlUserData</filter-class>
+    </filter>
+
+
+
+
+
+    <filter-mapping>
+        <filter-name>controlUserData</filter-name>
+        <url-pattern>/iMieiDatiAppoggio</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>controlGroup</filter-name>
         <url-pattern>/Forum</url-pattern>
     </filter-mapping>
-
-
-
-
-
+    
+    
+    
+    
+    
+    
     <listener>
         <description>listener</description>
         <listener-class>listener.contextListener</listener-class>
@@ -190,4 +204,6 @@
             30
         </session-timeout>
     </session-config>
-</web-app>
+
+   
+    </web-app>

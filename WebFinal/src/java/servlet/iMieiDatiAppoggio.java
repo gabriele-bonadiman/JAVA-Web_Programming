@@ -2,7 +2,6 @@ package servlet;
 
 import classi.Utente;
 import com.oreilly.servlet.MultipartRequest;
-import database.DBManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
