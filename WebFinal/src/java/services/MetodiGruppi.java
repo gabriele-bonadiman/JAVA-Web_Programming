@@ -128,7 +128,6 @@ public class MetodiGruppi {
      * Preso in input un gruppo, restituisce le persone che vi appartengono
      */
     public static ArrayList<Utente> listaUtentiIscritti(Gruppo gr)throws SQLException{
-        
         PreparedStatement stm = con.prepareStatement
         ("SELECT * FROM INVITO WHERE GRUPPO = ? AND INVITATO = ?");
        ArrayList<Utente> utenti = new ArrayList<Utente>();
@@ -140,6 +139,29 @@ public class MetodiGruppi {
                while(rs.next()) {
                    Utente p;
                    p = MetodiUtenti.searchUtenteByID(rs.getInt("UTENTE"));
+                   utenti.add(p);
+               }
+           } finally { rs.close();}
+       } finally {stm.close();}
+       return utenti;
+    }
+    /**
+     * Preso in input un gruppo, restituisce le persone che non vi appartengono
+     */
+    public static ArrayList<Utente> listaUtentiNonIscritti(Gruppo gr)throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+        ("select id from utente where id not in(select UTENTE from invito where gruppo = ?)");
+       
+        System.out.println("gruppo numero = " + gr.getID());
+        ArrayList<Utente> utenti = new ArrayList<Utente>();
+       try {
+            stm.setInt(1,gr.getID());
+            ResultSet rs = stm.executeQuery();
+           try {
+               while(rs.next()) {
+                   Utente p;
+                    System.out.println("ricerco l'utente  = " + rs.getInt("ID"));
+                   p = MetodiUtenti.searchUtenteByID(rs.getInt("ID"));
                    utenti.add(p);
                }
            } finally { rs.close();}

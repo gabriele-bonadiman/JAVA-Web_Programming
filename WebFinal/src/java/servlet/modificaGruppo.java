@@ -32,8 +32,8 @@ public class modificaGruppo extends HttpServlet {
         Utente utenteLoggato = (Utente) session.getAttribute("utente");
         String adminGruppo = (String) session.getAttribute("username");
         
-        ArrayList<Utente> utentiMancanti = null;
-        ArrayList<Utente> utentiPresenti = null;
+        ArrayList<Utente> utentiNonIscritti = null;
+        ArrayList<Utente> utentiIscritti = null;
         
         String paramName = null;
         Enumeration paramNames = request.getParameterNames();
@@ -44,8 +44,8 @@ public class modificaGruppo extends HttpServlet {
         session.setAttribute("gruppoCorrente", gr);
         
         try { 
-            utentiMancanti = MetodiGruppi.listaIscritti(gr);            
-            utentiPresenti = MetodiGruppi.listaUtentiIscritti(gr);
+            utentiNonIscritti = MetodiGruppi.listaUtentiNonIscritti(gr);            
+            utentiIscritti = MetodiGruppi.listaUtentiIscritti(gr);
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
         
@@ -57,14 +57,7 @@ public class modificaGruppo extends HttpServlet {
         out.println("-->");
         out.println("<html>");
         out.println("    <head>");
-        out.println("        <title>Modifica Gruppo</title>");
-        
-        
-       
-        
-        
-        
-        out.println("        <meta charset=\"UTF-8\">");
+        out.println("        <title>Modifica Gruppo</title>");out.println("        <meta charset=\"UTF-8\">");
         out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
         out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
         out.println("    </head>");
@@ -75,47 +68,43 @@ public class modificaGruppo extends HttpServlet {
         out.println("                    Modifica Nome: "
                 + "                     <input name=nuovoNome type=\"text\" placeholder="+gr.getNome()+" class=\"stdinput\" maxlength=\"20\">");
         out.println("                </div>");
-        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    Utenti PRESENTI NEL DB:");
-        out.println("                </div>");
         
+        
+        
+        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
+        out.println("                    Utenti NON ISCRITTI AL GRUPPO:");
 
-        Iterator i = utentiMancanti.iterator(); 
+        Iterator i = utentiNonIscritti.iterator(); 
         while(i.hasNext()) {
             Utente ute = (Utente) i.next();
-            if(!utentiPresenti.contains(ute)){
+            if(!utentiIscritti.contains(ute)){
                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
                     out.println("<input id=\""+ute.getId()+"\" type=\"checkbox\" class=\"css-checkbox\"/>\n" +
 "                                   <label  for=\""+ute.getId()+"\" class=\"css-label\">"+ute.getUsername()+" </label></br>");
                 }
             }
         }
-
-                                            
-                    /**
-                     *      QUI AL POSTO DI UNA CHECKBOX CI CACCEREI UNA X DA PREMERE PER ELIMINARE 
-                     */
-        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    Utenti PRESENTI NEL GRUPPO:");
         out.println("                </div>");
-     
         
-        if(utentiPresenti.isEmpty()){
+        
+        
+        
+        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
+        out.println("                    UTENTI ISCRITTI AL GRUPPO:");
+        if(utentiIscritti.isEmpty()){
             out.println("nessuno ha ancora accettato l'invito a questo gruppo");
         }else{
-            Iterator i2 = utentiPresenti.iterator(); 
+            Iterator i2 = utentiIscritti.iterator(); 
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
-            if(!utentiMancanti.contains(ute2)){
-            }                                    
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
                     out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\" checked>"+ ute2.getUsername() +"<br>");
                 }
             }
         }       
-        out.println("<input type=\"submit\"/></br>");      
-
         
+        
+        out.println("<input type=\"submit\" value=\"conferma\"/></br>");      
         out.println("                </div>");
         out.println("            </form>");
         out.println("        </div>");

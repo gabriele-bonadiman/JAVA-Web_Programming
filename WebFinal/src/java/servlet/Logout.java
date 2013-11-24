@@ -14,7 +14,10 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        session.invalidate();
+        if (session != null) {
+            session.removeAttribute("utente");
+            session.invalidate();
+        }
         response.sendRedirect("Login");
         return;
     }

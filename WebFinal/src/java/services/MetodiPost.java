@@ -108,7 +108,7 @@ public class MetodiPost {
      * Preso in input utente,gruppo e testo, inserisce il post nel db
      */
     public static void insertPost(Gruppo g, Utente u, String testo) throws SQLException{
-        
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         

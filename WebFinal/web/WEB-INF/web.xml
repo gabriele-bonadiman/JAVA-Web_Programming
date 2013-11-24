@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <welcome-file-list>
         <welcome-file>
             Login
         </welcome-file>
     </welcome-file-list>
+    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
@@ -89,6 +91,24 @@
         <servlet-name>LoginAppoggio</servlet-name>
         <url-pattern>/LoginAppoggio</url-pattern>
     </servlet-mapping>
+   
+
+
+
+
+    <filter>
+        <filter-name>controlGroup</filter-name>
+        <filter-class>filter.controlGroup</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>controlGroup</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+
     <listener>
         <description>listener</description>
         <listener-class>listener.contextListener</listener-class>

@@ -3,7 +3,6 @@ package servlet;
 import classi.Gruppo;
 import classi.Utente;
 import com.oreilly.servlet.MultipartRequest;
-import database.DBManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -74,8 +73,8 @@ public class addPostAppoggio extends HttpServlet {
         MultipartRequest multi=new MultipartRequest(request,".");
         
         String testoPost = (String) multi.getParameter("text");
-        
-        testoPost = services.ParsingText.parsing(testoPost);
+        if(testoPost!=null && !testoPost.equals(""))
+            testoPost = services.ParsingText.parsing(testoPost);
         
         //come gestiamo le stringhe nulle?
         
@@ -93,7 +92,7 @@ public class addPostAppoggio extends HttpServlet {
             File f = multi.getFile(name);
             String fileName = multi.getFilesystemName(name);
             if (f != null) {
-                String pathUpload = request.getServletContext().getRealPath("/UploadedFiles");
+                String pathUpload = request.getServletContext().getRealPath("/UploadedFile");
                 pathUpload = request.getServletContext().getRealPath("UploadedFile/");
                 File file = new File(pathUpload);
                 if (!file.exists()) {
@@ -120,7 +119,10 @@ public class addPostAppoggio extends HttpServlet {
             }
         }
         
-        processRequest(request, response);
+        
+        response.sendRedirect("Forum?id="+gr.getID());
+
+        //processRequest(request, response);
         
     } 
 
