@@ -53,7 +53,10 @@ public class creaGruppo extends HttpServlet {
             out.println("                <div style=\"font-size: 40px; margin-top: 40px\">");
 
             // ALTRO FORM DA CONTROLLARE RISPETTO A QEULLO DI GIANNI
-            out.println("NOME GRUPPO: ");                                  
+            out.println("NOME GRUPPO: ");                       
+            if(errorName){
+                out.println("questo campo non puo' essere vuoto ");
+            }
             out.println("<input name=\"nomeGruppo\" /><br>");
             
             out.println("                </div>");

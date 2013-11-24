@@ -43,9 +43,7 @@ public class creaGruppoAppoggio extends HttpServlet {
         int stop = 0;
         int id_group = 0;
         
-        //String paramName;
-        //Enumeration paramNames = request.getParameterNames();
-        
+
             Enumeration paramNames = request.getParameterNames();
             
             try{
@@ -55,6 +53,15 @@ public class creaGruppoAppoggio extends HttpServlet {
 
                     if(stop==0){
                             String paramValue = paramValues[0];
+                            
+                            
+                            if(paramValue.equals("")){
+                                creaGruppo.errorName=true;
+                                response.sendRedirect("creaGruppo");
+                                return;
+                            }
+                            
+                            
                             System.out.print("creo il gruppo con il nome= " + paramValue);
                             id_group = MetodiGruppi.creaGruppo(paramValue, ute);
                             MetodiGruppi.inserisciInLista(ute, id_group);
