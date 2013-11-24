@@ -17,6 +17,26 @@ import static database.DBManager.con;
 public class MetodiGruppi {
     
     /**
+     * Preso in input un utente ed un gruppo controlla che vi appartenga
+     */
+    public static boolean uteIntoTheGroup(Utente ute, Gruppo gr) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("SELECT * FROM INVITO WHERE UTENTE = ? AND GRUPPO = ? AND INVITATO = ?");
+        Gruppo g = new Gruppo();
+        try {
+            stm.setInt(1, ute.getId());
+            stm.setInt(2, gr.getID());
+            stm.setInt(3, 1);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {        
+                return true;
+            }
+        } finally {stm.close();}
+        return false;
+    }
+    
+    
+    /**
      *  Preso in input l'utente che lo crea e i parametri del gruppo
      * e la lista degli utenti di appartenenza,
      * retiruisce un booleano se tutto va bene

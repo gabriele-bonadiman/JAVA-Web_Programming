@@ -102,7 +102,7 @@
     </filter>
     <filter-mapping>
         <filter-name>controlGroup</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/Forum</url-pattern>
     </filter-mapping>
 
 

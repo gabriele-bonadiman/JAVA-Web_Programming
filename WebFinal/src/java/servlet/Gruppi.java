@@ -3,7 +3,6 @@ package servlet;
 
 import classi.Gruppo;
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,17 +26,7 @@ public class Gruppi extends HttpServlet {
 
             HttpSession session = request.getSession();
             Utente ute = (Utente) session.getAttribute("utente");
-            
-            
-            
-            System.out.println("maio");
-            MetodiGruppi.searchGruppoById(49);
-            System.out.println("maio");
-            
-            
             List<Integer> gruppi = MetodiGruppi.listaGruppiIscritto(ute.getId());
-            
-            
             
             if(!gruppi.isEmpty()){
                     out.println("<!DOCTYPE html>");
@@ -58,12 +47,6 @@ public class Gruppi extends HttpServlet {
                     out.println("                        <th>Link</th>");
                     out.println("                        <th class=\"nbr\"><img src=\"Images/downloadicon.png\"></th> ");
                     out.println("                    </tr>");
-
-
-
-
-
-
 
                     Iterator i = gruppi.iterator(); 
                             while(i.hasNext()) {
