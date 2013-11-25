@@ -105,9 +105,10 @@ public class controlUserData implements Filter {
         
         
         Utente ute = (Utente)session.getAttribute("utente");
-        
-        String vecchiaPassword = (String) request.getParameter("oldPassword"); 
-	System.out.println("------------------"+vecchiaPassword+ " =? " + ute.getPassword());
+
+        MultipartRequest multi = new MultipartRequest(request,"."); 
+	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 	
+        System.out.println("------------------"+vecchiaPassword+ " =? " + ute.getPassword());
         
         
         

@@ -85,7 +85,7 @@ public class MetodiPost {
         
         
         PreparedStatement stm = con.prepareStatement
-        ("SELECT * FROM POST WHERE GRUPPO = ?");
+        ("SELECT * FROM POST WHERE GRUPPO = ? ORDER BY ID DESC");
         ArrayList<Post> postGr = new ArrayList<Post>();
        try {
             stm.setInt(1,g.getID());

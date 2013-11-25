@@ -27,6 +27,8 @@ public class Forum extends HttpServlet {
         PrintWriter out = response.getWriter();
        
             String grid = request.getParameter("id");
+            
+            
             ArrayList<Post> listaPost = new ArrayList<Post>();
             
             Gruppo g = MetodiGruppi.searchGruppoById((Integer.parseInt(grid)));
@@ -65,7 +67,7 @@ public class Forum extends HttpServlet {
                 out.println("                <div class=\"post\">");
                 out.println("                    <div class=\"postinfo\">");
                 out.println("                        <p>"+utentePost.getUsername()+"</p>");
-                out.println("                        <img src=\"Images/singleicon.png\">");
+                out.println("                        <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
                 out.println("                    <div class=\"posttext\">");

@@ -34,7 +34,6 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 * includere la lista dei gruppi all'interno di una view scrollabile. Nel caso infatti
 ci fossero troppi gruppi, la pagina viene un po' schifosina
 
-
 		LISTA INVITI
 * sistemare front-end nel caso la lista fosse vuota
 
@@ -52,6 +51,8 @@ ci fossero troppi gruppi, la pagina viene un po' schifosina
                 
 * aggiungere pulsante per tornare alla home
 * il pulsante "FINE" a cosa serve?
+* l'immagine dell'avatar e' sproporzionata
+* controllare i vari layout
 
 
                 ADD POST
