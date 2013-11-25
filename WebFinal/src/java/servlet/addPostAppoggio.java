@@ -31,27 +31,23 @@ public class addPostAppoggio extends HttpServlet {
         //E' COMMENTATA QUESTA PARTE XK NON RIESCO A FARLA FUNZIONARE... 
         //NON RIESCO A CAPIRE XK, SE SIA L'URL SBAGLIATO O ALTRO MA NON VA
         //CONTINUA A RIMANDARMI NELLA PAGINA ADDPOSTAPPOGGIO MA NON CAPISCO XK
-        /*
+        
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
             
             out.println("<head> "
                     + "<meta http-equiv=\"refresh\" "
-                    + "content=\"3;"
-                    + "url=\"Forum?id="+gr.getID()+"\">"
+                    + "content=\"3;url=Forum?id="+gr.getID()+"\" >"
                     + "<h1>UPLOAD DONE!</h1>"
                     + "</head>"
                     + "<body>"
                     + "<div class=\"user_register border_y\"><div>"
                     + "<span style=\"color: green;\"> After 3 seconds you will be redirected to the previous page!</span>"
                     + "<br><br>"
-                    + "<a href=\"Forum?id="+gr.getID()+">Are you still in this page after 3 seconds? Please click on this!</a></div></div>"
                     + "</body>");
-                    System.err.println("url=\"Forum?id="+gr.getID()+"\">");
-        }*/
-        
-        response.sendRedirect("Forum?id=" +gr.getID());
+                    System.err.println("url=Forum?id=\""+gr.getID()+"\">");
+        }
     }
 
    
@@ -119,11 +115,8 @@ public class addPostAppoggio extends HttpServlet {
                 fOS.close();
             }
         }
-        
-        
-        response.sendRedirect("Forum?id="+gr.getID());
 
-        //processRequest(request, response);
+        processRequest(request, response);
         
     } 
 
