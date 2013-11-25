@@ -42,10 +42,6 @@ public class addPost extends HttpServlet {
         out.println("<body>");
         out.println("<h1>AGGIUNGI UN POST</h1>");
 
-            /*
-        out.println("<form action=\"addPostAppoggio\" method=\"POST\">");
-        out.println("<input type=\"text\" class=\"stdinput\" name=\"post\"/>");
-        out.println("<input type=\"submit\" value=\"Conferma\"/></div> </form> ");*/
         out.println("<form enctype='multipart/form-data' "
                         + "method='POST' action='addPostAppoggio'> "
                         + "<input type='text' name='text'> <br>"
