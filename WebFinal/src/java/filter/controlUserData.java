@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Enumeration;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,6 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 /**
  * Questo filtro controlla che prima di attuare qualisasi modifica, 
@@ -98,17 +98,26 @@ public class controlUserData implements Filter {
      */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
-        
+       
         HttpServletRequest httpReq = (HttpServletRequest) request; 
         HttpServletResponse httpRes = (HttpServletResponse) response;
         HttpSession session = httpReq.getSession();
+
         
+        //SOLUZIONE : METTERE IN SESSION LA PASSWORD DALLA SERVLET FORUM
+        //  TIRARE FUORI DA QUI LA PASSWORD VECCHIA. session.getParaamater("vecchia passwod")
+        //cancellare la password dalla session
         
+        /*
         Utente ute = (Utente)session.getAttribute("utente");
 
         MultipartRequest multi = new MultipartRequest(request,"."); 
 	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 	
         System.out.println("------------------"+vecchiaPassword+ " =? " + ute.getPassword());
+        */
+        
+        
+        
         
         
         

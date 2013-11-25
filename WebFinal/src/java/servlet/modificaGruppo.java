@@ -34,7 +34,8 @@ public class modificaGruppo extends HttpServlet {
         
         ArrayList<Utente> utentiNonIscritti = null;
         ArrayList<Utente> utentiIscritti = null;
-        
+        ArrayList<Utente> utentiInvitati = null;
+
         String paramName = null;
         Enumeration paramNames = request.getParameterNames();
         while(paramNames.hasMoreElements()) {
@@ -46,6 +47,7 @@ public class modificaGruppo extends HttpServlet {
         try { 
             utentiNonIscritti = MetodiGruppi.listaUtentiNonIscritti(gr);            
             utentiIscritti = MetodiGruppi.listaUtentiIscritti(gr);
+            utentiInvitati = MetodiGruppi.listaUtentiSenzaAccettazione(gr);
         } catch (SQLException ex) {Logger.getLogger(creaGruppo.class.getName()).log(Level.SEVERE, null, ex);}
 
         
@@ -72,7 +74,7 @@ public class modificaGruppo extends HttpServlet {
         
         
         out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    Utenti NON ISCRITTI AL GRUPPO:");
+        out.println("                    Utenti NON ISCRITTI AL GRUPPO:<br/>");
 
         Iterator i = utentiNonIscritti.iterator(); 
         while(i.hasNext()) {
@@ -84,13 +86,13 @@ public class modificaGruppo extends HttpServlet {
                 }
             }
         }
-        out.println("                </div>");
+        out.println("                </div><br/><br/>");
         
         
         
         
         out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    UTENTI ISCRITTI AL GRUPPO:");
+        out.println("                    UTENTI ISCRITTI AL GRUPPO:<br/>");
         if(utentiIscritti.isEmpty()){
             out.println("nessuno ha ancora accettato l'invito a questo gruppo");
         }else{
@@ -101,10 +103,24 @@ public class modificaGruppo extends HttpServlet {
                     out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\" checked>"+ ute2.getUsername() +"<br>");
                 }
             }
+        }
+        
+        
+        out.println(" <br/><br/>                   UTENTI che non HANNO HANNO ANCORA ACCETTATO L'INVITO:<br/>");
+        if(utentiInvitati.isEmpty()){
+            out.println("nessuno ha ancora accettato l'invito a questo gruppo");
+        }else{
+            Iterator i3 = utentiInvitati.iterator(); 
+            while(i3.hasNext()) {
+                Utente ute3 = (Utente) i3.next();
+                if(!ute3.getUsername().equals(utenteLoggato.getUsername())){
+                    out.println("<input type=\"checkbox\" name=\""+ ute3.getId() +"\" name=\"Gabri\" checked>"+ ute3.getUsername() +"<br>");
+                }
+            }
         }       
         
         
-        out.println("<input type=\"submit\" value=\"conferma\"/></br>");      
+        out.println("<br/><br/><input type=\"submit\" value=\"conferma\"/></br>");      
         out.println("                </div>");
         out.println("            </form>");
         out.println("        </div>");

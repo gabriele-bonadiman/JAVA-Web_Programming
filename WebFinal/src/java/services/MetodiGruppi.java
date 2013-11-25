@@ -165,14 +165,13 @@ public class MetodiGruppi {
        } finally {stm.close();}
        return utenti;
     }
+    
     /**
      * Preso in input un gruppo, restituisce le persone che non vi appartengono
      */
     public static ArrayList<Utente> listaUtentiNonIscritti(Gruppo gr)throws SQLException{
         PreparedStatement stm = con.prepareStatement
         ("select id from utente where id not in(select UTENTE from invito where gruppo = ?)");
-       
-        System.out.println("gruppo numero = " + gr.getID());
         ArrayList<Utente> utenti = new ArrayList<Utente>();
        try {
             stm.setInt(1,gr.getID());
@@ -188,6 +187,44 @@ public class MetodiGruppi {
        } finally {stm.close();}
        return utenti;
     }
+    
+    
+    
+    
+    
+    /**
+     * Preso in input un gruppo, restituisce le gli utenti che non hanno ancora accettato l'invito
+     */
+    public static ArrayList<Utente> listaUtentiSenzaAccettazione(Gruppo gr)throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+        ("select UTENTE from invito where gruppo = ? AND INVITATO = ?");
+        ArrayList<Utente> utenti = new ArrayList<Utente>();
+       try {
+            stm.setInt(1,gr.getID());
+            stm.setInt(2,0);
+            ResultSet rs = stm.executeQuery();
+            try {
+                while(rs.next()) {
+                    Utente p;
+                    System.out.println("ricerco l'utente  = " + rs.getInt("utente"));
+                    p = MetodiUtenti.searchUtenteByID(rs.getInt("utente"));
+                    utenti.add(p);
+               }
+           } finally { rs.close();}
+       } finally {stm.close();}
+       return utenti;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * Utenti presenti non ancora iscritti al gruppo G

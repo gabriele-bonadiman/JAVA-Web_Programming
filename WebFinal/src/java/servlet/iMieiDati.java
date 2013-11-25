@@ -27,6 +27,9 @@ public class iMieiDati extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         
+        String opsw = request.getParameter("oldPassword");
+        session.setAttribute("opsw", opsw);
+        
         try (PrintWriter out = response.getWriter()) {
            out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -61,7 +64,8 @@ public class iMieiDati extends HttpServlet {
             out.println("    </body>");
             out.println("</html>");
             out.println("");
-        }    }
+        }    
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
