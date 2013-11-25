@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +82,7 @@ public class addPostAppoggio extends HttpServlet {
         //NON FUNZIONA L'INSERIMENTO DEL POST NEL DB, PENSO CHE SIA UN ERRORE NEL METODO INSERTPOST O SIMILI
         try {
             MetodiPost.insertPost(gr, ute, testoPost);
-            response.sendRedirect("Forum?id="+gr.getID());        
+            //response.sendRedirect("Forum?id="+gr.getID());        
         } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         
         Enumeration files= multi.getFileNames();
