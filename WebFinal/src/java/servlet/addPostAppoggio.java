@@ -42,7 +42,6 @@ public class addPostAppoggio extends HttpServlet {
                     + "<span style=\"color: green;\"> After 3 seconds you will be redirected to the previous page!</span>"
                     + "<br><br>"
                     + "</body>");
-                    System.err.println("url=Forum?id=\""+gr.getID()+"\">");
         }
     }
 
@@ -63,7 +62,7 @@ public class addPostAppoggio extends HttpServlet {
         Gruppo gr = (Gruppo) session.getAttribute("gruppo");
         Utente ute = (Utente) session.getAttribute("utente");
         
-        MultipartRequest multi=new MultipartRequest(request,".");
+        MultipartRequest multi=new MultipartRequest(request,".",1024*1024*5);
         
         String testoPost = (String) multi.getParameter("text");
         if(testoPost!=null && !testoPost.equals(""))
