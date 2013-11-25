@@ -137,4 +137,26 @@ public class MetodiPost {
         } finally {stm.close();}
         return false;
     }
+    
+    
+    /**
+     * Preso in input i parametri necessari, inserisce un file all'interno del DB
+     */
+    public static void insertFileIntoDB(String path,int utente, int gruppo) throws SQLException{
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        
+        
+        PreparedStatement stm = con.prepareStatement
+            ("INSERT INTO FILE_POST (PATH,UTENTE,GRUPPO,DATA) VALUES (?,?,?,?)");
+
+        try {
+            stm.setString(1, path);
+            stm.setInt(2, utente);
+            stm.setInt(3, gruppo);
+            stm.setString(4, dateFormat.format(date));
+            stm.executeUpdate();
+        }finally {stm.close();}
+
+    }
 }

@@ -67,7 +67,23 @@ public class Forum extends HttpServlet {
                 out.println("                <div class=\"post\">");
                 out.println("                    <div class=\"postinfo\">");
                 out.println("                        <p>"+utentePost.getUsername()+"</p>");
-                out.println("                        <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
+                
+                
+                
+                
+                
+                
+                //STRINGA CORRETTA SOLO CHE L^AVATAR MI STAVA IN MEZZO AL CAZZO
+                //out.println("                        <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
+                out.println("                        <img class=\"\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
+                
+                
+                
+                
+                
+                
+                
+                
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
                 out.println("                    <div class=\"posttext\">");
