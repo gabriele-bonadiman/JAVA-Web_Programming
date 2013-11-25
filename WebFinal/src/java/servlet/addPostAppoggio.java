@@ -28,10 +28,6 @@ public class addPostAppoggio extends HttpServlet {
         HttpSession session = request.getSession();
         Gruppo gr = (Gruppo) session.getAttribute("gruppo");
         
-        //E' COMMENTATA QUESTA PARTE XK NON RIESCO A FARLA FUNZIONARE... 
-        //NON RIESCO A CAPIRE XK, SE SIA L'URL SBAGLIATO O ALTRO MA NON VA
-        //CONTINUA A RIMANDARMI NELLA PAGINA ADDPOSTAPPOGGIO MA NON CAPISCO XK
-        
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
@@ -75,10 +71,8 @@ public class addPostAppoggio extends HttpServlet {
         
         //come gestiamo le stringhe nulle?
         
-        //NON FUNZIONA L'INSERIMENTO DEL POST NEL DB, PENSO CHE SIA UN ERRORE NEL METODO INSERTPOST O SIMILI
         try {
-            MetodiPost.insertPost(gr, ute, testoPost);
-            //response.sendRedirect("Forum?id="+gr.getID());        
+            MetodiPost.insertPost(gr, ute, testoPost);   
         } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         
         Enumeration files= multi.getFileNames();
