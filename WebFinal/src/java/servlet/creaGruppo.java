@@ -45,37 +45,39 @@ public class creaGruppo extends HttpServlet {
             out.println("        <title>Creazione del Gruppo</title>");
             out.println("        <meta charset=\"UTF-8\">");
             out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("           <form action=\"creaGruppoAppoggio\" method=\"POST\">");
-            out.println("                <div style=\"font-size: 40px; margin-top: 40px\">");
-
-            // ALTRO FORM DA CONTROLLARE RISPETTO A QEULLO DI GIANNI
-            out.println("NOME GRUPPO: ");                       
-            if(errorName){
-                out.println("questo campo non puo' essere vuoto ");
-            }
-            out.println("<input name=\"nomeGruppo\" /><br>");
-            
+            out.println("           <form action=\"creaGruppoAppoggio\" method=\"POST\" class=\"form-horizontal\">");
+            out.println("               <div class=\"col-md-offset-2 col-md-8\">");
+            out.println("                   <h1>Crea Nuovo Gruppo</h1>");
+            out.println("               </div>");
+            out.println("               <div class=\"col-md-offset-3 col-md-8\" style=\"margin-top:40px;\">");
+            out.println("                <div class=\"form-group\">");
+            out.println("                   <label for=\"nomegruppo\" class=\"col-md-3\">Nome Gruppo:</label> ");                       
+            out.println("                   <div class=\"col-md-3\"><input name=\"nomeGruppo\" id=\"nomegruppo\" class=\"form-control\"/></div>");
             out.println("                </div>");
-            out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-            out.println("                    Utenti presenti:");
+            out.println("                <div  class=\"col-md-3\" style=\"margin-left:-15px;\">");
+            out.println("                    <label>Utenti presenti:</label>");
             out.println("                </div>");
-            out.println("                <div style=\"font-size: 30px; float: left; margin-left: 20px; margin-top: 10px;\">");
+            out.println("                <div class=\"col-md-9\" style=\"margin-bottom:20px;\">");
             
                                             Iterator i = utenti.iterator(); 
                                             int indiceCheck = 0;
                                             while(i.hasNext()) {
                                                 Utente ute = (Utente) i.next();
                                                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                                                    out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" />"+ ute.getUsername() +"<br>");
+                                                    out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" id=\""+ ute.getId() +"\" /><label for=\""+ ute.getId() +"\" style=\"margin-left:10px;\">"+ ute.getUsername() +"</label><br>");
                                                     indiceCheck++;
                                                 }
                                             }
-            out.println("                    <input type=\"submit\" value=\"Aggiungi\" class=\"stdsbmt\">");
-            out.println("                </div>");
+            out.println("                       </div>");
+            out.println("                   <div class=\"form-group\">");
+            out.println("                       <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default col-md-offset-1\">");
+            out.println("                       <a href=\"Home\"><button action=\"\" class=\"btn btn-default col-md-offset-2\">Home</button></a>");
+            out.println("                   </div>");
+            out.println("               </div>");
             out.println("            </form>");
             out.println("        </div>");
             out.println("    </body>");
