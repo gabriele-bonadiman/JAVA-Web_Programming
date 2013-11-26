@@ -28,6 +28,7 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 * servlet di errori
 * l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
 * controllo estensione dei file caricati come immagini e delle dimensioni in generale
+* pagine html di gestione degli errori es. 404,500,...
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
