@@ -15,7 +15,15 @@ public class ParsingText {
             if('$' == singleWord.charAt(0) && '$' == singleWord.charAt(1) && 
                     '$' == singleWord.charAt(length-1) && '$' == singleWord.charAt(length-2)){
                 singleWord = singleWord.replace("$$","");
-                singleWord = "<a href=\"UploadedFile/"+gruppo+"/"+singleWord+"\" >"+singleWord+"</a>";
+                //se e' un sito allora aggiungi l'http oppure vai direttamente al sito
+                if(singleWord.startsWith("www.")){
+                    singleWord = "http://" +singleWord;
+                    singleWord = "<a href=\""+singleWord+"\" >"+singleWord+"</a>";                
+                }else if(singleWord.startsWith("http://")){
+                    singleWord = "<a href=\""+singleWord+"\" >"+singleWord+"</a>";                
+                }else{
+                    singleWord = "<a href=\"UploadedFile/"+gruppo+"/"+singleWord+"\" >"+singleWord+"</a>";
+                }
             }
             res = res + " " +singleWord;
         }
