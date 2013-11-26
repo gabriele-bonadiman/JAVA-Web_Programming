@@ -52,11 +52,13 @@ public class Login extends HttpServlet {
         out.println("        <title>Login</title>");
         out.println("        <meta charset=\"UTF-8\">");
         out.println("        <meta name=\"viewport\" content=\"width=device-width\"  >");
-        out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+        out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
         out.println("    </head>");
         out.println("    <body>");
         out.println("        <div class=\"container\">");
-        out.println("            <div class=\"logform center\">");
+        out.println("           <div style=\"margin-top:150px;\"></div>");
+        out.println("           <form class=\"form-horizontal col-sm-offset-4\" action= \"LoginAppoggio \" method=\"POST\">");
+        out.println("               <h1 class=\"col-sm-offset-2\">Accedi</h1>");
         
         //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
         Cookie cookie = null;
@@ -84,18 +86,19 @@ public class Login extends HttpServlet {
         //}
         
         //if (cookies != null) {
-            out.println("<form class=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
-            out.println("<label for=\"usr\" class=\"stdlabel\">Username:</label> <input type=\"text\" id=\"usr\" class=\"stdinput\" name=\"username\" value=" + usernameCookie + " /><br>");
-            out.println("<label for=\"usr\" class=\"stdlabel\">Password:</label> <input type=\"password\" id=\"psw\" class=\"stdinput\" name=\"password\" value=" + passwordCookie + " /><br>");
-            out.println("<div class=\"center center-sbmt\" ><input type=\"submit\" class=\"stdsbmt\" value=\"Login\"/></div> </form> ");
+            out.println("<div class=\"form-group\"><label for=\"usr\" class=\"col-sm-2 control-label\">Username:</label> "
+                    + "     <div class=\"col-sm-3\"><input type=\"text\" id=\"usr\" class=\"form-control\" name=\"username\" value=" + usernameCookie + " /></div></div>");
+            out.println("<div class=\"form-group\"><label for=\"usr\" class=\"col-sm-2 control-label\">Password:</label> "
+                    + "     <div class=\"col-sm-3\"><input type=\"password\" id=\"psw\" class=\"form-control\" name=\"password\" value=" + passwordCookie + " /></div></div>");
+            out.println("<div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-2\" ><button type=\"submit\" class=\"btn btn-default\">Login</button></div></div> </form> ");
         } else {
-            out.println("<form  class=\"center\" action= \"LoginAppoggio \" method=\"POST\">");
-            out.println("<label for=\"usr\" class=\"stdlabel\">Username:</label> <input type=\"text\" class=\"stdinput\" name=\"username\"/><br>");
-            out.println("<label for=\"usr\" class=\"stdlabel\">Password:</label> <input type=\"password\" class=\"stdinput\" name=\"password\"/><br>");
-            out.println("<div class=\"center center-sbmt\" ><input type=\"submit\" class=\"stdsbmt center\" value=\"Login\"/></div> </form> ");
+            out.println("<div class=\"form-group\"><label for=\"usr\" class=\"col-sm-2 control-label\">Username:</label> "
+                    + "     <div class=\"col-sm-3\"><input type=\"text\" id=\"usr\" class=\"form-control\" name=\"username\" /></div></div>");
+            out.println("<div class=\"form-group\"><label for=\"usr\" class=\"col-sm-2 control-label\">Password:</label> "
+                    + "     <div class=\"col-sm-3\"><input type=\"password\" id=\"psw\" class=\"form-control\" name=\"password\"/></div></div>");
+            out.println("<div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-2\" ><button type=\"submit\" class=\"btn btn-default\">Login</button></div></div> </form> ");
         }
         
-        out.println("            </div>");
         out.println("        </div>");
         out.println("    </body>");
         out.println("</html>");

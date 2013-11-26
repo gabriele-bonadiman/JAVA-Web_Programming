@@ -36,30 +36,29 @@ public class listaInviti extends HttpServlet {
             
             if(!listaInviti.isEmpty()){
                 out.println("<!DOCTYPE html>");
-                out.println("<!--");
-                out.println("To change this license header, choose License Headers in Project Properties.");
-                out.println("To change this template file, choose Tools | Templates");
-                out.println("and open the template in the editor.");
-                out.println("-->");
                 out.println("<html>");
                 out.println("    <head>");
                 out.println("        <title>Inviti</title>");
                 out.println("        <meta charset=\"UTF-8\">");
                 out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-                out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
                 out.println("    </head>");
                 out.println("    <body>");
                 out.println("        <div class=\"container\">");
-                out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
-                out.println("                <tbody>");
-                out.println("                    <tr class=\"titlerow\">");
-                out.println("                        <th>Gruppo</th>");
-                out.println("                        <th>Proprietario</th>");
-                out.println("                        <th class=\"nbr\">Iscritto</th>");
-                out.println("                    </tr>");
-                out.println("                    <tr>");
-                //LA RIGA SUCCESSIVA è STATA AGGIUNTA DA FABIO
-                out.println("<form class=\"center\" action= \"listaInvitiAppoggio\" method=\"POST\">");
+                out.println("           <div class=\"col-md-offset-2 col-md-8\">");
+                out.println("               <h1>Inviti</h1>");
+                out.println("           </div>");
+                out.println("           <div class=\"col-md-8 col-md-offset-2\" style=\"margin-top:50px;\">");
+                out.println("               <form action= \"listaInvitiAppoggio\" method=\"POST\">");
+                out.println("               <table class=\"table table-striped\">");
+                out.println("                   <thead>");
+                out.println("                       <tr>");
+                out.println("                           <th>Gruppo</th>");
+                out.println("                           <th>Proprietario</th>");
+                out.println("                           <th>Iscritto</th>");
+                out.println("                       </tr>");
+                out.println("                   </thead>");
+                out.println("                   <tbody>");
 
                 Iterator i = listaInviti.iterator(); 
                 System.out.println("iteratore");
@@ -71,17 +70,10 @@ public class listaInviti extends HttpServlet {
                         out.println("                    <tr>");
                         out.println("                        <td>"+gr.getNome()+"</td>");
                         out.println("                        <td>"+gr.getProprietario()+"</td>");
-                        out.println("                        <td class=\"nbr\">");
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                        out.println("                        <td>");     
                         
                         if(lista.getInvitato() == 1){
-                                out.println("<div class=\"custom-container\">\n" +
+                                 out.println("<div class=\"custom-container\">\n" +
     "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\"  checked />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
@@ -90,31 +82,24 @@ public class listaInviti extends HttpServlet {
     "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
+                        }  
 
-                        out.println("                    </td></tr>");
+                        out.println("                   </td>");
+                        out.println("               </tr> ");
                     }
                 }
 
                 out.println("                    <tr>");
-                out.println("                        <td class=\"endtd\"></td>");
-                out.println("                        <td class=\"endtd\"></td>");
-                out.println("                        <td class=\"nbr endtd\"></td>");
                 out.println("                    </tr>");
                 out.println("                </tbody>");
                 out.println("            </table>");
                 //out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
                 //LA RIGA SUCCESSIVA è STATA AGGIUNTA DA FABIO
-                out.println("<input type=\"submit\" class=\"retbtn\" value=\"Conferma\"/>");
-                out.println("        </div>");
+                out.println("       <input type=\"submit\" class=\"btn btn-default\" value=\"Conferma\"/>");
+                out.println("     </div>");
+                out.println("   </div>");
                 out.println("</form>");
-                out.println("    </body>");
+                out.println("</body>");
                 out.println("</html>");
                 out.println("");
             

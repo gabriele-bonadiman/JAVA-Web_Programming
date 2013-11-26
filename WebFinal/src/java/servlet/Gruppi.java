@@ -36,18 +36,23 @@ public class Gruppi extends HttpServlet {
                     out.println("        <title>Gruppi</title>");
                     out.println("        <meta charset=\"UTF-8\">");
                     out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-                    out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+                    out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
                     out.println("    </head>");
                     out.println("    <body>");
                     out.println("        <div class=\"container\">");
-                    out.println("            <table class=\"grouptable\"  cellspacing=\"0\">");
-                    out.println("                <tbody>");
-                    out.println("                    <tr class=\"titlerow\">");
+                    out.println("           <div class=\"col-md-offset-2 col-md-8\"><h1>Gruppi</h1></div>");
+                    out.println("           <div class=\"col-md-offset-2 col-md-8\" style=\"margin-top:50px;\"> ");
+                    out.println("           <form  action=\"modificaGruppo\" >");
+                    out.println("            <table class=\"table table-striped\" style=\"overflow-y:scroll; max-height:500px;\">");
+                    out.println("                <thead>");
+                    out.println("                    <tr>");
                     out.println("                        <th>Gruppi</th>");
                     out.println("                        <th>Data</th>");
                     out.println("                        <th>Link</th>");
-                    out.println("                        <th class=\"nbr\"><img src=\"Images/downloadicon.png\"></th> ");
+                    out.println("                        <th><img src=\"Images/downloadicon.png\" style=\"width:40px; height:30px;\"></th> ");
                     out.println("                    </tr>");
+                    out.println("               </thead>");
+                    out.println("               <tbody>");
 
                     Iterator i = gruppi.iterator(); 
                             while(i.hasNext()) {
@@ -60,9 +65,8 @@ public class Gruppi extends HttpServlet {
                                 if(g.getProprietario() == ute.getId()){
                                     out.println("");
                                     out.println("<td>"+ g.getNome()+ "");
-                                    out.println("<form  action=\"modificaGruppo\" >");
                                     out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
-                                    out.println("</form></td>");
+                                    out.println("</td>");
                                 }else{
                                     out.println("                        <td>"+ g.getNome()+ "</td>");
                                 }
@@ -78,15 +82,15 @@ public class Gruppi extends HttpServlet {
                                     out.println("</form></td>");
 
                                 }
-
-                                //out.println("                        <td class=\"nbr\">PDF</td>");
-                                out.println("                    </tr>");
+                                out.println("  </tr>");
                             }
 
 
                     out.println("                </tbody>");
                     out.println("            </table>");
-                    out.println("            <a href=\"Home\"><button class=\"retbtn\">Fine</button></a>");
+                    out.println("           </form>");
+                    out.println("            <a href=\"Home\"><button class=\"btn btn-default\" style=\"margin-bottom:40px;\">Fine</button></a>");
+                    out.println("       </div>");
                     out.println("        </div>");
                     out.println("    </body>");
                     out.println("</html>");
