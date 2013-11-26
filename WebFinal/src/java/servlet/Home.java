@@ -3,7 +3,6 @@ package servlet;
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -22,20 +21,6 @@ public class Home extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         String nome = ute.getUsername();
         
-        
-        
-        /**
-         * 
-         * 
-         * BACKEND
-         *      * VERIFICARE CHE QUANDO CREO UN GRUPPO QUESTO SIA VISUALIZZATO ANCHE NEI MIEI GRUPPI
-         * 
-         * 
-         * 
-         * FRONTEND
-         *      * INSERIRE DA QUALCHE PARTE LA SEZIONE "MODIFICA GRUPPO"
-         * 
-         */
         
         
         Cookie cookie = null;
@@ -74,7 +59,7 @@ public class Home extends HttpServlet {
                 out.println("                Non sono disponibili dati relativi all'ultimo accesso");
             }
             out.println("            </small></h1></div></div>");
-            out.println("           <div class=\"col-md-4\"><img src=\"Images/singleicon.png\" class=\"img-rounded\" style=\"width:150px; height:150px;\"></div>");
+            out.println("           <div class=\"col-md-4\"><img src=\"UploadedAvatar/"+ute.getAvatar()+"\" class=\"img-rounded\" style=\"width:150px; height:150px;\"></div>");
             out.println("            <div style=\"margin-top:150px;\"></div>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
             out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"listaInviti\"><img src=\"Images/inviteicon.png\" alt=\"\" id=\"inviti\" /><label for=\"inviti\">Inviti</label></a></div>");

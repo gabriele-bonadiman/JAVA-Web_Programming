@@ -159,4 +159,10 @@ public class MetodiUtenti {
             stm.executeUpdate();
         } finally {stm.close();}
     }
+    
+    
+    /**
+     * preso in input un utente lo elimino da LISTA e da gruppo.
+     * Inserire un post all'interno del gruppo che fa vedere che l'utente e' stato eliminato
+     */
 }

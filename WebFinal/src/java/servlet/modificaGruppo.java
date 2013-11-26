@@ -40,7 +40,9 @@ public class modificaGruppo extends HttpServlet {
         Enumeration paramNames = request.getParameterNames();
         while(paramNames.hasMoreElements()) {
             paramName = (String)paramNames.nextElement();
+            System.out.println("--------@@@@@"+paramName);
         }
+        
         Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
         session.setAttribute("gruppoCorrente", gr);
         
