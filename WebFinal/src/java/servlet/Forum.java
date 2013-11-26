@@ -75,7 +75,7 @@ public class Forum extends HttpServlet {
                 
                 //STRINGA CORRETTA SOLO CHE L^AVATAR MI STAVA IN MEZZO AL CAZZO
                 //out.println("                        <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
-                out.println("                        <img class=\"\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
+                out.println("                        <img class=\"\" src=\"" +"/" + u.getAvatar()+ "\">");
                 
                 
                 

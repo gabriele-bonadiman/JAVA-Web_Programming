@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiGruppi;
+import services.MetodiPost;
 
 public class Gruppi extends HttpServlet {
 
@@ -66,7 +67,7 @@ public class Gruppi extends HttpServlet {
                                     out.println("                        <td>"+ g.getNome()+ "</td>");
                                 }
 
-                                out.println("                        <td>"+g.getData_creazione()+"</td>");
+                                out.println("                        <td>"+MetodiPost.dataUltimoPost(g)+"</td>");
                                 out.println("                        <td> <a href=\"Forum?id="+g.getID()+"\">LINK AL GRUPPO</a></td>");
 
                                 if(g.getProprietario() == ute.getId()){

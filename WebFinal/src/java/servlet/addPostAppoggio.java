@@ -134,7 +134,7 @@ public class addPostAppoggio extends HttpServlet {
 
         //Parsing del testo
         if(testoPost!=null && !testoPost.equals(""))
-            testoPost = services.ParsingText.parsing(testoPost);
+            testoPost = services.ParsingText.parsing(testoPost,gr.getID());
         
         
         

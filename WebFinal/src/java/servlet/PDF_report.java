@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiGruppi;
+import services.MetodiPost;
 
 public class PDF_report extends HttpServlet {
 
@@ -73,6 +74,11 @@ public class PDF_report extends HttpServlet {
         p02.setAlignment(Element.ALIGN_CENTER);
         document.add(p02);
         
+        Paragraph p03 = new Paragraph(new Phrase("Numero di post totali: " + String.valueOf(MetodiPost.numeroPostGruppo(gruppo)),
+                FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK)));
+        p03.setAlignment(Element.ALIGN_CENTER);
+        document.add(p03);
+        
         Image userJpg = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatarUtente);
         userJpg.scaleToFit(100,100);
         userJpg.setAlignment(Element.ALIGN_CENTER);
@@ -113,6 +119,12 @@ public class PDF_report extends HttpServlet {
             Utente myUser=(Utente)utentiIscritti.get(index);
             String name= myUser.getUsername();
             String avatar= myUser.getAvatar();
+            int numeroPost= MetodiPost.numeroPostSingoloUtente(myUser, gruppo);
+            String dataUltimoPost = MetodiPost.dataUltimoPostUtente(myUser, gruppo);
+            
+            if (dataUltimoPost==null) {
+                dataUltimoPost="no data available";
+            }
             
             Image myAvatar = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatar);
             myAvatar.scaleToFit(50,50);
@@ -130,12 +142,12 @@ public class PDF_report extends HttpServlet {
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);
             
-            myCell= new PdfPCell(new Paragraph ("Numero post"));
+            myCell= new PdfPCell(new Paragraph (String.valueOf(numeroPost)));
             myCell.setColspan(1);
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);
             
-            myCell= new PdfPCell(new Paragraph ("11-12-13"));
+            myCell= new PdfPCell(new Paragraph (dataUltimoPost));
             myCell.setColspan(1);
             myCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(myCell);

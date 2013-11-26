@@ -78,6 +78,28 @@ public class MetodiPost {
     }
     
     /**
+     * Preso in input un gruppo restituisco data ultimo post in quel gruppo
+     */
+    public static String dataUltimoPost(Gruppo gr) throws SQLException{
+        String data;
+        PreparedStatement stm = con.prepareStatement
+            ("select * from POST where GRUPPO = ? ORDER BY id DESC");
+        int num=0;
+        try {
+             stm.setInt(1,gr.getID());
+             ResultSet rs = stm.executeQuery();
+            try {
+                if(rs.next()) {
+                    data = rs.getString("data");
+                }else{
+                    return null;
+                }
+            } finally { rs.close();}
+        } finally {stm.close();}
+        return data;
+    }
+    
+    /**
      * Preso in input un gruppo restituisce una lista dei suoi post
      */
     public static ArrayList<Post> listaDeiPost(Gruppo g) throws SQLException{
