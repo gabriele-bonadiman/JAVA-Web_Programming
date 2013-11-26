@@ -40,7 +40,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
         
-        MultipartRequest multi = new MultipartRequest(request,"."); 
+        MultipartRequest multi = new MultipartRequest(request,".","UTF-8"); 
 	String nuovoNome = (String) multi.getParameter("username"); 
 	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
 	String nuovaPassword = (String) multi.getParameter("newPassword");

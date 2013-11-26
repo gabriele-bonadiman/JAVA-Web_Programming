@@ -14,7 +14,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +46,6 @@ public class addPostAppoggio extends HttpServlet {
         }
     }
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -68,7 +66,7 @@ public class addPostAppoggio extends HttpServlet {
                 
         
         
-        MultipartRequest multi=new MultipartRequest(request,".",1024*1024*5);
+        MultipartRequest multi=new MultipartRequest(request,".",1024*1024*5,"UTF-8");
         
         Enumeration files= multi.getFileNames();
 

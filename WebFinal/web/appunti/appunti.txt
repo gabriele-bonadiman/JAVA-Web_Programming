@@ -13,20 +13,10 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 
 
 
-
-
-
-
-
 		GENERALE
 * aggiungere filtri
 * aggiungere pagine di errore
 * mettere il controllo su tutte le text edit che non siano vuote!
-* modularizzazione database
-* upload file su tutte le pagine
-* PDF data ultimo post/numero post
-* servlet di errori
-* l'utente deve visualizzare i gruppi solo se ha accettato l'inivito, attualmente non funziona
 * controllo estensione dei file caricati come immagini e delle dimensioni in generale
 * pagine html di gestione degli errori es. 404,500,...
 
@@ -40,21 +30,16 @@ ci fossero troppi gruppi, la pagina viene un po' schifosina
 
 
 		CREAGRUPPO
-
-* aggiungere pulsante indietro
+* invertire i due pulsanti. 
 
 
 		I MIEI DATI
+* invertire i due pulsanti. 
 
-* aggiungere pulsante "Torna Indietro"
-
-                FORUM
-                
+                FORUM                
 * aggiungere pulsante per tornare alla home
-* il pulsante "FINE" a cosa serve?
 * l'immagine dell'avatar e' sproporzionata
 * controllare i vari layout
-
 
                 ADD POST
 * aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi
