@@ -60,7 +60,4 @@ ci fossero troppi gruppi, la pagina viene un po' schifosina
 * aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi
 
 
-                FILTRI
-* login
-* accesso ai file
-* accesso ai gruppi 
+
