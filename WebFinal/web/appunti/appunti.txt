@@ -14,38 +14,36 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 
 
 		GENERALE
-* aggiungere filtri (login filter, ile, gruppi)
-* aggiungere pagine di errore
+* aggiungere filtri (file, gruppi) //FABIO
+* aggiungere pagine di errore   //GIANNI
 * mettere il controllo su tutte le text edit!
 * controllo estensione dei file caricati come immagini e delle dimensioni in generale
-* pagine html di gestione degli errori es. 404,500,...
-+ aggiungere i controlli che nel nome vengano inseriti solo caratteri normali (i cookie 
-    non supportano i caratteri speciali)
-* contorllo dimensione di ogni testo
+* pagine html di gestione degli errori es. 404,500,...  //GIANNI
+* contorllo dimensione di ogni testo(impostare un max numero di caratteri in tutte le textedit)    //GIANNI
 * controllo file con lo stesso nome
 
 		GRUPPI
-* sistemare front-end nel caso la lista fosse vuota
+* sistemare front-end nel caso la lista fosse vuota //GIANNI
 * includere la lista dei gruppi all'interno di una view scrollabile. Nel caso infatti
-    ci fossero troppi gruppi, la pagina viene un po' schifosina
+    ci fossero troppi gruppi, la pagina viene un po' schifosina //GIANNI
 
 		LISTA INVITI
-* sistemare front-end nel caso la lista fosse vuota
+* sistemare front-end nel caso la lista fosse vuota //GIANNI
 
 
 		CREAGRUPPO
-* invertire i due pulsanti. 
-* il pulsante HOME NON FUNZIONA SE ALL'INTERNO DEL FORM (stessa cosa anche in GRUPPI)
+* invertire i due pulsanti. //GIANNI
+* il pulsante HOME NON FUNZIONA SE ALL'INTERNO DEL FORM (stessa cosa anche in GRUPPI)   //GIANNI
 
 		I MIEI DATI
-* invertire i due pulsanti. 
+* invertire i due pulsanti.     //GIANNI
 
                 FORUM                
-* aggiungere pulsante per tornare alla home
-* l'immagine dell'avatar e' sproporzionata
+* aggiungere pulsante per tornare alla home //GIANNI
+* l'immagine dell'avatar e' sproporzionata  //GIANNI
 
                 ADD POST
-* aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi
+* aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi //GIANNI
 
 
 
