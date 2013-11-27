@@ -100,7 +100,7 @@ public class Gruppi extends HttpServlet {
 
                     
                     //se posizionato qui sopra non funziona. SISTEMARE
-                    out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-2\">Home</button></a>");
+                    out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-3\" style='margin-bottom:30px;'>Home</button></a>");
 
                     out.println("    </body>");
                     out.println("</html>");
