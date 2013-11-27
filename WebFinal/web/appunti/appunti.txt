@@ -17,7 +17,7 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 * aggiungere filtri (file, gruppi) //FABIO
 * aggiungere pagine di errore   //GIANNI
 * mettere il controllo su tutte le text edit!
-* controllo estensione dei file caricati come immagini e delle dimensioni in generale
+* controllo estensione dei file caricati come immagini
 * pagine html di gestione degli errori es. 404,500,...  //GIANNI
 * contorllo dimensione di ogni testo(impostare un max numero di caratteri in tutte le textedit)    //GIANNI
 * controllo file con lo stesso nome
