@@ -42,7 +42,7 @@ public class Gruppi extends HttpServlet {
                     out.println("        <div class=\"container\">");
                     out.println("           <div class=\"col-md-offset-2 col-md-8\"><h1>Gruppi</h1></div>");
                     out.println("           <div class=\"col-md-offset-2 col-md-8\" style=\"margin-top:50px;\"> ");
-                    out.println("           <form  action=\"modificaGruppo\" >");
+                    //out.println("           <form  action=\"modificaGruppo\" >");
                     out.println("            <table class=\"table table-striped\" style=\"overflow-y:scroll; max-height:500px;\">");
                     out.println("                <thead>");
                     out.println("                    <tr>");
@@ -65,8 +65,9 @@ public class Gruppi extends HttpServlet {
                                 if(g.getProprietario() == ute.getId()){
                                     out.println("");
                                     out.println("<td>"+ g.getNome()+ "");
-                                    out.println("<input type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
-                                    out.println("</td>");
+                                    out.println("<form  action=\"modificaGruppo\">");
+                                    out.println("<input  type=\"submit\" value=\"\" name=\""+g.getID()+"\" style=\" float:left; background-image: url(Images/miniediticon.png); height: 30px; width: 30px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("</form></td>");
                                 }else{
                                     out.println("                        <td>"+ g.getNome()+ "</td>");
                                 }
@@ -93,7 +94,7 @@ public class Gruppi extends HttpServlet {
 
                     out.println("                </tbody>");
                     out.println("            </table>");
-                    out.println("           </form>");
+                    //out.println("           </form>");
                     out.println("       </div>");
                     out.println("        </div>");
 
