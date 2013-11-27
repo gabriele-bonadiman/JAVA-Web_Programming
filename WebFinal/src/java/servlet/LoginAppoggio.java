@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -55,10 +56,12 @@ public class LoginAppoggio extends HttpServlet {
             
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+            DateFormat correctFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
-            
-            String lastAccessDate= ("Ultimo accesso il "+dateFormat.format(date)+" alle ore "+hourFormat.format(date));
-            
+
+            //String lastAccessDate= ("Ultimo accesso il "+dateFormat.format(date)+" alle ore "+hourFormat.format(date));
+            String lastAccessDate= (dateFormat.format(date)+" "+hourFormat.format(date));
+            String correctDate = correctFormat.format(date);
 
             /**
              * COOKIES
@@ -99,7 +102,10 @@ public class LoginAppoggio extends HttpServlet {
             dateToShowCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(dateToShowCookie);
             
-        
+            Cookie dateFormatCookie = new Cookie("correctDateFormat", correctDate);
+            dateFormatCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(dateFormatCookie);
+            
 
 
             //controllo che l'utente sia presente nel DB con il seguente metodo

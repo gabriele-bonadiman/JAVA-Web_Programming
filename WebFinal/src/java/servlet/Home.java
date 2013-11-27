@@ -1,19 +1,33 @@
 package servlet;
 
+import classi.Gruppo;
+import classi.Post;
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import services.MetodiGruppi;
+import services.MetodiPost;
+import services.MetodiUtenti;
 
 public class Home extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException, SQLException {
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
@@ -24,17 +38,52 @@ public class Home extends HttpServlet {
         
         
         Cookie cookie = null;
-            Cookie[] cookies = request.getCookies();
-            Boolean dateCookieBool=false;
-            String dateToShow=null;
-
-            for (int i = 0; i < cookies.length; i++) {
-                cookie = cookies[i];
-                if (cookie.getName().equals("dateToShow")) {
-                    dateToShow = cookie.getValue();
-                    dateCookieBool=true;
-                }
+        Cookie[] cookies = request.getCookies();
+        Boolean dateCookieBool=false;
+        String dateToShow=null;
+        String lastFormatData=null;
+        
+        for (int i = 0; i < cookies.length; i++) {
+            cookie = cookies[i];
+            if (cookie.getName().equals("dateToShow")) {
+                dateToShow = cookie.getValue();
+                dateCookieBool=true;
             }
+            if (cookie.getName().equals("correctDateFormat")) {
+                lastFormatData = cookie.getValue();
+            }
+        }
+            
+            
+        /**
+         *   VISUALIZZAZIONE DEGLI EVENTI MENTRE ERO OFFLINE
+         */
+        
+        
+        //calcolo la data del post
+        Date dateAccess = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ITALY).parse(dateToShow);
+        ArrayList<Post> listaPost = MetodiPost.returnData(ute);
+        
+        Iterator i = listaPost.iterator(); 
+        while(i.hasNext()) {
+            Post p = (Post) i.next();
+            Date datePost = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ITALY).parse(p.getData());
+
+//            System.err.println("--- DATA POST    "+datePost);
+//            System.err.println("--- DATA ACCESSO "+dateAccess);
+
+            if(datePost.before(dateAccess) && p.getUtente()!=ute.getId()){
+                System.err.println("utente " + p.getUtente());
+                Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
+                Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
+                System.err.println
+                ("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
+            }
+        }
+        
+        
+        
+        
         
         
         
@@ -54,7 +103,8 @@ public class Home extends HttpServlet {
             out.println("                <div class=\"col-md-12\"><h1>Bentornato "+nome+"!</h1></div>");
             out.println("                <div class=\"col-md-12\"><h1><small>");
             if (dateCookieBool==true) {
-                out.println(dateToShow);
+                dateToShow = dateToShow.replace(" ", " alle ");
+                out.println(        "Ultimo accesso il giorno "+dateToShow);
             } else {
                 out.println("                Non sono disponibili dati relativi all'ultimo accesso");
             }
@@ -87,13 +137,27 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            try {
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @Override
     public String getServletInfo() {

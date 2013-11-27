@@ -27,12 +27,11 @@ public class Forum extends HttpServlet {
         PrintWriter out = response.getWriter();
        
             String grid = request.getParameter("id");
-            
-            
             ArrayList<Post> listaPost = new ArrayList<Post>();
             
             Gruppo g = MetodiGruppi.searchGruppoById((Integer.parseInt(grid)));
             Utente u = MetodiUtenti.searchUtenteByID(g.getProprietario());
+
             listaPost = MetodiPost.listaDeiPost(g);
             
             out.println("<!DOCTYPE html>");
@@ -50,7 +49,7 @@ public class Forum extends HttpServlet {
             out.println("           </div>");
             out.println("           <div class=\"col-md-4\">");
             out.println("               <div class=\"col-md-12\">");
-            out.println("                   <img src=\"Images/singleicon.png\" class=\"img-rounded\" style=\"height:150px; width:150px;\">");
+            out.println("                   <img src=\"UploadedAvatar/"+u.getAvatar()+"\" class=\"img-rounded\" style=\"height:150px; width:150px;\">");
             out.println("               </div>");
             out.println("               <div class=\"col-md-12\">");
             out.println("                   <ul>");

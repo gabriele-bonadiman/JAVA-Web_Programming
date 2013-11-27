@@ -178,6 +178,23 @@ public class MetodiPost {
             stm.setString(4, dateFormat.format(date));
             stm.executeUpdate();
         }finally {stm.close();}
-
+    }
+    
+    public static ArrayList<Post> returnData(Utente u) throws SQLException{
+        ArrayList<Post> listaPost = new ArrayList<Post>();
+             PreparedStatement stm = con.prepareStatement
+                ("select * from POST where gruppo IN (select gruppo from lista where utente = ?)");
+        try {
+            stm.setInt(1, u.getId());
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+               Post p = new Post();
+               p.setUtente(rs.getInt("Utente"));
+               p.setGruppo(rs.getInt("Gruppo"));
+               p.setData(rs.getString("Data"));
+               listaPost.add(p);
+            }
+        } finally {stm.close();}
+        return listaPost;
     }
 }
