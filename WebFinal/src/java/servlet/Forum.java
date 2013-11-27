@@ -57,7 +57,7 @@ public class Forum extends HttpServlet {
             out.println("                       <li><h3><a href=\"#\">Elimina</a></h3></li>");
             out.println("                       <li><h3><a href=\"#\">Modifica</a></h3></li>");
             out.println("                   </ul>");
-            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default\" class=\"col-md-offset-4\" >Indietro</button></a>");
+            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default col-md-offset-1\" style=\"margin-top:20px;\"  >Indietro</button></a>");
             out.println("               </div>");
             out.println("           </div>");
             out.println("           <div class=\"col-md-8\">");
@@ -83,13 +83,13 @@ public class Forum extends HttpServlet {
             
             
             //aggiungere un post
-            out.println("            <form action=\"addPost\" style=\"margin-top:30px;\">"); 
-            out.println("               <input name = \""+g.getID()+"\" type=\"submit\" class=\"btn btn-default\">");
+            out.println("            <form action=\"addPost\" style=\"margin-top:30px; margin-bottom:20px;\">"); 
+            out.println("               <input name = \""+g.getID()+"\" type=\"submit\" class=\"btn btn-default\" value=\"Crea Post\">");
             out.println("            </form>");
             
             //eliminare il gruppo
             out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-            out.println("               <input class=\"btn btn-default\" name = \""+g.getID()+"\"type=\"submit\" value=\"elimina gruppo\">");
+            out.println("               <input class=\"btn btn-default\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
             out.println("            </form>");
              
              
