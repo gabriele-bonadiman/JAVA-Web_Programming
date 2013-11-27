@@ -41,52 +41,39 @@ public class Forum extends HttpServlet {
             out.println("        <title>Gruppo</title> ");
             out.println("        <meta charset=\"UTF-8\">");
             out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href=\"Css/style.scss\" media=\"screen\" />");
+            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href=\"Css/bootstrap.css\" media=\"screen\" />");
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("            <div class=\"maintitle\">");
-            out.println("                "+g.getNome()+"");
-            out.println("            </div>");
-            out.println("            <div class=\"imgdiv\">");
-            out.println("                <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
-            out.println("                <div class=\"imgdescriptor\">");
-            out.println("                    <b>Admin</b><br>");
-            out.println("                    "+u.getUsername()+"");
-            out.println("                </div>");
-            out.println("                <div>");
-            out.println("                    <button class=\"custombtn\">Fine</button>");
-            out.println("                </div>");
-            out.println("            </div>");
-            out.println("            <div class=\"newscontainer\">");
+            out.println("           <div class=\"col-md-offset-2 col-md-8\">");
+            out.println("               <h1>"+g.getNome()+"</h1>");
+            out.println("           </div>");
+            out.println("           <div class=\"col-md-4\">");
+            out.println("               <div class=\"col-md-12\">");
+            out.println("                   <img src=\"Images/singleicon.png\" class=\"img-rounded\" style=\"height:150px; width:150px;\">");
+            out.println("               </div>");
+            out.println("               <div class=\"col-md-12\">");
+            out.println("                   <ul>");
+            out.println("                       <li><h3><a href=\"#\">Elimina</a></h3></li>");
+            out.println("                       <li><h3><a href=\"#\">Modifica</a></h3></li>");
+            out.println("                   </ul>");
+            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default\" class=\"col-md-offset-4\" >Indietro</button></a>");
+            out.println("               </div>");
+            out.println("           </div>");
+            out.println("           <div class=\"col-md-8\">");
+            out.println("           <div class=\"col-md-12 box-shadows\" style=\"overflow-y:auto; height:400px; \">");
 
             Iterator i = listaPost.iterator(); 
             while(i.hasNext()) {
                 Post p = (Post) i.next();
                 Utente utentePost =  MetodiUtenti.searchUtenteByID(p.getUtente());
-                out.println("                <div class=\"post\">");
-                out.println("                    <div class=\"postinfo\">");
+                out.println("                <div class=\"col-md-12\">");
+                out.println("                    <div class=\"col-md-4\">");
                 out.println("                        <p>"+utentePost.getUsername()+"</p>");
-                
-                
-                
-                
-                
-                
-                //STRINGA CORRETTA SOLO CHE L^AVATAR MI STAVA IN MEZZO AL CAZZO
-                //out.println("                        <img class=\"adminimg\" src=\"UploadedAvatar" +"/" + u.getAvatar()+ "\">");
-                out.println("                        <img class=\"\" src=\"" +"/" + u.getAvatar()+ "\">");
-                
-                
-                
-                
-                
-                
-                
-                
+                out.println("                        <img class=\"img-rounded\" src=\"" +"/" + u.getAvatar()+ "\">");
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
-                out.println("                    <div class=\"posttext\">");
+                out.println("                    <div class=\"col-md-8\">");
                 out.println("                        "+p.getTesto()+"");
                 out.println("                    </div>");
                 out.println("                </div>");
@@ -96,13 +83,13 @@ public class Forum extends HttpServlet {
             
             
             //aggiungere un post
-            out.println("            <form action=\"addPost\">"); 
-            out.println("               <input name = \""+g.getID()+"\"type=\"submit\" value=\"aggiungipost\">");
+            out.println("            <form action=\"addPost\" style=\"margin-top:30px;\">"); 
+            out.println("               <input name = \""+g.getID()+"\" type=\"submit\" class=\"btn btn-default\">");
             out.println("            </form>");
             
             //eliminare il gruppo
             out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-            out.println("               <input name = \""+g.getID()+"\"type=\"submit\" value=\"elimina gruppo\">");
+            out.println("               <input class=\"btn btn-default\" name = \""+g.getID()+"\"type=\"submit\" value=\"elimina gruppo\">");
             out.println("            </form>");
              
              
