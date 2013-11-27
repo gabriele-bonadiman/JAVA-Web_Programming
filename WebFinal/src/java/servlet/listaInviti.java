@@ -49,8 +49,9 @@ public class listaInviti extends HttpServlet {
                 out.println("           <div class=\"col-md-offset-2 col-md-8\">");
                 out.println("               <h1>Inviti</h1>");
                 out.println("           </div>");
-                out.println("           <div class=\"col-md-8 col-md-offset-2\" style=\"margin-top:50px;\">");
+                out.println("           <div class=\"col-md-8 col-md-offset-2\" style=\"margin-top:50px; margin-bottom:20px; \">");
                 out.println("               <form action= \"listaInvitiAppoggio\" method=\"POST\">");
+                out.println("               <div class='col-md-12' style='overflow-y:scroll; max-height:400px;'>");
                 out.println("               <table class=\"table table-striped\">");
                 out.println("                   <thead>");
                 out.println("                       <tr>");
@@ -94,12 +95,12 @@ public class listaInviti extends HttpServlet {
                 out.println("                    </tr>");
                 out.println("                </tbody>");
                 out.println("            </table>");
-                //out.println("            <button class=\"retbtn\"><a href=\"Home\"> TORNA ALLA HOME </a></button>");
-                //LA RIGA SUCCESSIVA è STATA AGGIUNTA DA FABIO
-                out.println("       <input type=\"submit\" class=\"btn btn-default\" value=\"Conferma\"/>");
                 out.println("     </div>");
+                out.println("       <input type=\"submit\" class=\"btn btn-default col-md-offset-1\" value=\"Conferma\" />");
+                out.println("       </div>");
+                out.println("       </form>");
+                out.println("   <a href='Home'><button class='btn btn-default col-md-offset-3'>Home</button></a>");
                 out.println("   </div>");
-                out.println("</form>");
                 out.println("</body>");
                 out.println("</html>");
                 out.println("");
