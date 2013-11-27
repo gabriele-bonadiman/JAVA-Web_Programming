@@ -14,19 +14,20 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 
 
 		GENERALE
-* aggiungere filtri
-* non funziona la conferma dell'iscrizione ad un gruppo
+* aggiungere filtri (login filter, ile, gruppi)
 * aggiungere pagine di errore
-* mettere il controllo su tutte le text edit che non siano vuote!
+* mettere il controllo su tutte le text edit!
 * controllo estensione dei file caricati come immagini e delle dimensioni in generale
 * pagine html di gestione degli errori es. 404,500,...
 + aggiungere i controlli che nel nome vengano inseriti solo caratteri normali (i cookie 
     non supportano i caratteri speciali)
+* contorllo dimensione di ogni testo
+* controllo file con lo stesso nome
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
 * includere la lista dei gruppi all'interno di una view scrollabile. Nel caso infatti
-ci fossero troppi gruppi, la pagina viene un po' schifosina
+    ci fossero troppi gruppi, la pagina viene un po' schifosina
 
 		LISTA INVITI
 * sistemare front-end nel caso la lista fosse vuota
@@ -42,7 +43,6 @@ ci fossero troppi gruppi, la pagina viene un po' schifosina
                 FORUM                
 * aggiungere pulsante per tornare alla home
 * l'immagine dell'avatar e' sproporzionata
-* controllare i vari layout
 
                 ADD POST
 * aggiungere un limite in FrontEnd che controlli il numero di caratteri immessi

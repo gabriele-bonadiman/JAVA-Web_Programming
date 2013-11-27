@@ -126,6 +126,7 @@ public class PDF_report extends HttpServlet {
                 dataUltimoPost="no data available";
             }
             
+            System.err.println(avatar);
             Image myAvatar = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatar);
             myAvatar.scaleToFit(50,50);
             myAvatar.setAlignment(Element.ALIGN_CENTER);
