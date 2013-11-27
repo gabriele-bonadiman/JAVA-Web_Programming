@@ -74,7 +74,7 @@ public class creaGruppo extends HttpServlet {
                                             }
             out.println("                       </div>");
             out.println("                   <div class=\"form-group\">");
-            out.println("                       <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default\">");
+            out.println("                 <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default\">");
             out.println("                   </div>");
             out.println("               </div>");
             out.println("            </form>");

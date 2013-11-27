@@ -84,9 +84,17 @@ public class Gruppi extends HttpServlet {
                                     out.println("");
                                     out.println("<td>");
                                     out.println("<form  action=\"PDF_report\" target='blank' >");
-                                    out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficon.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficonred.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
                                     out.println("</form></td>");
 
+                                }
+                                else
+                                {
+                                    out.println("");
+                                    out.println("<td>");
+                                    out.println("<form  action=\"PDF_report\" target='blank' >");
+                                    out.println("<img style=\" float:left; background-image: url(Images/pdficon.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("</form></td>");
                                 }
                                 out.println("  </tr>");
                             }
@@ -94,12 +102,8 @@ public class Gruppi extends HttpServlet {
 
                     out.println("                </tbody>");
                     out.println("            </table>");
-                    //out.println("           </form>");
                     out.println("       </div>");
                     out.println("        </div>");
-
-                    
-                    //se posizionato qui sopra non funziona. SISTEMARE
                     out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-3\" style='margin-bottom:30px;'>Home</button></a>");
 
                     out.println("    </body>");
