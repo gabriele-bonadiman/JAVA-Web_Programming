@@ -84,7 +84,6 @@ public class MetodiPost {
         String data;
         PreparedStatement stm = con.prepareStatement
             ("select * from POST where GRUPPO = ? ORDER BY id DESC");
-        int num=0;
         try {
              stm.setInt(1,gr.getID());
              ResultSet rs = stm.executeQuery();

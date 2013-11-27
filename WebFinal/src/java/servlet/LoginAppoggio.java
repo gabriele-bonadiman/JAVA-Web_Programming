@@ -3,14 +3,12 @@ package servlet;
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -23,7 +21,6 @@ import services.MetodiUtenti;
 
 public class LoginAppoggio extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {processRequest(request, response);    }
 
@@ -62,12 +59,10 @@ public class LoginAppoggio extends HttpServlet {
             
             String lastAccessDate= ("Ultimo accesso il "+dateFormat.format(date)+" alle ore "+hourFormat.format(date));
             
+
             /**
              * COOKIES
-             * Mi crea i cookies per l'username e la password dell'utente
-             * Tali cookies durano 24 ore
              */
-            
             Cookie usernameCookie = new Cookie("username", username);
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
@@ -75,8 +70,6 @@ public class LoginAppoggio extends HttpServlet {
             Cookie passwordCookie = new Cookie("password", password);
             passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
-            
-            
             
             Cookie cookie = null;
             Cookie[] cookies = request.getCookies();

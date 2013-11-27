@@ -83,8 +83,7 @@ public class modificaGruppo extends HttpServlet {
             Utente ute = (Utente) i.next();
             if(!utentiIscritti.contains(ute)){
                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<input id=\""+ute.getId()+"\" type=\"checkbox\" class=\"css-checkbox\"/>\n" +
-"                                   <label  for=\""+ute.getId()+"\" class=\"css-label\">"+ute.getUsername()+" </label></br>");
+                    out.println("<input type=\"checkbox\" name=\""+ ute.getId() +"\" name=\"Gabri\" checked>"+ ute.getUsername() +"<br>");
                 }
             }
         }
@@ -102,7 +101,7 @@ public class modificaGruppo extends HttpServlet {
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\" checked>"+ ute2.getUsername() +"<br>");
+                    out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\">"+ ute2.getUsername() +"<br>");
                 }
             }
         }
@@ -116,7 +115,7 @@ public class modificaGruppo extends HttpServlet {
             while(i3.hasNext()) {
                 Utente ute3 = (Utente) i3.next();
                 if(!ute3.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<input type=\"checkbox\" name=\""+ ute3.getId() +"\" name=\"Gabri\" checked>"+ ute3.getUsername() +"<br>");
+                    out.println("<input type=\"checkbox\" name=\""+ ute3.getId() +"\" name=\"Gabri\" >"+ ute3.getUsername() +"<br>");
                 }
             }
         }       

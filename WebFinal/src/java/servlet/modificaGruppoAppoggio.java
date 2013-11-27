@@ -5,6 +5,7 @@ import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiGruppi;
+import services.MetodiUtenti;
 
 public class modificaGruppoAppoggio extends HttpServlet {
 
@@ -39,13 +41,31 @@ public class modificaGruppoAppoggio extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         Gruppo gr = (Gruppo) session.getAttribute("gruppoCorrente");
         String nuovoNome = (String) request.getParameter("nuovoNome");
-        
+       
         try {
-            //controllo che il nuovo nome e quello vecchio siano diversi
-            if(!nuovoNome.equals(gr.getNome()))            
-                MetodiGruppi.editNomeGruppo(gr, nuovoNome);
-        }
-        catch (SQLException ex) {Logger.getLogger(modificaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+            if(nuovoNome.equals("") || nuovoNome==null){
+                nuovoNome = gr.getNome();
+            }
+            MetodiGruppi.editNomeGruppo(gr, nuovoNome);
+        }catch (SQLException ex) {Logger.getLogger(modificaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+       
+        
+        //aggunta di nuove persone all'interno del gruppo
+        Enumeration paramNames = request.getParameterNames();
+        int index = 0;
+        try {
+            while(paramNames.hasMoreElements()) {
+                String paramName = (String)paramNames.nextElement();
+                String[] paramValues = request.getParameterValues(paramName);
+                if(index!=0){
+                    Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(paramName));
+                    MetodiGruppi.inserisciInLista(u, gr.getID());
+                    MetodiGruppi.inserisciInInviti(u, gr.getID(),0);
+                }
+                index++;
+            }
+        }catch (SQLException ex) {Logger.getLogger(modificaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+
         session.removeAttribute("gruppoCorrente");
         response.sendRedirect("Gruppi");
     }
