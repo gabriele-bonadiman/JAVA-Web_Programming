@@ -1,6 +1,7 @@
 package servlet;
 
 import classi.Utente;
+import services.ParsingText;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,7 +35,8 @@ public class iMieiDatiAppoggio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+         System.err.println("ENTRATO NEL METODO APPOGGIo");
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
@@ -48,6 +50,9 @@ public class iMieiDatiAppoggio extends HttpServlet {
 	File f = multi.getFile("avatar"); 
 	String fileName = multi.getFilesystemName("avatar");
 	String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
+        
+        System.err.println("presi i paramteri"  + nuovoNome + " " + vecchiaPassword
+        + " " + nuovaPassword);
         
         File file = new File(uploadAvatarPathAssoluta);
         if (!file.exists()){
@@ -83,8 +88,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
          *      * RENDERE L'INSERIMENTO DELLA PASSWORD VECCHIA INDISPENSABILE
          *      * I CAMPI SI DOVREBBERO CHIAMARE VECCHIA PASSWORD E NUOVA PASSWORD (SENZA CONFIRM)
          * 
-         * BACKEND
-         *      * IMPLEMENTARE L'UPLOAD DELLA FOTO 
          */
              
         //primo controllo sulla password

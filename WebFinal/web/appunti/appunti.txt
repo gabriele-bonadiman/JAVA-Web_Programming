@@ -15,10 +15,13 @@ ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
 
 		GENERALE
 * aggiungere filtri
+* non funziona la conferma dell'iscrizione ad un gruppo
 * aggiungere pagine di errore
 * mettere il controllo su tutte le text edit che non siano vuote!
 * controllo estensione dei file caricati come immagini e delle dimensioni in generale
 * pagine html di gestione degli errori es. 404,500,...
++ aggiungere i controlli che nel nome vengano inseriti solo caratteri normali (i cookie 
+    non supportano i caratteri speciali)
 
 		GRUPPI
 * sistemare front-end nel caso la lista fosse vuota
@@ -31,7 +34,7 @@ ci fossero troppi gruppi, la pagina viene un po' schifosina
 
 		CREAGRUPPO
 * invertire i due pulsanti. 
-
+* il pulsante HOME NON FUNZIONA SE ALL'INTERNO DEL FORM (stessa cosa anche in GRUPPI)
 
 		I MIEI DATI
 * invertire i due pulsanti. 

@@ -89,9 +89,13 @@ public class Gruppi extends HttpServlet {
                     out.println("                </tbody>");
                     out.println("            </table>");
                     out.println("           </form>");
-                    out.println("            <a href=\"Home\"><button class=\"btn btn-default\" style=\"margin-bottom:40px;\">Fine</button></a>");
                     out.println("       </div>");
                     out.println("        </div>");
+
+                    
+                    //se posizionato qui sopra non funziona. SISTEMARE
+                    out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-2\">Home</button></a>");
+
                     out.println("    </body>");
                     out.println("</html>");
                     out.println("");

@@ -40,7 +40,6 @@ public class modificaGruppo extends HttpServlet {
         Enumeration paramNames = request.getParameterNames();
         while(paramNames.hasMoreElements()) {
             paramName = (String)paramNames.nextElement();
-            System.out.println("--------@@@@@"+paramName);
         }
         
         Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
@@ -61,7 +60,8 @@ public class modificaGruppo extends HttpServlet {
         out.println("-->");
         out.println("<html>");
         out.println("    <head>");
-        out.println("        <title>Modifica Gruppo</title>");out.println("        <meta charset=\"UTF-8\">");
+        out.println("        <title>Modifica Gruppo</title>");
+        out.println("        <meta charset=\"UTF-8\">");
         out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
         out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
         out.println("    </head>");

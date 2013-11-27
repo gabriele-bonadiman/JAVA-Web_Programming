@@ -162,7 +162,14 @@ public class MetodiUtenti {
     
     
     /**
-     * preso in input un utente lo elimino da LISTA e da gruppo.
+     * preso in input un utente lo elimino da LISTA e da Gruppo.
      * Inserire un post all'interno del gruppo che fa vedere che l'utente e' stato eliminato
      */
+    public static void deleteUtente(Utente u) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("DELETE FROM LISTA WHERE some_column=some_value;");
+        try {
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
 }

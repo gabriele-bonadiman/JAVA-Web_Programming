@@ -6,6 +6,12 @@ public class ParsingText {
 
     public ParsingText(){}
     
+    /**
+     * Funzione di parsing del testo in cerca di link o collegamenti
+     * @param text
+     * @param gruppo
+     * @return 
+     */
     public static String parsing(String text,int gruppo){
         String[] result = text.split(" ");
         String res = "";

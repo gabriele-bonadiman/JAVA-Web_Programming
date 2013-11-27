@@ -75,10 +75,15 @@ public class creaGruppo extends HttpServlet {
             out.println("                       </div>");
             out.println("                   <div class=\"form-group\">");
             out.println("                       <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default col-md-offset-1\">");
-            out.println("                       <a href=\"Home\"><button action=\"\" class=\"btn btn-default col-md-offset-2\">Home</button></a>");
             out.println("                   </div>");
             out.println("               </div>");
             out.println("            </form>");
+
+            
+            // se lo metto fuori dal form funziona altrimenti no. SISTEMARE
+            out.println("                       <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-2\">Home</button></a>");
+
+            
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");

@@ -3,6 +3,7 @@ package servlet;
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -66,6 +67,7 @@ public class LoginAppoggio extends HttpServlet {
              * Mi crea i cookies per l'username e la password dell'utente
              * Tali cookies durano 24 ore
              */
+            
             Cookie usernameCookie = new Cookie("username", username);
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);

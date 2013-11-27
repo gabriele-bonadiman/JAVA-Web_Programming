@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiGruppi;
+import services.MetodiUtenti;
 public class listaInviti extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -65,11 +66,11 @@ public class listaInviti extends HttpServlet {
                 while(i.hasNext()) {
                     Lista lista = (Lista) i.next();
                     Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
-                    
+                    Utente pro = MetodiUtenti.searchUtenteByID(gr.getProprietario());
                     if (gr.getProprietario() != ute.getId()){
                         out.println("                    <tr>");
                         out.println("                        <td>"+gr.getNome()+"</td>");
-                        out.println("                        <td>"+gr.getProprietario()+"</td>");
+                        out.println("                        <td>"+pro.getUsername()+"</td>");
                         out.println("                        <td>");     
                         
                         if(lista.getInvitato() == 1){
@@ -79,7 +80,7 @@ public class listaInviti extends HttpServlet {
     "                                       </div>");
                         }else{
                                 out.println("<div class=\"custom-container  \">\n" +
-    "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />\n" +
+    "                                           <input type=\"checkbox\" name=\""+ gr.getNome() +"\" class=\"custom-checkbox\" id=\"" +gr.getID()+ "\" />" +
     "                                           <label class=\"custom-label\" for=\"" +gr.getID()+ "\" > </label>\n" +
     "                                       </div>");
                         }  
