@@ -35,21 +35,30 @@ public class addPost extends HttpServlet {
         session.setAttribute("gruppo", gr);
         
         out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet addPost</title>");            
-        out.println("</head>");
+            out.println("<html> ");
+            out.println("    <head> ");
+            out.println("        <title>Aggiungi Post</title> ");
+            out.println("        <meta charset=\"UTF-8\">");
+            out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
+            out.println("        <link rel=\"stylesheet\" type=\"text/css\" href=\"Css/bootstrap.css\" media=\"screen\" />");
+            out.println("    </head>");
         out.println("<body>");
-        out.println("<h1>AGGIUNGI UN POST</h1>");
-
-        out.println("<form enctype='multipart/form-data' "
-                        + "method='POST' action='addPostAppoggio'> "
-                        + "<input type='text' name='text'> <br>"
-                        + "<input type='file' name='file1'> <br>"
-                        + "<input type='file' name='file2'> <br> "
-                        + "<input type='file' name='file3'> <br> "
-                        + "<input type='submit' VALUE='upload'> </FORM>");
-        out.println("</form> ");
+        out.println("<div class=\"container\">");
+        out.println("   <div class=\"col-md-offset-2 col-md-8\"><h1>Aggingi un post</h1></div>");
+        out.println("       <div class=\"col-md-offset-2 col-md-8\" style=\"margin-top:50px;\">");
+        out.println("   <form enctype='multipart/form-data' method='POST' action='addPostAppoggio' class=\"form-horizontal\"> "
+                        + "     <div class=\"form-group\"><label class=\"col-md-3\" for=\"text\">Testo:</label><input type='textarea' id=\"text\" name='text' class=\"form-control col-md-8\"> </div>"
+                        + "     <div class=\"col-md-3\" style='margin-top:20px;'>"
+                        + "     <label>File:</label></div>"
+                        + "     <div class=\"col-md-9\" style='margin-top:20px;'>"
+                        + "         <div style='margin-bottom:20px;'><input type='file' name='file1'> </div>"
+                        + "         <div style='margin-bottom:20px;'><input type='file' name='file2'> </div> "
+                        + "         <div style='margin-bottom:20px;'><input type='file' name='file3'> </div> "
+                        + "     </div>"
+                        + "   <div class='col-md-offset-1'><input type='submit' value='Upload' style='margin-top:20px;' class='btn btn-default'> </div>");
+        out.println("       </form> ");
+        out.println("   </div>");
+        out.println("</div>");
         out.println("</body>");
         out.println("</html>");
         }

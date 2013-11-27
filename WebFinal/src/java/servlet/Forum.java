@@ -54,10 +54,15 @@ public class Forum extends HttpServlet {
             out.println("               </div>");
             out.println("               <div class=\"col-md-12\">");
             out.println("                   <ul>");
-            out.println("                       <li><h3><a href=\"#\">Elimina</a></h3></li>");
             out.println("                       <li><h3><a href=\"#\">Modifica</a></h3></li>");
             out.println("                   </ul>");
-            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default col-md-offset-1\" style=\"margin-top:20px;\"  >Indietro</button></a>");
+             //eliminare il gruppo
+            out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
+            out.println("               <input class=\"btn btn-default col-md-offset-1\" style=\"margin-top:20px; margin-bottom:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
+            out.println("            </form>");
+            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default col-md-offset-1\"   >Indietro</button></a>");
+            
+             
             out.println("               </div>");
             out.println("           </div>");
             out.println("           <div class=\"col-md-8\">");
@@ -87,11 +92,7 @@ public class Forum extends HttpServlet {
             out.println("               <input name = \""+g.getID()+"\" type=\"submit\" class=\"btn btn-default\" value=\"Crea Post\">");
             out.println("            </form>");
             
-            //eliminare il gruppo
-            out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-            out.println("               <input class=\"btn btn-default\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
-            out.println("            </form>");
-             
+           
              
             out.println("        </div>");
             out.println("    </body>");
