@@ -44,6 +44,8 @@ public class iMieiDatiAppoggio extends HttpServlet {
         
         MultipartRequest multi = new MultipartRequest(request,".","UTF-8"); 
 	String nuovoNome = (String) multi.getParameter("username"); 
+        nuovoNome=services.ParsingText.parsingSpecialCharacter(nuovoNome);
+        System.err.println(nuovoNome);
 	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
 	String nuovaPassword = (String) multi.getParameter("newPassword");
 
