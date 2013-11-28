@@ -81,6 +81,10 @@
         <servlet-name>eliminaGruppo</servlet-name>
         <servlet-class>servlet.eliminaGruppo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificaGruppoElimina</servlet-name>
+        <servlet-class>servlet.modificaGruppoElimina</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -172,6 +176,10 @@
     <servlet-mapping>
         <servlet-name>eliminaGruppo</servlet-name>
         <url-pattern>/eliminaGruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificaGruppoElimina</servlet-name>
+        <url-pattern>/modificaGruppoElimina</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
