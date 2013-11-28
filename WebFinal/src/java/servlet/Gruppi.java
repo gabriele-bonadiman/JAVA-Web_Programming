@@ -73,12 +73,12 @@ public class Gruppi extends HttpServlet {
 
                                 String data = MetodiPost.dataUltimoPost(g);
                                 if(data == null)
-                                    out.println("                        <td> no_post </td>");
+                                    out.println("                        <td> Nessun Post </td>");
                                 else
                                     out.println("                        <td>"+data+"</td>");
                                 
                                 
-                                out.println("                        <td> <a href=\"Forum?id="+g.getID()+"\">LINK AL GRUPPO</a></td>");
+                                out.println("                        <td> <a href=\"Forum?id="+g.getID()+"\">Vai al Gruppo!</a></td>");
                                 if(g.getProprietario() == ute.getId()){
                                     out.println("");
                                     out.println("<td>");

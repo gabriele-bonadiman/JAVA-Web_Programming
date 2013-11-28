@@ -70,10 +70,10 @@ public class Forum extends HttpServlet {
             while(i.hasNext()) {
                 Post p = (Post) i.next();
                 Utente utentePost =  MetodiUtenti.searchUtenteByID(p.getUtente());
-                out.println("                <div class=\"col-md-12\">");
+                out.println("                <div class=\"row\">");
                 out.println("                    <div class=\"col-md-4\">");
-                out.println("                        <p>"+utentePost.getUsername()+"</p>");
-                out.println("                        <img class=\"img-rounded\" src=\"" +"/" + u.getAvatar()+ "\">");
+                out.println("                        <p style='margin-bottom:0px;'><b>"+utentePost.getUsername()+"</b>9</p>");
+                out.println("                          <img class=\"img-rounded\" src=\"" +"UploadedAvatar/" + u.getAvatar()+ "\" style='height:50px; width:50px;'>");
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
                 out.println("                    <div class=\"col-md-8\">");
