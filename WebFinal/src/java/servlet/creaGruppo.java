@@ -49,10 +49,10 @@ public class creaGruppo extends HttpServlet {
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("           <form action=\"creaGruppoAppoggio\" method=\"POST\" class=\"form-horizontal\">");
             out.println("               <div class=\"col-md-offset-2 col-md-8\">");
             out.println("                   <h1>Crea Nuovo Gruppo</h1>");
             out.println("               </div>");
+            out.println("               <form action=\"creaGruppoAppoggio\" method=\"POST\" class=\"form-horizontal\">");
             out.println("               <div class=\"col-md-offset-3 col-md-8\" style=\"margin-top:40px;\">");
             out.println("                <div class=\"form-group\">");
             out.println("                   <label for=\"nomegruppo\" class=\"col-md-3\">Nome Gruppo:</label> ");                       
@@ -74,13 +74,12 @@ public class creaGruppo extends HttpServlet {
                                             }
             out.println("                       </div>");
             out.println("                   <div class=\"form-group\">");
-            out.println("                 <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default\">");
+            out.println("                       <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default\">");
+            out.println("                       <a href=\"Home\"><button class=\"btn btn-primary col-md-offset-3\">Home</button></a>");
             out.println("                   </div>");
             out.println("               </div>");
-            out.println("            </form>");
-            out.println("          <a href=\"Home\"><button action=\"Home\" class=\"btn btn-primary col-md-offset-3\">Home</button></a>");
-
             
+            out.println("            </form>");
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");
