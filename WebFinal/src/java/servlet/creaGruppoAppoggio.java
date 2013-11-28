@@ -35,44 +35,41 @@ public class creaGruppoAppoggio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //parameters
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Utente ute = (Utente) session.getAttribute("utente");
-        
         int stop = 0;
         int id_group = 0;
         
-            request.setCharacterEncoding("UTF-8");
-            Enumeration paramNames = request.getParameterNames();
-            
-            try{
-                while(paramNames.hasMoreElements()) {
-                    String paramName = (String)paramNames.nextElement();
-                    String[] paramValues = request.getParameterValues(paramName);
+        request.setCharacterEncoding("UTF-8");
+        Enumeration paramNames = request.getParameterNames();
+        try{
+            while(paramNames.hasMoreElements()) {
+                String paramName = (String)paramNames.nextElement();
+                String[] paramValues = request.getParameterValues(paramName);
 
-                    if(stop==0){
-                            String paramValue = paramValues[0];
-                            
-                            
-                            if(paramValue.equals("") || paramValue.equals(" ")){
-                                creaGruppo.errorName=true;
-                                response.sendRedirect("creaGruppo");
-                                return;
-                            }
-                            id_group = MetodiGruppi.creaGruppo(paramValue, ute);
-                            MetodiGruppi.inserisciInLista(ute, id_group);
-                            MetodiGruppi.inserisciInInviti(ute, id_group,1);
-                            stop++;
+                //il primo parametro che ricevo e' il nome del gruppo
+                if(stop==0){
+                    String paramValue = paramValues[0];
+                    if(paramValue.equals("") || paramValue.equals(" ")){
+                        creaGruppo.errorName=true;
+                        response.sendRedirect("creaGruppo");
+                        return;
                     }
-                    if(!paramName.equals("nomeGruppo")){
-                            Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(paramName));
-                            MetodiGruppi.inserisciInLista(u, id_group);
-                            MetodiGruppi.inserisciInInviti(u, id_group,0);
-                        }
-                } 
-            }catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-            response.sendRedirect("Home");
+                    id_group = MetodiGruppi.creaGruppo(paramValue, ute);
+                    MetodiGruppi.inserisciInLista(ute, id_group);
+                    MetodiGruppi.inserisciInInviti(ute, id_group,1);
+                    stop++;
+                }
+                if(!paramName.equals("nomeGruppo")){
+                    Utente u = MetodiUtenti.searchUtenteByID(Integer.parseInt(paramName));
+                    MetodiGruppi.inserisciInInviti(u, id_group,0);
+                }
+            } 
+        }catch (SQLException ex) {Logger.getLogger(creaGruppoAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
+        response.sendRedirect("Home");
        
     }
 

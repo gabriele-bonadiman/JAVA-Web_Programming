@@ -59,7 +59,9 @@ public class Home extends HttpServlet {
          *   VISUALIZZAZIONE DEGLI EVENTI MENTRE ERO OFFLINE
          */
         
-        
+                                    /*************
+                                     *  TIMELINE *
+                                     *************/
         //calcolo la data del post
         Date dateAccess = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ITALY).parse(dateToShow);
         ArrayList<Post> listaPost = MetodiPost.returnData(ute);
@@ -69,22 +71,13 @@ public class Home extends HttpServlet {
             Post p = (Post) i.next();
             Date datePost = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ITALY).parse(p.getData());
 
-//            System.err.println("--- DATA POST    "+datePost);
-//            System.err.println("--- DATA ACCESSO "+dateAccess);
-
-            if(datePost.before(dateAccess) && p.getUtente()!=ute.getId()){
-                System.err.println("utente " + p.getUtente());
+            if(datePost.after(dateAccess) && p.getUtente()!=ute.getId()){
                 Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
                 Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
-                System.err.println
-                ("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
+                System.err.println("visto il tuo utlimo accesso alle:     " + dateAccess + "\n comunico la presenza di un post alle: " + datePost+"\n\n --");
+                System.err.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
             }
         }
-        
-        
-        
-        
-        
         
         
         

@@ -292,7 +292,6 @@ public class MetodiGruppi {
      * Inserimento nella lista che collega l'utente con il gruppo
      */
     public static void inserisciInLista(Utente u, int IDgruppo) throws SQLException{
-    
         PreparedStatement stm = con.prepareStatement
             ("INSERT INTO LISTA (UTENTE,GRUPPO) VALUES (?,?)");
         try {
@@ -302,7 +301,18 @@ public class MetodiGruppi {
         } finally {stm.close();}
     }
     
-    
+    /**
+     *  Elimina dalla lista gli l'utente che ha rifutato di seguire il gruppo
+     */
+    public static void eliminaDallaLista(Utente u, int IDgruppo) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("DELETE FROM LISTA WHERE utente=? AND gruppo=?");
+        try {
+            stm.setInt(1, u.getId());
+            stm.setInt(2, IDgruppo);
+            stm.executeUpdate();
+        } finally {stm.close();}
+    }
     
     
     /**

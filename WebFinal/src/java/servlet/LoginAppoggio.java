@@ -3,11 +3,11 @@ package servlet;
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -41,17 +41,17 @@ public class LoginAppoggio extends HttpServlet {
         Utente ute = null;
         
         try {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>LOGIN APPOGGIO</title>");            
-            out.println("</head>");
-            out.println("<body>");
             
-            //prendo la session e i parametri dalla request
+            //prendo la session e i parametri dalla request con encoding
             HttpSession session = request.getSession();
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
+            
+            String password = new String(request.getParameter("password")
+                    .getBytes("iso-8859-1"), "UTF-8");
+            String username = new String(request.getParameter("username")
+                    .getBytes("iso-8859-1"), "UTF-8");
+
+            System.err.println(username);
+
             boolean check=false;
             
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -63,14 +63,14 @@ public class LoginAppoggio extends HttpServlet {
             String lastAccessDate= (dateFormat.format(date)+" "+hourFormat.format(date));
             String correctDate = correctFormat.format(date);
 
-            /**
-             * COOKIES
-             */
-            Cookie usernameCookie = new Cookie("username", username);
+                            /************
+                             *  COOKIES *
+                             ************/
+            Cookie usernameCookie = new Cookie("username", URLEncoder.encode(username, "UTF-8"));
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
             
-            Cookie passwordCookie = new Cookie("password", password);
+            Cookie passwordCookie = new Cookie("password", URLEncoder.encode(password, "UTF-8"));
             passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
             
@@ -107,7 +107,6 @@ public class LoginAppoggio extends HttpServlet {
             response.addCookie(dateFormatCookie);
             
 
-
             //controllo che l'utente sia presente nel DB con il seguente metodo
             try {
                 check = MetodiUtenti.checkUtente(username, password);                
@@ -117,16 +116,13 @@ public class LoginAppoggio extends HttpServlet {
             if(check==true){
                 try {
                     ute = MetodiUtenti.idUtente(username);
-                } catch (SQLException ex) {
-                    Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (SQLException ex) {Logger.getLogger(LoginAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
                 session.setAttribute("utente", ute);
                 session.setAttribute("username", username);
                 response.sendRedirect("Home");
             }else { 
                 response.sendRedirect("Login");
             }
-            
         } finally {out.close();}
     }
     

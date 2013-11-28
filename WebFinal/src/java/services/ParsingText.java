@@ -35,18 +35,4 @@ public class ParsingText {
         }
         return res;
     }
-    
-    
-    /**
-     *  Sostituizione dei caratteri speciali all'interno di una parola
-     */
-    public static String parsingSpecialCharacter(String str){
-        String miaStringa=str.replace("è", "e'");
-        miaStringa=str.replace("é", "e'");
-        miaStringa=str.replace("ò", "o'");
-        miaStringa=str.replace("à", "a'");
-        miaStringa=str.replace("ù", "u'");
-        miaStringa=str.replace("ì", "i'");
-        return miaStringa;
-    }
 }

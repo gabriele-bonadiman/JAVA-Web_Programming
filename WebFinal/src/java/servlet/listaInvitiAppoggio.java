@@ -1,15 +1,10 @@
-
-
 package servlet;
 
 import classi.Gruppo;
 import classi.Lista;
 import classi.Utente;
-import database.DBManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,22 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiGruppi;
 
-/**
- *
- * @author FMalesani
- */
 public class listaInvitiAppoggio extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,34 +27,22 @@ public class listaInvitiAppoggio extends HttpServlet {
 
         //recupero la lista dei gruppi al quale l'ute e' iscritto
         List<Lista> listaInviti = MetodiGruppi.listaGruppiUtente(ute.getId());
-
-        
-        
-
-        
-        
         
         //se la lista non e' vuota stampo i riusltati trovati
         if (!listaInviti.isEmpty()) {
-
             Iterator i = listaInviti.iterator();
             while (i.hasNext()) {
-            
                 Lista lista = (Lista) i.next();
-
                 //creo un gruppo in base al valore contenuto nella colonna GRUPPO di LISTA
                 Gruppo gr = MetodiGruppi.searchGruppoById(lista.getGruppo());
-                
                 //se il proprietario del gruppo e' diverso dall'utente in sessione
                 if (gr.getProprietario() != ute.getId()) {
-                
-                
                     if ("on".equals(request.getParameter(gr.getNome()))) {
                         MetodiGruppi.editIscrizione(ute.getId(), gr.getID(), 1);
-                        System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 1);");
+                        MetodiGruppi.inserisciInLista(ute, gr.getID());
                     } else {
                         MetodiGruppi.editIscrizione(ute.getId(), gr.getID(), 0);
-                        System.err.println("DBManager.editIscrizione("+ute.getId()+", "+gr.getID()+", 0);");
+                        MetodiGruppi.eliminaDallaLista(ute, gr.getID());
                     }
                 }
             }
@@ -87,21 +56,15 @@ public class listaInvitiAppoggio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(listaInvitiAppoggio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        try {processRequest(request, response);
+        } catch (SQLException ex) {Logger.getLogger(listaInvitiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(listaInvitiAppoggio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        try {processRequest(request, response);
+        } catch (SQLException ex) {Logger.getLogger(listaInvitiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
     

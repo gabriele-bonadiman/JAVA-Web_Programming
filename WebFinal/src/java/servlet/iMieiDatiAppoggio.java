@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,8 @@ public class iMieiDatiAppoggio extends HttpServlet {
             throws ServletException, IOException {
          System.err.println("ENTRATO NEL METODO APPOGGIo");
 
+         
+         //Paramter
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
@@ -44,40 +47,38 @@ public class iMieiDatiAppoggio extends HttpServlet {
         
         MultipartRequest multi = new MultipartRequest(request,".","UTF-8"); 
 	String nuovoNome = (String) multi.getParameter("username"); 
-        nuovoNome=services.ParsingText.parsingSpecialCharacter(nuovoNome);
-        System.err.println(nuovoNome);
-	String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
+        String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
 	String nuovaPassword = (String) multi.getParameter("newPassword");
-
 	File f = multi.getFile("avatar"); 
 	String fileName = multi.getFilesystemName("avatar");
 	String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         
-        System.err.println("presi i paramteri"  + nuovoNome + " " + vecchiaPassword
-        + " " + nuovaPassword);
+        //nuovoNome = services.ParsingText.parsingSpecialCharacter(nuovoNome);
+        System.err.println(nuovoNome);
         
+        //creo cartella se non esiste
         File file = new File(uploadAvatarPathAssoluta);
         if (!file.exists()){
             file.mkdir();
         }
         
+        //modifico avatar
         if (fileName!=null){
             try {
                 MetodiUtenti.editAvatarUtente(ute, fileName);
                 ute.setAvatar(fileName);
-            } catch (SQLException ex) {
-                Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
         }
         
+        //se il file non e' nullo procedo all'upload
 	if (f!=null) {
-		File fOUT = new File(uploadAvatarPathAssoluta,fileName);
-		FileInputStream fIS = new FileInputStream(f); 
-		FileOutputStream fOS = new FileOutputStream(fOUT); 
-		while (fIS.available()>0) 
-			fOS.write(fIS.read());
-		fIS.close(); 
-		fOS.close(); 
+            File fOUT = new File(uploadAvatarPathAssoluta,fileName);
+            FileInputStream fIS = new FileInputStream(f); 
+            FileOutputStream fOS = new FileOutputStream(fOUT); 
+            while (fIS.available()>0) 
+                    fOS.write(fIS.read());
+            fIS.close(); 
+            fOS.close(); 
 	}
         
         /**
@@ -92,7 +93,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
          * 
          */
              
-        //primo controllo sulla password
+        //modifico la password
         if(!vecchiaPassword.equals(ute.getPassword()) || nuovaPassword.length()<3){
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -103,33 +104,28 @@ public class iMieiDatiAppoggio extends HttpServlet {
             out.println("<h1> ERRORE NELL' INSERIMENTO DELLA PASSWORD</h1>");
             out.println("</body>");
             out.println("</html>");
-            //response.sendRedirect("ERRORE PASSWORD");
         }else {
             try {
                 MetodiUtenti.editPasswordUtente(ute, nuovaPassword);
                 ute.setPassword(nuovaPassword);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-            
-            Cookie passwordCookie = new Cookie("password", nuovaPassword);
+            Cookie passwordCookie = new Cookie("password", URLEncoder.encode(nuovaPassword, "UTF-8"));
             passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
         }
         
-        //inserimento nome utente
-        if(!nuovoNome.equals(ute.getUsername()) && nuovoNome!=null && nuovoNome.length()>4){
+        //modifco nome utente
+        if(!nuovoNome.equals(ute.getUsername()) && nuovoNome!=null && nuovoNome.length()>3){
             try {
                 MetodiUtenti.editNomeUtente(ute, nuovoNome);
                 ute.setUsername(nuovoNome);
             } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-            
-            Cookie usernameCookie = new Cookie("username", nuovoNome);
+            Cookie usernameCookie = new Cookie("username", URLEncoder.encode(nuovoNome, "UTF-8"));
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
         }
-        
         session.setAttribute("utente", ute);
         response.sendRedirect("Home");
-
     }
     
     

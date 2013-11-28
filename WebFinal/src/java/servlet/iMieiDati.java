@@ -14,19 +14,16 @@ public class iMieiDati extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
- 
-    }
+            throws ServletException, IOException {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        //paramters
         response.setContentType("text/html;charset=UTF-8");
-        //session
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
-        
         String opsw = request.getParameter("oldPassword");
         session.setAttribute("opsw", opsw);
         
