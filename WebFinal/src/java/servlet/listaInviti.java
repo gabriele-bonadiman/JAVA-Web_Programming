@@ -94,10 +94,11 @@ public class listaInviti extends HttpServlet {
                 out.println("                </tbody>");
                 out.println("            </table>");
                 out.println("     </div>");
-                out.println("       <input type=\"submit\" class=\"btn btn-default col-md-offset-1\" value=\"Conferma\" />");
+                out.println("       <a href='Home'><button class='btn btn-primary col-md-offset-1'>Home</button></a>");
+                out.println("       <input type=\"submit\" class=\"btn btn-default col-md-offset-3\" value=\"Conferma\" />");
+                
                 out.println("       </div>");
                 out.println("       </form>");
-                out.println("   <a href='Home'><button class='btn btn-primary col-md-offset-3'>Home</button></a>");
                 out.println("   </div>");
                 out.println("</body>");
                 out.println("</html>");
