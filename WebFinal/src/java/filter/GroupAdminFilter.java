@@ -65,6 +65,8 @@ public class GroupAdminFilter implements Filter {
         
         boolean userIsInTheGroup=false;
         
+        
+        // qui al posto di uteIntoTheGroup userò il metodo che controlla che l'utente sia admin del gruppo
         try {
             userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
         } catch (SQLException ex) {
