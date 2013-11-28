@@ -1,5 +1,6 @@
 package services;
 
+import classi.Gruppo;
 import classi.Utente;
 import static database.DBManager.con;
 import java.sql.PreparedStatement;
@@ -165,11 +166,23 @@ public class MetodiUtenti {
      * preso in input un utente lo elimino da LISTA e da Gruppo.
      * Inserire un post all'interno del gruppo che fa vedere che l'utente e' stato eliminato
      */
-    public static void deleteUtente(Utente u) throws SQLException{
+    public static void deleteUtenteFromGroup(Utente u, Gruppo g) throws SQLException{
         PreparedStatement stm = con.prepareStatement
-            ("DELETE FROM LISTA WHERE some_column=some_value;");
+            ("DELETE FROM LISTA WHERE utente = ? AND gruppo = ?");
         try {
+            stm.setInt(1, u.getId());
+            stm.setInt(2, g.getID());
             stm.executeUpdate();
         } finally {stm.close();}
+        
+        PreparedStatement stm2 = con.prepareStatement
+            ("DELETE FROM INVITO WHERE utente = ? AND gruppo = ?");
+        try {
+            stm2.setInt(1, u.getId());
+            stm2.setInt(2, g.getID());
+            stm2.executeUpdate();
+        } finally {stm2.close();}
+        
+        
     }
 }
