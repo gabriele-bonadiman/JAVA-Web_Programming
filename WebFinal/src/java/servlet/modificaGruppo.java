@@ -69,18 +69,22 @@ public class modificaGruppo extends HttpServlet {
         out.println("           <div class=\"col-md-offset-2 col-md-8\" style='margin-bottom:50px;'>");
         out.println("               <h1>Modifica Gruppo</h1>");
         out.println("           </div>");
+        out.println("           <div class='col-md-10 col-md-offset-1'>");
         out.println("               <form  action=\"modificaGruppoAppoggio\" method=\"POST\">");
-        out.println("                <div class='col-md-offset-2 col-md-8' style='margin-bottom:30px;'>");
-        out.println("                       <div class=\"form-group\">");
-        out.println("                          <label class=\"col-md-2 col-md-offset-1\" for=\"nome\">Nome:</label> <div class=\"col-md-3\"><input type=\"text\" id=\"nome\"  name=\"nuovoNome\" placeholder="+ gr.getNome()+"  class=\"form-control\"></div>");
-        out.println("                       </div>");
-        out.println("                </div>");
-        out.println("                <div class='col-md-10 col-md-offset-1'>");
-        out.println("                    <div class='col-md-4'>");
-        out.println("                       <div class='col-md-12'>");
-        out.println("                           <label>Utenti non iscritti al gruppo:</label>");
-        out.println("                       </div>");
+        out.println("                   <div class=\"col-md-offset-2 col-md-8\" style='margin-bottom:20px;'>");
+        out.println("                       <label class=\"col-md-2 col-md-offset-1\" for=\"nome\">Nome:</label> <div class=\"col-md-3\"><input type=\"text\" id=\"nome\"  name=\"nuovoNome\" placeholder="+ gr.getNome()+"  class=\"form-control\"></div>");
+        out.println("                   </div>");
         out.println("                   <div class='col-md-12'>");
+        
+        
+        
+        
+        //Primo Blocco
+        out.println("                       <div class='col-md-4'>");
+        out.println("                           <div class='col-md-12'>");
+        out.println("                               <label>Utenti non iscritti al gruppo:</label>");
+        out.println("                           </div>");
+        out.println("                           <div class='col-md-12'>");
         
 
         Iterator i = utentiNonIscritti.iterator(); 
@@ -88,52 +92,74 @@ public class modificaGruppo extends HttpServlet {
             Utente ute = (Utente) i.next();
             if(!utentiIscritti.contains(ute)){
                 if(!ute.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<div class='row'><div class='col-md-2'><input type=\"checkbox\" name=\""+ ute.getId() +"\" id=\""+ ute.getId() +"\" name=\"Gabri\" checked></div><label for=\""+ ute.getId() +"\">"+ ute.getUsername() +"</label></div>");
+                    out.println("<div class='row'><div class='col-md-2 col-md-offset-2'><input type=\"checkbox\" name=\""+ ute.getId() +"\" id=\""+ ute.getId() +"\" name=\"Gabri\" ></div><label for=\""+ ute.getId() +"\">"+ ute.getUsername() +"</label></div>");
                 }
             }
         }
-        out.println("                </div>");
-        out.println("           </div>");
-        out.println("                <div  class='col-md-4'>");
-        out.println("                       <div class='col-md-12'>");
-        out.println("                           <label>Utenti iscritti al gruppo:</label>");
+        out.println("                           </div>");
         out.println("                       </div>");
-        out.println("               <div class='col-md-12'>");
-        out.println("               <ul>");
+        
+        
+        //Secondo Blocco
+        out.println("                       <div class='col-md-4'>");
+        out.println("                           <div class='col-md-12'>");
+        out.println("                               <label>Utenti iscritti al gruppo:</label>");
+        out.println("                           </div>");
+        out.println("                           <div class='col-md-12'>");
+        out.println("                               <ul class='col-md-offset-1'>");
         if(utentiIscritti.isEmpty()){
-            out.println("nessuno ha ancora accettato l'invito a questo gruppo");
+            out.println("<div style='margin-top:10px;'>Nessuno è iscritto a questo gruppo</div>");
         }else{
             Iterator i2 = utentiIscritti.iterator(); 
+            out.println("                           <ul class='col-md-offset-1'>");
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<a href='modificaGruppoElimina?id="+ ute2.getId() +"&gr="+gr.getID()+"' values=\""+ ute2.getId() +"\"><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
+                    out.println("                       <a style='color:red;' href=''><li  name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
                 }
+            out.println("                           </ul>");
             }
-        }
-        out.println("               </ul>");
-        out.println("               </div>");
-        out.println("           </div>");  
-        out.println("                <div  class='col-md-4'>");
-        out.println("                       <div class='col-md-12'>");
-        out.println("                           <label>Utenti che non hanno ancora accettato l'invito:</label>");
+        }	
+        out.println("                               </ul>");
+        out.println("                           </div>");
         out.println("                       </div>");
+        
+        
+        
+        //Terzo Blocco
+        out.println("                       <div class='col-md-4'>");
+        out.println("                           <div class='col-md-12'>");
+        out.println("                               <label>Utenti che non hanno ancora accettato l'invito:</label>");
+        out.println("                           </div>");
+        out.println("                           <div class='col-md-12'>");
         if(utentiInvitati.isEmpty()){
-            out.println("nessuno ha ancora accettato l'invito a questo gruppo");
+            out.println("<div style='margin-top:10px;'>Nessuno ha ancora accettato l'invito a questo gruppo</div>");
         }else{
             Iterator i3 = utentiInvitati.iterator(); 
+            out.println("                           <ul class='col-md-offset-1'>");
             while(i3.hasNext()) {
                 Utente ute3 = (Utente) i3.next();
                 if(!ute3.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<input type=\"checkbox\" name=\""+ ute3.getId() +"\" name=\"Gabri\" >"+ ute3.getUsername() +"<br>");
+                    out.println("                       <li  name=\""+ ute3.getId() +"\">"+ ute3.getUsername() +"</li>");
                 }
+            out.println("                           </ul>");
             }
-        }       
+        }
+        out.println("                           </div>");
+        out.println("                       </div>");
         
         
-        out.println("<br/><br/><input type=\"submit\" value=\"conferma\"/></br>");      
-        out.println("          </form>");
-        out.println("");
+        
+        
+        
+        out.println("                   </div>");
+        
+        out.println("                   <div class='col-md-3 col-md-offset-3' style='margin-top:40px;'><input type='submit' class='btn btn-default' value='Conferma'></div>");
+        
+        out.println("               </form>");
+        out.println("           <div class='col-md-3 col-md-offset-3' style='margin-top:-33px;'><a href='Indietro'><button class='btn btn-primary'>Home</button></a></div>");
+        out.println("           </div>");    
+        //container
         out.println("       </div>");
         out.println("   </body>");
         out.println("</html>");
