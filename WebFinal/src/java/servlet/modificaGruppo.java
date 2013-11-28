@@ -72,7 +72,7 @@ public class modificaGruppo extends HttpServlet {
         out.println("               <form  action=\"modificaGruppoAppoggio\" method=\"POST\">");
         out.println("                <div class='col-md-offset-2 col-md-8' style='margin-bottom:30px;'>");
         out.println("                       <div class=\"form-group\">");
-        out.println("                          <label class=\"col-md-2 col-md-offset-1\" for=\"nome\">Nome:</label> <div class=\"col-md-3\"><input type=\"text\" id=\"nome\"  name=\"username\" placeholder="+ gr.getNome()+"  class=\form-control\"></div>");
+        out.println("                          <label class=\"col-md-2 col-md-offset-1\" for=\"nome\">Nome:</label> <div class=\"col-md-3\"><input type=\"text\" id=\"nome\"  name=\"nuovoNome\" placeholder="+ gr.getNome()+"  class=\form-control\"></div>");
         out.println("                       </div>");
         out.println("                </div>");
         out.println("                <div class='col-md-10 col-md-offset-1'>");
@@ -93,9 +93,6 @@ public class modificaGruppo extends HttpServlet {
             }
         }
         out.println("                </div>");
-        
-        
-        
         out.println("           </div>");
         out.println("                <div  class='col-md-4'>");
         out.println("                       <div class='col-md-12'>");
