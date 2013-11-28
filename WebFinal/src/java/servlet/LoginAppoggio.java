@@ -61,10 +61,10 @@ public class LoginAppoggio extends HttpServlet {
             String lastAccessDate= (dateFormat.format(date)+" "+hourFormat.format(date));
             String correctDate = correctFormat.format(date);
 
+            
                             /************
                              *  COOKIES *
-                             ************/
-            
+                             ************/            
             System.err.println("STIRNGA IN LOGIN APPOGGIO "+username);
             String usernameEncoding = URLEncoder.encode(username, "UTF-8");
             
