@@ -105,11 +105,14 @@ public class MetodiGruppi {
             ResultSet rs = stm.executeQuery();
             try {
                 while(rs.next()) {
-                    Lista singleReport = new Lista();
-                    singleReport.setUtente(rs.getInt("utente"));
-                    singleReport.setGruppo(rs.getInt("gruppo"));
-                    singleReport.setInvitato(rs.getInt("INVITATO"));
-                    listaGruppi.add(singleReport);
+                    Gruppo gruppo = MetodiGruppi.searchGruppoById(rs.getInt("gruppo"));
+                    if(gruppo.getProprietario()!=IDutente){
+                        Lista singleReport = new Lista();
+                        singleReport.setUtente(rs.getInt("utente"));
+                        singleReport.setGruppo(rs.getInt("gruppo"));
+                        singleReport.setInvitato(rs.getInt("INVITATO"));
+                        listaGruppi.add(singleReport);
+                    }
                 }
             } finally { rs.close();}
         } finally {stm.close();}

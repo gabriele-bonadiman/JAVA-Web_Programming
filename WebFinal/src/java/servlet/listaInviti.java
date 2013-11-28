@@ -28,8 +28,6 @@ public class listaInviti extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
 
         ArrayList<Lista> listaInviti = MetodiGruppi.listaGruppiUtente(ute.getId());
-                
-        
         
         try (PrintWriter out = response.getWriter()) {
         
