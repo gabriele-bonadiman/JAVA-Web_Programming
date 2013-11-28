@@ -79,7 +79,7 @@ public class Forum extends HttpServlet {
                 out.println("                <div class=\"row row-striped-me\">");
                 out.println("                    <div class=\"col-md-4\">");
                 out.println("                        <p style='margin-bottom:0px;'><b>"+utentePost.getUsername()+"</b></p>");
-                out.println("                          <img class=\"img-rounded\" src=\"" +"UploadedAvatar/" + u.getAvatar()+ "\" style='height:50px; width:50px;'>");
+                out.println("                          <img class=\"img-rounded\" src=\"" +"UploadedAvatar/" + utentePost.getAvatar()+ "\" style='height:50px; width:50px;'>");
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
                 out.println("                    <div class=\"col-md-8\" style='margin-top:10px;'>");
