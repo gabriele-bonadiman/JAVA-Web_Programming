@@ -10,7 +10,7 @@
 
 
 /*Css di gianni*/
-.row-striped-me:nth-child(odd)
+.row-striped-me:nth-child(odd) 
 {
   background-color: #e0e0e0;
 }
