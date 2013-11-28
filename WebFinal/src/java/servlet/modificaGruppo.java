@@ -36,14 +36,14 @@ public class modificaGruppo extends HttpServlet {
         ArrayList<Utente> utentiIscritti = null;
         ArrayList<Utente> utentiInvitati = null;
 
-        String paramName = null;
-        //String paramName = (String )request.getParameter("nomeGruppo");
-        Enumeration paramNames = request.getParameterNames();
+        //String paramName = null;
+        String paramName = (String) request.getParameter("nomeGruppo");
+        /*Enumeration paramNames = request.getParameterNames();
         
         while(paramNames.hasMoreElements()) {
             paramName = (String)paramNames.nextElement();
         }
-        
+        */
         System.err.println(paramName);
         
         Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
