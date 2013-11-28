@@ -67,7 +67,6 @@ public class addPostAppoggio extends HttpServlet {
         
         
         MultipartRequest multi=new MultipartRequest(request,".",1024*1024*5,"UTF-8");
-        
         Enumeration files= multi.getFileNames();
 
         //inserimento dell'immagine nel DB
@@ -80,23 +79,16 @@ public class addPostAppoggio extends HttpServlet {
                 String pathUpload = request.getServletContext().getRealPath("/UploadedFile");
                 pathUpload = request.getServletContext().getRealPath("UploadedFile/");
                 File file = new File(pathUpload);
-                
-                //creo la cartella nel caso non esistesse
                 if (!file.exists()) {
                     file.mkdir();
                 }
                 
-                //non riesco a capire perche' prende due volte la path?????
                 pathUpload = request.getServletContext().getRealPath("UploadedFile/" + gr.getID() + "/");
                 File file2 = new File(pathUpload);
                 if (!file2.exists()) {
                     file2.mkdir();
                 }
                 
-                
-                //QUI BISOGNA AGGIUNGERE AL DB IL FILE, PER ORA IO LO CARICO SOLO NELLA CARTELLA
-                //MA BISOGNA INSERIRNE IL NOME ECC ECC NEL DB
-
                 File fOUT = new File(pathUpload, fileName);
                 //aggiungo nella lista dei nomi del file il nome di questo file
                 listaFile.add(fileName);
@@ -110,12 +102,10 @@ public class addPostAppoggio extends HttpServlet {
                 fOS.close();
             }
         }
-
-        
         
         //testo senza parsing
         String testoPost = (String) multi.getParameter("text");
-        
+                
         //inserisco il dati all'interno del DB
         Iterator i = listaFile.iterator(); 
         while(i.hasNext()) {
@@ -127,13 +117,17 @@ public class addPostAppoggio extends HttpServlet {
             //il nome del mio file sara' un colelgamento all'interno del testo
             String tmp = (String) i.next();
             tmp = "<a href=\""+ path +""+tmp+"\" >"+tmp+"</a>";
+            if  (testoPost.equals("") || testoPost == null){
+                testoPost = "Ho caricato: ";
+            }
             testoPost += " " + tmp;
         }
 
         //Parsing del testo
-        if(testoPost!=null && !testoPost.equals(""))
+        if(testoPost!=null && !testoPost.equals("")){
+            System.err.println("testo ----> " + testoPost);
             testoPost = services.ParsingText.parsing(testoPost,gr.getID());
-        
+        }
         
         
         

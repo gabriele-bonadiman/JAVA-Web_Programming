@@ -1,5 +1,9 @@
 package services;
 
+import static database.DBManager.con;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 public class ParsingText {
@@ -18,8 +22,7 @@ public class ParsingText {
         for (int j=0; j<result.length; j++){
             String singleWord = result[j];
             int length = singleWord.length();
-            if('$' == singleWord.charAt(0) && '$' == singleWord.charAt(1) && 
-                    '$' == singleWord.charAt(length-1) && '$' == singleWord.charAt(length-2)){
+            if(singleWord.startsWith("$$") && singleWord.endsWith("$$")){
                 singleWord = singleWord.replace("$$","");
                 //se e' un sito allora aggiungi l'http oppure vai direttamente al sito
                 if(singleWord.startsWith("www.")){
