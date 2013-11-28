@@ -102,7 +102,7 @@ public class Home extends HttpServlet {
                 out.println("                Non sono disponibili dati relativi all'ultimo accesso");
             }
             out.println("            </small></h1></div></div>");
-            out.println("           <div class=\"col-md-4\"><img src=\"UploadedAvatar/"+ute.getAvatar()+"\" class=\"img-rounded\" style=\"width:150px; height:150px;\"></div>");
+            out.println("           <div class=\"col-md-4\" style='margin-top:10px;'><img src=\"UploadedAvatar/"+ute.getAvatar()+"\" class=\"img-rounded\" style=\"width:150px; height:150px;\"></div>");
             out.println("            <div style=\"margin-top:150px;\"></div>");
             out.println("            <div class='col-md-3 col-md-offset-4'>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");

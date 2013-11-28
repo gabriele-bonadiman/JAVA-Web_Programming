@@ -119,7 +119,7 @@ public class Gruppi extends HttpServlet {
                     out.println("    </head>");
                     out.println("    <body>");
                     out.println("    <div class=\"container\"><div class=\"col-md-6 col-md-offset-3\" style=\"margin-top:40px;margin-bottom:20px; text-align:center;\"><h1>La tua lista dei gruppi è vuota!</h1></div>"
-                            + "                             <div class=\"col-md-2 col-md-offset-4\" ><a href=\"Home\"<button class=\"btn btn-default\">Home</button></a></div></div>");
+                            + "                             <div class=\"col-md-2 col-md-offset-4\" ><a href=\"Home\"<button class=\"btn btn-primary\">Home</button></a></div></div>");
                     out.println("    </body>");
                     out.println("   </html>");
                 }
