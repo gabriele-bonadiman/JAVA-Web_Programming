@@ -10,6 +10,13 @@
 
 
 /*Css di gianni*/
+.row-striped-me:nth-child(odd)
+{
+  background-color: #f9f9f9;
+}
+
+
+
 .bottom-spacer
 {
     margin-bottom:25px;

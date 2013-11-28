@@ -64,19 +64,19 @@ public class Forum extends HttpServlet {
             out.println("               </div>");
             out.println("           </div>");
             out.println("           <div class=\"col-md-8\">");
-            out.println("           <div class=\"col-md-12 box-shadows\" style=\"overflow-y:auto; height:400px; \">");
+            out.println("           <div class=\"col-md-12 box-shadows\" style=\"overflow-y:auto; height:400px;\">");
 
             Iterator i = listaPost.iterator(); 
             while(i.hasNext()) {
                 Post p = (Post) i.next();
                 Utente utentePost =  MetodiUtenti.searchUtenteByID(p.getUtente());
-                out.println("                <div class=\"row\">");
+                out.println("                <div class=\"row row-striped-me\">");
                 out.println("                    <div class=\"col-md-4\">");
-                out.println("                        <p style='margin-bottom:0px;'><b>"+utentePost.getUsername()+"</b>9</p>");
+                out.println("                        <p style='margin-bottom:0px;'><b>"+utentePost.getUsername()+"</b></p>");
                 out.println("                          <img class=\"img-rounded\" src=\"" +"UploadedAvatar/" + u.getAvatar()+ "\" style='height:50px; width:50px;'>");
                 out.println("                        <p>"+p.getData()+"</p>");
                 out.println("                    </div>");
-                out.println("                    <div class=\"col-md-8\">");
+                out.println("                    <div class=\"col-md-8\" style='margin-top:10px;'>");
                 out.println("                        "+p.getTesto()+"");
                 out.println("                    </div>");
                 out.println("                </div>");
