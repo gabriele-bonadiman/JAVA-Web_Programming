@@ -37,12 +37,12 @@ public class GruppoVuoto extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<meta http-equiv=\"refresh\" content=\"3; url=creaGruppo\">");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
             out.println("<title>GruppoVuoto</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<div class=\"center maintitle\">Non puoi creare gruppi senza nome</div>");
-            out.println("<div class=\"center subtitle\">Tra 3 secondi verrai reindirizzato alla pagina creagruppo</div>");
+            out.println("<div class='col-md-6 col-md-offset-3'><h1>Non puoi creare gruppi senza nome</h1></div>");
+            out.println("<div class='col-md-5 col-md-offset-3'><h2><small>Tra 3 secondi verrai reindirizzato alla pagina creagruppo</small></h2></div>");
             out.println("</body>");
             out.println("</html>");
         }
