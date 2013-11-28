@@ -83,7 +83,7 @@ public class Gruppi extends HttpServlet {
                                     out.println("");
                                     out.println("<td>");
                                     out.println("<form  action=\"PDF_report\" target='blank' >");
-                                    out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficonred.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none;\"></br>");      
+                                    out.println("<input type=\"submit\" value=\""+g.getID()+"\" name=\"nomeGruppo\" style=\" float:left; background-image: url(Images/pdficonred.png); height: 50px; width: 50px; background-repeat: no-repeat; border-style: none; font-size:0px;\"></br>");      
                                     out.println("</form></td>");
 
                                 }
