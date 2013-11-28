@@ -1,5 +1,5 @@
 package servlet;
-//
+
 import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,30 +57,31 @@ public class modificaGruppo extends HttpServlet {
 
         
         out.println("<!DOCTYPE html>");
-        out.println("<!--");
-        out.println("To change this license header, choose License Headers in Project Properties.");
-        out.println("To change this template file, choose Tools | Templates");
-        out.println("and open the template in the editor.");
-        out.println("-->");
         out.println("<html>");
         out.println("    <head>");
         out.println("        <title>Modifica Gruppo</title>");
         out.println("        <meta charset=\"UTF-8\">");
         out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
-        out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/style.scss \" media=\"screen\" />");
+        out.println("        <link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
         out.println("    </head>");
         out.println("    <body>");
         out.println("        <div class=\"container\">");
-        out.println("            <form  action=\"modificaGruppoAppoggio\" method=\"POST\">");
-        out.println("                <div style=\"font-size: 40px; margin-top: 40px\">");
-        out.println("                    Modifica Nome: "
-                + "                     <input name=nuovoNome type=\"text\" placeholder="+gr.getNome()+" class=\"stdinput\" maxlength=\"20\">");
+        out.println("           <div class=\"col-md-offset-2 col-md-8\" style='margin-bottom:50px;'>");
+        out.println("               <h1>Modifica Gruppo</h1>");
+        out.println("           </div>");
+        out.println("               <form  action=\"modificaGruppoAppoggio\" method=\"POST\">");
+        out.println("                <div class='col-md-offset-2 col-md-8' style='margin-bottom:30px;'>");
+        out.println("                       <div class=\"form-group\">");
+        out.println("                          <label class=\"col-md-2 col-md-offset-1\" for=\"nome\">Nome:</label> <div class=\"col-md-3\"><input type=\"text\" id=\"nome\"  name=\"username\" placeholder="+ gr.getNome()+"  class=\form-control\"></div>");
+        out.println("                       </div>");
         out.println("                </div>");
+        out.println("                <div class='col-md-10 col-md-offset-1'>");
+        out.println("                    <div class='col-md-4'>");
+        out.println("                       <div class='col-md-12'>");
+        out.println("                           <label>Utenti non iscritti al gruppo:</label>");
+        out.println("                       </div>");
+        out.println("                   <div class='col-md-12'>");
         
-        
-        
-        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    Utenti NON ISCRITTI AL GRUPPO:<br/>");
 
         Iterator i = utentiNonIscritti.iterator(); 
         while(i.hasNext()) {
@@ -91,13 +92,16 @@ public class modificaGruppo extends HttpServlet {
                 }
             }
         }
-        out.println("                </div><br/><br/>");
+        out.println("                </div>");
         
         
         
-        
-        out.println("                <div  style=\"font-size: 40px;  float: left;\">");
-        out.println("                    UTENTI ISCRITTI AL GRUPPO:<br/>");
+        out.println("           </div>");
+        out.println("                <div  class='col-md-4'>");
+        out.println("                       <div class='col-md-12'>");
+        out.println("                           <label>Utenti iscritti al gruppo:</label>");
+        out.println("                       </div>");
+        out.println("               <div class='col-md-12'>");
         if(utentiIscritti.isEmpty()){
             out.println("nessuno ha ancora accettato l'invito a questo gruppo");
         }else{
@@ -109,9 +113,13 @@ public class modificaGruppo extends HttpServlet {
                 }
             }
         }
+        out.println("           </div>");
+         out.println("           </div>");  
         
-        
-        out.println(" <br/><br/>                   UTENTI che non HANNO HANNO ANCORA ACCETTATO L'INVITO:<br/>");
+        out.println("                <div  class='col-md-4'>");
+        out.println("                       <div class='col-md-12'>");
+        out.println("                           <label>Utenti che non hanno ancora accettato l'invito:</label>");
+        out.println("                       </div>");
         if(utentiInvitati.isEmpty()){
             out.println("nessuno ha ancora accettato l'invito a questo gruppo");
         }else{
@@ -126,10 +134,9 @@ public class modificaGruppo extends HttpServlet {
         
         
         out.println("<br/><br/><input type=\"submit\" value=\"conferma\"/></br>");      
-        out.println("                </div>");
-        out.println("            </form>");
-        out.println("        </div>");
-        out.println("    </body>");
+        out.println("          </form>");
+        out.println("       </div>");
+        out.println("   </body>");
         out.println("</html>");
     }
 
