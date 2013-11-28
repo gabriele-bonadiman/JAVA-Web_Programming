@@ -131,7 +131,7 @@ public class Home extends HttpServlet {
             
             //else
             out.println("               <div class='row'>");
-            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
+            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Qui gabri metti le notifiche</h5></div>");
             out.println("               </div>");
             
             out.println("            </div>");

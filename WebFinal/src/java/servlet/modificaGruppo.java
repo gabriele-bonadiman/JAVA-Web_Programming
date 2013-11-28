@@ -133,6 +133,7 @@ public class modificaGruppo extends HttpServlet {
         
         out.println("<br/><br/><input type=\"submit\" value=\"conferma\"/></br>");      
         out.println("          </form>");
+        out.println("");
         out.println("       </div>");
         out.println("   </body>");
         out.println("</html>");
