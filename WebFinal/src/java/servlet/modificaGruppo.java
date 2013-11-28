@@ -110,14 +110,13 @@ public class modificaGruppo extends HttpServlet {
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<a href='modificaGruppoElimina'><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
+                    out.println("<a href='modificaGruppoElimina?id="+ ute2.getId() +"&gr="+gr.getID()+"' values=\""+ ute2.getId() +"\"><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
                 }
             }
         }
         out.println("               </ul>");
         out.println("               </div>");
-         out.println("           </div>");  
-        
+        out.println("           </div>");  
         out.println("                <div  class='col-md-4'>");
         out.println("                       <div class='col-md-12'>");
         out.println("                           <label>Utenti che non hanno ancora accettato l'invito:</label>");
