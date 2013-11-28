@@ -37,14 +37,14 @@ public class Forum extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html> ");
             out.println("    <head> ");
-            out.println("        <title>Gruppo</title> ");
+            out.println("        <title>Forum</title> ");
             out.println("        <meta charset=\"UTF-8\">");
             out.println("        <meta name=\"viewport\" content=\"width=device-width\">");
             out.println("        <link rel=\"stylesheet\" type=\"text/css\" href=\"Css/bootstrap.css\" media=\"screen\" />");
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <div class=\"container\">");
-            out.println("           <div class=\"col-md-offset-2 col-md-8\">");
+            out.println("           <div class=\"col-md-offset-2 col-md-8\" style='margin-bottom:30px;'>");
             out.println("               <h1>"+g.getNome()+"</h1>");
             out.println("           </div>");
             out.println("           <div class=\"col-md-4\">");
@@ -52,14 +52,13 @@ public class Forum extends HttpServlet {
             out.println("                   <img src=\"UploadedAvatar/"+u.getAvatar()+"\" class=\"img-rounded\" style=\"height:150px; width:150px;\">");
             out.println("               </div>");
             out.println("               <div class=\"col-md-12\">");
-            out.println("                   <ul>");
-            out.println("                       <li><h3><a href=\"#\">Modifica</a></h3></li>");
-            out.println("                   </ul>");
-             //eliminare il gruppo
-            out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-            out.println("               <input class=\"btn btn-default col-md-offset-1\" style=\"margin-top:20px; margin-bottom:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
+            out.println("            <form action=\"modificaGruppo\" method=\"POST\">"); 
+            out.println("               <input class=\"btn btn-default \" style=\"margin-top:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Modifica Gruppo\">");
             out.println("            </form>");
-            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-default col-md-offset-1\"   >Indietro</button></a>");
+            out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
+            out.println("               <input class=\"btn btn-default \" style=\"margin-top:20px; margin-bottom:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
+            out.println("            </form>");
+            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-primary \">Indietro</button></a>");
             
              
             out.println("               </div>");

@@ -42,7 +42,6 @@ public class Gruppi extends HttpServlet {
                     out.println("        <div class=\"container\">");
                     out.println("           <div class=\"col-md-offset-2 col-md-8\"><h1>Gruppi</h1></div>");
                     out.println("           <div class=\"col-md-offset-2 col-md-8\" style=\"margin-top:50px; margin-bottom:20px; overflow-y:scroll; max-height:400px;\"> ");
-                    //out.println("           <form  action=\"modificaGruppo\" >");
                     out.println("            <table class=\"table table-striped\" >");
                     out.println("                <thead>");
                     out.println("                    <tr>");
@@ -104,7 +103,7 @@ public class Gruppi extends HttpServlet {
                     out.println("            </table>");
                     out.println("       </div>");
                     out.println("        </div>");
-                    out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-default col-md-offset-3\" style='margin-bottom:30px;'>Home</button></a>");
+                    out.println("            <a href=\"Home\"><button action=\"Home\" class=\"btn btn-primary col-md-offset-3\" style='margin-bottom:30px;'>Home</button></a>");
 
                     out.println("    </body>");
                     out.println("</html>");

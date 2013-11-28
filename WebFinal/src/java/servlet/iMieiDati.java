@@ -60,7 +60,7 @@ public class iMieiDati extends HttpServlet {
             out.println("                   </div>   ");
             out.println("               </div>");
             out.println("            </form>");
-            out.println("           <a href='Home'><button class=\"btn btn-default col-md-offset-4\">Home</button></a>");
+            out.println("           <a href='Home'><button class=\"btn btn-primary col-md-offset-4\">Home</button></a>");
             out.println("            ");
             out.println("        </div>");
             out.println("    </body>");

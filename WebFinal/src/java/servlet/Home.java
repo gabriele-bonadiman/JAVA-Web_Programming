@@ -104,21 +104,41 @@ public class Home extends HttpServlet {
             out.println("            </small></h1></div></div>");
             out.println("           <div class=\"col-md-4\"><img src=\"UploadedAvatar/"+ute.getAvatar()+"\" class=\"img-rounded\" style=\"width:150px; height:150px;\"></div>");
             out.println("            <div style=\"margin-top:150px;\"></div>");
+            out.println("            <div class='col-md-3 col-md-offset-4'>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
-            out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"listaInviti\"><img src=\"Images/inviteicon.png\" alt=\"\" id=\"inviti\" /><label for=\"inviti\">Inviti</label></a></div>");
+            out.println("                   <div><a href=\"listaInviti\"><img src=\"Images/inviteicon.png\" alt=\"\" id=\"inviti\" /><label for=\"inviti\">Inviti</label></a></div>");
             out.println("               </div>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
-            out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"Gruppi\"><img src=\"Images/groupicon.png\" alt=\"\" id=\"gruppi\" /><label for=\"gruppi\">Gruppi</label></a></div>");
+            out.println("                   <div><a href=\"Gruppi\"><img src=\"Images/groupicon.png\" alt=\"\" id=\"gruppi\" /><label for=\"gruppi\">Gruppi</label></a></div>");
             out.println("               </div>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
-            out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"creaGruppo\"><img src=\"Images/createicon.png\" alt=\"\" id=\"creagruppo\" /><label for=\"creagruppo\">Crea Gruppo</label></a></div>");
+            out.println("                   <div><a href=\"creaGruppo\"><img src=\"Images/createicon.png\" alt=\"\" id=\"creagruppo\" /><label for=\"creagruppo\">Crea Gruppo</label></a></div>");
             out.println("               </div>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
-            out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"iMieiDati\"><img src=\"Images/singleicon.png\" alt=\"\" id=\"imieidati\" /><label for=\"imieidati\">I miei dati</label></a></div>");
+            out.println("                   <div><a href=\"iMieiDati\"><img src=\"Images/singleicon.png\" alt=\"\" id=\"imieidati\" /><label for=\"imieidati\">I miei dati</label></a></div>");
             out.println("               </div>");
             out.println("               <div class=\"row\" style=\"margin-top:20px;\">");
-            out.println("                   <div class=\"col-md-6 col-md-offset-4\"><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
+            out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
+            out.println("             </div>");
+            out.println("            <div class='col-md-3 col-md-offset-2 box-shadows' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
+            
+            //Metti qui il codice per le notizie 
+            //if niente notizie 
+            out.println("               <div class='row'>");
+            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
+            out.println("               </div>");
+            
+            //else
+            out.println("               <div class='row'>");
+            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
+            out.println("               </div>");
+            
+            out.println("            </div>");
+            
+            
+            
+            
             out.println("            </div>");
             out.println("            ");
             out.println("        </div>");
