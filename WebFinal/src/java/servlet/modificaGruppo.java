@@ -102,6 +102,7 @@ public class modificaGruppo extends HttpServlet {
         out.println("                           <label>Utenti iscritti al gruppo:</label>");
         out.println("                       </div>");
         out.println("               <div class='col-md-12'>");
+        out.println("               <ul>");
         if(utentiIscritti.isEmpty()){
             out.println("nessuno ha ancora accettato l'invito a questo gruppo");
         }else{
@@ -109,11 +110,12 @@ public class modificaGruppo extends HttpServlet {
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<input type=\"checkbox\" name=\""+ ute2.getId() +"\" name=\"Gabri\">"+ ute2.getUsername() +"<br>");
+                    out.println("<a href='modificaGruppoElimina'><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
                 }
             }
         }
-        out.println("           </div>");
+        out.println("               </ul>");
+        out.println("               </div>");
          out.println("           </div>");  
         
         out.println("                <div  class='col-md-4'>");
