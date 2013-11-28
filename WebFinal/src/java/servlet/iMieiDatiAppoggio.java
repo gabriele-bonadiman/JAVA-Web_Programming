@@ -53,9 +53,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
 	String fileName = multi.getFilesystemName("avatar");
 	String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
         
-        //nuovoNome = services.ParsingText.parsingSpecialCharacter(nuovoNome);
-        System.err.println(nuovoNome);
-        
         //creo cartella se non esiste
         File file = new File(uploadAvatarPathAssoluta);
         if (!file.exists()){

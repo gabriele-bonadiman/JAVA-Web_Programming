@@ -42,6 +42,36 @@ public class modificaGruppoAppoggio extends HttpServlet {
         Gruppo gr = (Gruppo) session.getAttribute("gruppoCorrente");
         String nuovoNome = (String) request.getParameter("nuovoNome");
        
+        
+        
+        
+        
+        
+        Enumeration paramNames1 = request.getParameterNames();
+        while(paramNames1.hasMoreElements()) {
+            String paramName = (String)paramNames1.nextElement();
+            String[] paramValues = request.getParameterValues(paramName);
+            System.err.println("paramName "  + paramName);
+            int i =0;
+            while(paramValues[i]!=null){
+                System.err.println("paramValues"  + paramValues[i]);
+                i++;
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         try {
             if(nuovoNome.equals("") || nuovoNome==null){
                 nuovoNome = gr.getNome();

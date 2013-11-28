@@ -50,8 +50,6 @@ public class LoginAppoggio extends HttpServlet {
             String username = new String(request.getParameter("username")
                     .getBytes("iso-8859-1"), "UTF-8");
 
-            System.err.println(username);
-
             boolean check=false;
             
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -66,10 +64,17 @@ public class LoginAppoggio extends HttpServlet {
                             /************
                              *  COOKIES *
                              ************/
-            Cookie usernameCookie = new Cookie("username", URLEncoder.encode(username, "UTF-8"));
+            
+            System.err.println("STIRNGA IN LOGIN APPOGGIO "+username);
+            String usernameEncoding = URLEncoder.encode(username, "UTF-8");
+            
+            Cookie usernameCookie = new Cookie("username", usernameEncoding);
+            System.err.println("cookie in LOGIN APPOGGIO "+usernameCookie.getValue());
+            
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);
-            
+
+
             Cookie passwordCookie = new Cookie("password", URLEncoder.encode(password, "UTF-8"));
             passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
