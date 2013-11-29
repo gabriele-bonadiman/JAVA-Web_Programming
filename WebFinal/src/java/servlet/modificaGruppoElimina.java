@@ -36,7 +36,7 @@ public class modificaGruppoElimina extends HttpServlet {
         }
         Utente u = services.MetodiUtenti.searchUtenteByID(idu);
         Gruppo g = services.MetodiGruppi.searchGruppoById(idg);
-        System.err.println("utente " + u.getUsername()  + " dal gruppo " + g.getNome());
+        //System.err.println("utente " + u.getUsername()  + " dal gruppo " + g.getNome());
                 
         services.MetodiUtenti.deleteUtenteFromGroup(u, g);
         response.sendRedirect("Gruppi");
