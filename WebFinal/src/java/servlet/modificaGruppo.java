@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import classi.Gruppo;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,15 +36,15 @@ public class modificaGruppo extends HttpServlet {
         ArrayList<Utente> utentiIscritti = null;
         ArrayList<Utente> utentiInvitati = null;
 
-        //String paramName = null;
-        String paramName = (String) request.getParameter("nomeGruppo");
-        /*Enumeration paramNames = request.getParameterNames();
+        String paramName = null;
+        //String paramName = (String) request.getParameter("nomeGruppo");
+        Enumeration paramNames = request.getParameterNames();
         
         while(paramNames.hasMoreElements()) {
             paramName = (String)paramNames.nextElement();
         }
-        */
-        System.err.println(paramName);
+        
+        //System.err.println(paramName);
         
         Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
         session.setAttribute("gruppoCorrente", gr);
@@ -148,7 +149,7 @@ public class modificaGruppo extends HttpServlet {
         out.println("                   </div>");
         out.println("                   <div class='col-md-3 col-md-offset-3' style='margin-top:40px;'><input type='submit' class='btn btn-default' value='Conferma'></div>");
         out.println("               </form>");
-        out.println("           <div class='col-md-3 col-md-offset-3' style='margin-top:-33px;'><a href='Indietro'><button class='btn btn-primary'>Home</button></a></div>");
+        out.println("           <div class='col-md-3 col-md-offset-3' style='margin-top:-33px;'><a href='Home'><button class='btn btn-primary'>Home</button></a></div>");
         out.println("           </div>");    
         //container
         out.println("       </div>");

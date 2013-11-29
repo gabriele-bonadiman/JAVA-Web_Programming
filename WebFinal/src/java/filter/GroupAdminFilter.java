@@ -13,6 +13,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.Filter;
@@ -54,18 +55,24 @@ public class GroupAdminFilter implements Filter {
             throws IOException, ServletException {
         
         Utente utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
-        String groupID = null;
-        groupID = request.getParameter("nomeGruppo");
+        
         Gruppo gruppo = null;
         
-        if (groupID==null) {
-            gruppo = (Gruppo)((HttpServletRequest)request).getSession().getAttribute("gruppoCorrente");
-        } else  {
-            try {
-                gruppo=MetodiGruppi.searchGruppoById(Integer.parseInt(groupID));
-            } catch (SQLException ex) {
-                Logger.getLogger(GroupFilter.class.getName()).log(Level.SEVERE, null, ex);
+        String paramName = null;
+        paramName = (String)request.getParameter("nomeGruppo");
+        
+        if (paramName==null) {
+            Enumeration paramNames = request.getParameterNames();
+
+            while(paramNames.hasMoreElements()) {
+                paramName = (String)paramNames.nextElement();
             }
+        }
+        
+        try {
+            gruppo = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupAdminFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         boolean userIsInTheGroup=false;

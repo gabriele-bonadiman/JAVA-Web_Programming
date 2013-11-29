@@ -65,11 +65,11 @@ public class LoginAppoggio extends HttpServlet {
                             /************
                              *  COOKIES *
                              ************/            
-            System.err.println("STIRNGA IN LOGIN APPOGGIO "+username);
+            //System.err.println("STIRNGA IN LOGIN APPOGGIO "+username);
             String usernameEncoding = URLEncoder.encode(username, "UTF-8");
             
             Cookie usernameCookie = new Cookie("username", usernameEncoding);
-            System.err.println("cookie in LOGIN APPOGGIO "+usernameCookie.getValue());
+            //System.err.println("cookie in LOGIN APPOGGIO "+usernameCookie.getValue());
             
             usernameCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(usernameCookie);

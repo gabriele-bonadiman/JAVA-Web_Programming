@@ -117,7 +117,6 @@
         <filter-name>GroupAdminFilter</filter-name>
         <servlet-name>PDF_report</servlet-name>
         <servlet-name>modificaGruppo</servlet-name>
-        <servlet-name>modificaGruppoAppoggio</servlet-name>
     </filter-mapping>
     <listener>
         <description>listener</description>
