@@ -6,18 +6,13 @@
 
 package filter;
 
-import classi.Utente;
 import classi.Gruppo;
+import classi.Utente;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.SQLException;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.Filter;
@@ -27,17 +22,13 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import services.MetodiGruppi;
 
 /**
  *
  * @author FMalesani
  */
-
-public class GroupFilter implements Filter {
+public class GroupFilter2 implements Filter {
     
     private static final boolean debug = false;
 
@@ -46,7 +37,7 @@ public class GroupFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public GroupFilter() {
+    public GroupFilter2() {
     }    
 
     /**
@@ -63,25 +54,11 @@ public class GroupFilter implements Filter {
             throws IOException, ServletException {
         
         Utente utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
-        String groupID = ((HttpServletRequest)request).getParameter("id");
-        Gruppo gruppo = null;
+        Gruppo gruppo = (Gruppo) ((HttpServletRequest)request).getSession().getAttribute("gruppo");
         
-        if (groupID==null) {
-            Enumeration paramNames = request.getParameterNames();
-
-            while(paramNames.hasMoreElements()) {
-                groupID = (String)paramNames.nextElement();
-            }
-        }
-        
-        try {
-            gruppo=MetodiGruppi.searchGruppoById(Integer.parseInt(groupID));
-        } catch (SQLException ex) {
-            Logger.getLogger(GroupFilter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         boolean userIsInTheGroup=false;
-        
+
+        // qui al posto di uteIntoTheGroup userò il metodo che controlla che l'utente sia admin del gruppo
         try {
             userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
         } catch (SQLException ex) {
