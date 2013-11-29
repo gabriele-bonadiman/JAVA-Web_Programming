@@ -1,7 +1,6 @@
 package servlet;
 
 import classi.Utente;
-import services.ParsingText;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,12 +45,11 @@ public class iMieiDatiAppoggio extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         
         MultipartRequest multi = new MultipartRequest(request,".","UTF-8"); 
-	String nuovoNome = (String) multi.getParameter("username"); 
         String vecchiaPassword = (String) multi.getParameter("oldPassword"); 
 	String nuovaPassword = (String) multi.getParameter("newPassword");
 	File f = multi.getFile("avatar"); 
 	String fileName = multi.getFilesystemName("avatar");
-	String uploadAvatarPathAssoluta =request.getServletContext().getRealPath("/UploadedAvatar");
+	String uploadAvatarPathAssoluta = request.getServletContext().getRealPath("/UploadedAvatar");
         
         //creo cartella se non esiste
         File file = new File(uploadAvatarPathAssoluta);
@@ -77,30 +75,10 @@ public class iMieiDatiAppoggio extends HttpServlet {
             fIS.close(); 
             fOS.close(); 
 	}
-        
-        /**
-         * CAMBIARE IL CONTROLLO SULLA LUNGHEZZA DELLA PASSWORD!!!
-         * HO DOVUTO METTERE 4 PER COMODITA' MA BISOGNA SOSTITUIRLO CON 8
-         * 
-         * STESSA IDENTICA COSA VALE PER IL CONTROLLO LUNGHEZZA DEL NUOVO NOME INSERITO
-         * 
-         * FRONTEND
-         *      * RENDERE L'INSERIMENTO DELLA PASSWORD VECCHIA INDISPENSABILE
-         *      * I CAMPI SI DOVREBBERO CHIAMARE VECCHIA PASSWORD E NUOVA PASSWORD (SENZA CONFIRM)
-         * 
-         */
              
         //modifico la password
         if(!vecchiaPassword.equals(ute.getPassword()) || nuovaPassword.length()<3){
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet iMieiDatiAppoggio</title>");            
-            out.println("</head>");
-            out.println("<body>");
             out.println("<h1> ERRORE NELL' INSERIMENTO DELLA PASSWORD</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }else {
             try {
                 MetodiUtenti.editPasswordUtente(ute, nuovaPassword);
@@ -111,16 +89,6 @@ public class iMieiDatiAppoggio extends HttpServlet {
             response.addCookie(passwordCookie);
         }
         
-        //modifco nome utente
-        if(!nuovoNome.equals(ute.getUsername()) && nuovoNome!=null && nuovoNome.length()>3){
-            try {
-                MetodiUtenti.editNomeUtente(ute, nuovoNome);
-                ute.setUsername(nuovoNome);
-            } catch (SQLException ex) {Logger.getLogger(iMieiDatiAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-            Cookie usernameCookie = new Cookie("username", URLEncoder.encode(nuovoNome, "UTF-8"));
-            usernameCookie.setMaxAge(60 * 60 * 24);
-            response.addCookie(usernameCookie);
-        }
         session.setAttribute("utente", ute);
         response.sendRedirect("Home");
     }

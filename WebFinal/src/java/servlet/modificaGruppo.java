@@ -4,7 +4,6 @@ import classi.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -115,9 +114,8 @@ public class modificaGruppo extends HttpServlet {
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("                       <a style='color:red;' href=''><li  name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
-                }
-            out.println("                           </ul>");
+                    out.println("<a href='modificaGruppoElimina?id="+ ute2.getId() +"&gr="+gr.getID()+"' values=\""+ ute2.getId() +"\"><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");}
+                    out.println("                           </ul>");
             }
         }	
         out.println("                               </ul>");

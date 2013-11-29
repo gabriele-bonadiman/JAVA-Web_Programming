@@ -66,18 +66,6 @@ public class Home extends HttpServlet {
         Date dateAccess = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ITALY).parse(dateToShow);
         ArrayList<Post> listaPost = MetodiPost.returnData(ute);
         
-        Iterator i = listaPost.iterator(); 
-        while(i.hasNext()) {
-            Post p = (Post) i.next();
-            Date datePost = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ITALY).parse(p.getData());
-
-            if(datePost.after(dateAccess) && p.getUtente()!=ute.getId()){
-                Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
-                Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
-                System.err.println("visto il tuo utlimo accesso alle:     " + dateAccess + "\n comunico la presenza di un post alle: " + datePost+"\n\n --");
-                System.err.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
-            }
-        }
         
         
         
@@ -121,17 +109,34 @@ public class Home extends HttpServlet {
             out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
             out.println("             </div>");
-            out.println("            <div class='col-md-3 col-md-offset-2 box-shadows' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
+            out.println("            <div class='col-md-3 col-md-offset-2 box-shadows' style='margin-top:20px; height:350px; overflow-y:scroll;'><br/><br/>");
             
             //Metti qui il codice per le notizie 
-            //if niente notizie 
-            out.println("               <div class='row'>");
-            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
-            out.println("               </div>");
             
-            //else
-            out.println("               <div class='row'>");
-            out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Qui gabri metti le notifiche</h5></div>");
+            
+            
+            
+            if(listaPost.isEmpty()){            
+                out.println("               <div class='row'>");
+                out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
+                out.println("               </div>");
+            }else{
+                out.println("               <div class='row'>");
+                out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>");
+                Iterator i = listaPost.iterator(); 
+                while(i.hasNext()) {
+                    Post p = (Post) i.next();
+                    Date datePost = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ITALY).parse(p.getData());
+
+                    if(datePost.after(dateAccess) && p.getUtente()!=ute.getId()){
+                        Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
+                        Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
+                        out.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
+                    }
+                }
+            }
+        
+            out.println("</h5></div>");
             out.println("               </div>");
             
             out.println("            </div>");
