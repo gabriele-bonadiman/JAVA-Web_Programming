@@ -35,12 +35,11 @@ public class addPostAppoggio extends HttpServlet {
             
             out.println("<head> "
                     + "<meta http-equiv=\"refresh\" "
-                    + "content=\"3;url=Forum?id="+gr.getID()+"\" >"
-                    + "<h1>UPLOAD DONE!</h1>"
+                    + "content=\"2;url=Forum?id="+gr.getID()+"\" >"
+                    + "<link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />"
                     + "</head>"
                     + "<body>"
-                    + "<div class=\"user_register border_y\"><div>"
-                    + "<span style=\"color: green;\"> After 3 seconds you will be redirected to the previous page!</span>"
+                    + "<div class='col-md-6 col-md-offset-3'><h1>La creazione del post è stata eseguita</h1></div>"
                     + "<br><br>"
                     + "</body>");
         }

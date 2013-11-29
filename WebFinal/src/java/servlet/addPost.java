@@ -55,9 +55,9 @@ public class addPost extends HttpServlet {
                         + "         <div style='margin-bottom:20px;'><input type='file' name='file2'> </div> "
                         + "         <div style='margin-bottom:20px;'><input type='file' name='file3'> </div> "
                         + "     </div>"
-                        + "   <div class='col-md-offset-1'><input type='submit' value='Upload' style='margin-top:20px;' class='btn btn-default'> </div>");
+                        + "   <div class='col-md-offset-5'><input type='submit' value='Crea' style='margin-top:20px;' class='btn btn-default'> </div>");
         out.println("       </form> ");
-        out.println("       <a href='Forum?id="+gr.getID()+"'><button class='btn btn-default col-md-offset-1' style='margin-top:20px;'>Indietro</button></a>");
+        out.println("       <a href='Forum?id="+gr.getID()+"'><button class='btn btn-primary col-md-offset-1' style='margin-top:-50px;'>Indietro</button></a>");
         out.println("   </div>");
         out.println("</div>");
         out.println("</body>");
