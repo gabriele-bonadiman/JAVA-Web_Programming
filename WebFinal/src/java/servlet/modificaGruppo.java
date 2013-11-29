@@ -83,10 +83,7 @@ public class modificaGruppo extends HttpServlet {
         out.println("                           <div class='col-md-12'>");
         out.println("                               <label>Utenti non iscritti al gruppo:</label>");
         out.println("                           </div>");
-        out.println("                           <div class='col-md-12'>");
-        
-
-        Iterator i = utentiNonIscritti.iterator(); 
+        out.println("                           <div class='col-md-12'>");        Iterator i = utentiNonIscritti.iterator(); 
         while(i.hasNext()) {
             Utente ute = (Utente) i.next();
             if(!utentiIscritti.contains(ute)){
@@ -148,12 +145,8 @@ public class modificaGruppo extends HttpServlet {
         
         
         
-        
-        
         out.println("                   </div>");
-        
         out.println("                   <div class='col-md-3 col-md-offset-3' style='margin-top:40px;'><input type='submit' class='btn btn-default' value='Conferma'></div>");
-        
         out.println("               </form>");
         out.println("           <div class='col-md-3 col-md-offset-3' style='margin-top:-33px;'><a href='Indietro'><button class='btn btn-primary'>Home</button></a></div>");
         out.println("           </div>");    

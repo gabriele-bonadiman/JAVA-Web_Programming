@@ -1,21 +1,5 @@
 
-MODIFCARE IL DB PER RENDERE LA DATA UNA STRINGA
-
-ALTER TABLE gabri.post DROP COLUMN data;
-ALTER TABLE gabri.post ADD avatar VARCHAR(50);
-
-
-ALTER TABLE gabri.file_post DROP COLUMN data;
-ALTER TABLE gabri.file_post ADD data VARCHAR(50);
-
-ALTER TABLE gabri.gruppo DROP COLUMN datacreazione;
-ALTER TABLE gabri.gruppo ADD datacreazione VARCHAR(50);
-
-
-
 		GENERALE
-* mettere il controllo su tutte le text edit!  /GABRI
-
 * aggiungere filtri (file, gruppi) //FABIO
 * controllo estensione dei file caricati come immagini //FABIO
 * controllo file con lo stesso nome  //FABIO

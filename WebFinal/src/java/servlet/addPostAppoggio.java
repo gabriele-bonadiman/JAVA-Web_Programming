@@ -123,9 +123,10 @@ public class addPostAppoggio extends HttpServlet {
         }
 
         //Parsing del testo
+        String pathUpload = request.getServletContext().getRealPath("UploadedFile/" + gr.getID() + "/");
         if(testoPost!=null && !testoPost.equals("")){
             System.err.println("testo ----> " + testoPost);
-            testoPost = services.ParsingText.parsing(testoPost,gr.getID());
+            testoPost = services.ParsingText.parsing(testoPost,gr.getID(),pathUpload);
         }
         
         

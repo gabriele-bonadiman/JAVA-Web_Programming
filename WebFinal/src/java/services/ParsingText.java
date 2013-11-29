@@ -1,10 +1,6 @@
 package services;
 
-import static database.DBManager.con;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.StringTokenizer;
+import java.io.File;
 
 public class ParsingText {
 
@@ -16,7 +12,7 @@ public class ParsingText {
      * @param gruppo
      * @return 
      */
-    public static String parsing(String text,int gruppo){
+    public static String parsing(String text,int gruppo,String pt){
         String[] result = text.split(" ");
         String res = "";
         for (int j=0; j<result.length; j++){
@@ -31,11 +27,25 @@ public class ParsingText {
                 }else if(singleWord.startsWith("http://")){
                     singleWord = "<a href=\""+singleWord+"\" >"+singleWord+"</a>";                
                 }else{
-                    singleWord = "<a href=\"UploadedFile/"+gruppo+"/"+singleWord+"\" >"+singleWord+"</a>";
+                    //se il file esite veramente all'interno della cartella carica il riferimento
+                    if(checkExists(singleWord,pt)){
+                        singleWord = "<a href=\"UploadedFile/"+gruppo+"/"+singleWord+"\" >"+singleWord+"</a>";
+                    }
                 }
             }
             res = res + " " +singleWord;
         }
         return res;
+    }
+    
+    public static boolean checkExists(String nome,String pt) {
+        nome = pt + "/"+nome;
+        File file=new File(nome);
+        boolean exists = file.exists();
+        if (!exists) {
+            return false;
+        }else{
+            return true;
+        }
     }
 }
