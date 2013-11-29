@@ -54,13 +54,18 @@ public class GroupAdminFilter implements Filter {
             throws IOException, ServletException {
         
         Utente utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
-        String groupID = request.getParameter("nomeGruppo");
-        
+        String groupID = null;
+        groupID = request.getParameter("nomeGruppo");
         Gruppo gruppo = null;
-        try {
-            gruppo=MetodiGruppi.searchGruppoById(Integer.parseInt(groupID));
-        } catch (SQLException ex) {
-            Logger.getLogger(GroupFilter.class.getName()).log(Level.SEVERE, null, ex);
+        
+        if (groupID==null) {
+            gruppo = (Gruppo)((HttpServletRequest)request).getSession().getAttribute("gruppoCorrente");
+        } else  {
+            try {
+                gruppo=MetodiGruppi.searchGruppoById(Integer.parseInt(groupID));
+            } catch (SQLException ex) {
+                Logger.getLogger(GroupFilter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         boolean userIsInTheGroup=false;
