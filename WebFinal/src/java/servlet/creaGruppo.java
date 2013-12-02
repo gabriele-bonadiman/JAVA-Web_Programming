@@ -76,7 +76,7 @@ public class creaGruppo extends HttpServlet {
                                             }
             out.println("                   </div>");
             out.println("                   </div>");
-            out.println("                       <input type=\"submit\" value=\"Aggiungi\" class=\"btn btn-default col-md-offset-4\">");
+            out.println("                       <input type=\"submit\" value=\"Crea\" class=\"btn btn-default col-md-offset-4\">");
             out.println("           </form>");
             out.println("                           <a href=\"Home\"><button class=\"btn btn-primary col-md-offset-1\" style='margin-top:-55px'>Home</button></a>");
             out.println("               </div>");

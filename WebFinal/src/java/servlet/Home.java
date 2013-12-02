@@ -107,12 +107,14 @@ public class Home extends HttpServlet {
             out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
             out.println("             </div>");
-            out.println("            <div class='col-md-3 col-md-offset-2 box-shadows' style='margin-top:20px; height:350px; overflow-y:scroll;'><br/><br/>");
-            
-            //Metti qui il codice per le notizie 
-            
+            out.println("           <div class='col-md-3' style='float:right;'><img src='Images/deleteiconred.png'> ");
+            out.println("               <div class='col-md-12 col-md-offset-2 box-shadows notify' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
             
             
+            
+            /***************
+             *   TIMELINE  *
+             ***************/
             
             if(listaPost.isEmpty()){            
                 out.println("               <div class='row'>");
@@ -120,6 +122,7 @@ public class Home extends HttpServlet {
                 out.println("               </div>");
             }else{
                 out.println("               <div class='row'>");
+                out.println("                   ");
                 out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>");
                 Iterator i = listaPost.iterator(); 
                 while(i.hasNext()) {
@@ -129,7 +132,7 @@ public class Home extends HttpServlet {
                     if(datePost.after(dateAccess) && p.getUtente()!=ute.getId()){
                         Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
                         Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
-                        out.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome());
+                        out.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome() + " alle ore: " + p.getData());
                     }
                 }
             }
@@ -139,7 +142,7 @@ public class Home extends HttpServlet {
             
             out.println("            </div>");
             
-            
+            out.println("       </div>");
             
             
             out.println("            </div>");

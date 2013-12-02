@@ -38,6 +38,12 @@ public class ParsingText {
         return res;
     }
     
+    /**
+     * Preso in input path e nome del file, restituisce un booleano in base all'esistenza del file
+     * @param nome
+     * @param pt
+     * @return 
+     */
     public static boolean checkExists(String nome,String pt) {
         nome = pt + "/"+nome;
         File file=new File(nome);
