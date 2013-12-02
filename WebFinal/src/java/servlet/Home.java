@@ -51,21 +51,12 @@ public class Home extends HttpServlet {
                 lastFormatData = cookie.getValue();
             }
         }
-            
-            
-        /**
-         *   VISUALIZZAZIONE DEGLI EVENTI MENTRE ERO OFFLINE
-         */
-        
                                     /*************
                                      *  TIMELINE *
                                      *************/
         //calcolo la data del post
         Date dateAccess = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ITALY).parse(dateToShow);
         ArrayList<Post> listaPost = MetodiPost.returnData(ute);
-        
-        
-        
         
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -107,7 +98,6 @@ public class Home extends HttpServlet {
             out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
             out.println("             </div>");
-            //Timeline
             out.println("           <div class='col-md-4' style='float:right; margin-top:20px;'>");
             out.println("               <div class='col-md-6 col-md-offset-3'>");
             out.println("                   <h3>Time Line</h3>");

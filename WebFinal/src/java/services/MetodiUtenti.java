@@ -181,8 +181,6 @@ public class MetodiUtenti {
             stm2.setInt(1, u.getId());
             stm2.setInt(2, g.getID());
             stm2.executeUpdate();
-        } finally {stm2.close();}
-        
-        
+        } finally {stm2.close();}   
     }
 }

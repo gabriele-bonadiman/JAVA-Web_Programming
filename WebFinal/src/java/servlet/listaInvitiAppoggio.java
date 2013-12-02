@@ -45,9 +45,7 @@ public class listaInvitiAppoggio extends HttpServlet {
                         MetodiGruppi.eliminaDallaLista(ute, gr.getID());
                     }
                 }
-            }
-            //response.sendRedirect("Home");
-        } else{ 
+            }        } else{ 
             response.sendRedirect("Home");
         }
         response.sendRedirect("Home");

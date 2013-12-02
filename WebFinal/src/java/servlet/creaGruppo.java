@@ -52,7 +52,6 @@ public class creaGruppo extends HttpServlet {
             out.println("               <div class=\"col-md-offset-2 col-md-8\">");
             out.println("                   <h1>Crea Nuovo Gruppo</h1>");
             out.println("               </div>");
-            
             out.println("                   <div class=\"col-md-offset-3 col-md-8\" style=\"margin-top:40px;\">");
             out.println("                   <form action=\"creaGruppoAppoggio\" method=\"POST\" class=\"form-horizontal\">");
             out.println("                       <div class=\"form-group\">");

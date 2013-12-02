@@ -159,17 +159,10 @@ public class addPostAppoggio extends HttpServlet {
             testoPost = services.ParsingText.parsing(testoPost,gr.getID(),pathUpload);
         }
         
-        
-        
-        //inserimento del testo nel DB
-        
+        //inserimento del testo nel DB        
         try {
             MetodiPost.insertPost(gr, ute, testoPost);   
         } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
-        
-        
-        
-        
         processRequest(request, response);
         
     } 

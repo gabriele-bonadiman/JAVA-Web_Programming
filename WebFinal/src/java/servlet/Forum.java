@@ -88,20 +88,12 @@ public class Forum extends HttpServlet {
                 out.println("                </div>");
             }
             out.println("            </div>");
-            
-            
-            
-            //aggiungere un post
             out.println("            <form action=\"addPost\" style=\"margin-top:30px; margin-bottom:20px;\">"); 
             out.println("               <input name = \""+g.getID()+"\" type=\"submit\" class=\"btn btn-default\" value=\"Crea Post\">");
             out.println("            </form>");
-            
-           
-             
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");   
-            
     }
     
 

@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package filter;
 
 import classi.Gruppo;
 import classi.Utente;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,31 +16,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import services.MetodiGruppi;
 
-/**
- *
- * @author FMalesani
- */
 public class GroupFilter2 implements Filter {
     
     private static final boolean debug = false;
-
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
     private FilterConfig filterConfig = null;
     
-    public GroupFilter2() {
-    }    
+    public GroupFilter2() {    }    
 
-    /**
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
-     */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -58,7 +32,6 @@ public class GroupFilter2 implements Filter {
         
         boolean userIsInTheGroup=false;
 
-        // qui al posto di uteIntoTheGroup userò il metodo che controlla che l'utente sia admin del gruppo
         try {
             userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
         } catch (SQLException ex) {
