@@ -30,6 +30,7 @@ public class Home extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        iMieiDati.wrongPassword=false;
         
         Utente ute = (Utente) session.getAttribute("utente");
         String nome = ute.getUsername();
