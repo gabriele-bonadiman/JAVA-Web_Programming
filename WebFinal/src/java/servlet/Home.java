@@ -30,7 +30,6 @@ public class Home extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        iMieiDati.wrongPassword=false;
         
         Utente ute = (Utente) session.getAttribute("utente");
         String nome = ute.getUsername();
@@ -108,24 +107,18 @@ public class Home extends HttpServlet {
             out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
             out.println("             </div>");
-            out.println("           <div class='col-md-3' style='float:right;'>");
-            out.println("               <div class='col-md-offset-3'><h3>Time Line</h3></div>");
-            out.println("               <div class='col-md-12 col-md-offset-2 box-shadows row-srtiped-me' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
-            
-            
-            
-            /***************
-             *   TIMELINE  *
-             ***************/
-            
-            if(listaPost.isEmpty()){            
-                out.println("               <div class='row'>");
-                out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>Niente di nuovo sui gruppi.</h5></div>");
-                out.println("               </div>");
-            }else{
-                out.println("               <div class='row'>");
-                out.println("                   ");
-                out.println("                   <div style='margin-left:10px; margin-right:10px;'><h5>");
+            //Timeline
+            out.println("           <div class='col-md-4' style='float:right; margin-top:20px;'>");
+            out.println("               <div class='col-md-6 col-md-offset-3'>");
+            out.println("                   <h3>Time Line</h3>");
+            out.println("               </div>");
+            out.println("               <div class='col-md-10 col-md-offset-1 box-shadows' style='overflow-y:scroll; overflow-x:hidden; height:350px;'> ");
+            if(listaPost.isEmpty()){
+            out.println("                   <div class='row row-striped-me'>");
+            out.println("                       <div style='margin-left:10px;'><h5>Nessun nuovo post nei gruppi</h5></div>");
+            out.println("                   </div>");
+            }
+            else{
                 Iterator i = listaPost.iterator(); 
                 while(i.hasNext()) {
                     Post p = (Post) i.next();
@@ -134,16 +127,15 @@ public class Home extends HttpServlet {
                     if(datePost.after(dateAccess) && p.getUtente()!=ute.getId()){
                         Utente ut = MetodiUtenti.searchUtenteByID(p.getUtente());
                         Gruppo gr = MetodiGruppi.searchGruppoById(p.getGruppo());
-                        out.println("L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome() + " alle ore: " + p.getData());
+                        out.println("                   <div class='row row-striped-me'>");
+                        out.println("                       <div style='margin-left:10px;'><h5>L'utente " + ut.getUsername() + " ha pubblicato qualcosa in " + gr.getNome() + " il " + p.getData()+"</h5></div>");
+                        out.println("                   </div>");
                     }
                 }
             }
-            out.println("</h5></div>");
             out.println("               </div>");
-            out.println("            </div>");
-            out.println("       </div>");
-            out.println("            </div>");
-            out.println("            ");
+            out.println("           </div>");
+            //End time
             out.println("        </div>");
             out.println("    </body>");
             out.println("</html>");
