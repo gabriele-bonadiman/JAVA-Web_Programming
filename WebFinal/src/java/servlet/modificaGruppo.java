@@ -80,7 +80,7 @@ public class modificaGruppo extends HttpServlet {
         //Primo Blocco
         out.println("                       <div class='col-md-4'>");
         out.println("                           <div class='col-md-12'>");
-        out.println("                               <label>Utenti non iscritti al gruppo:</label>");
+        out.println("                               <label>Non iscritti al gruppo:</label>");
         out.println("                           </div>");
         out.println("                           <div class='col-md-12'>");        Iterator i = utentiNonIscritti.iterator(); 
         while(i.hasNext()) {
@@ -98,20 +98,19 @@ public class modificaGruppo extends HttpServlet {
         //Secondo Blocco
         out.println("                       <div class='col-md-4'>");
         out.println("                           <div class='col-md-12'>");
-        out.println("                               <label>Utenti iscritti al gruppo:</label>");
+        out.println("                               <label>Iscritti al gruppo:</label>");
         out.println("                           </div>");
         out.println("                           <div class='col-md-12'>");
-        out.println("                               <ul class='col-md-offset-1'>");
         if(utentiIscritti.isEmpty()){
             out.println("<div style='margin-top:10px;'>Nessuno è iscritto a questo gruppo</div>");
         }else{
             Iterator i2 = utentiIscritti.iterator(); 
-            out.println("                           <ul class='col-md-offset-1'>");
+            out.println("                           <ul>");
             while(i2.hasNext()) {
                 Utente ute2 = (Utente) i2.next();
                 if(!ute2.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("<a style='color:red'; href='modificaGruppoElimina?id="+ ute2.getId() +"&gr="+gr.getID()+"' values=\""+ ute2.getId() +"\"><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");}
-                    out.println("                           </ul>");
+                    out.println("<a style='color:red'; href='modificaGruppoElimina?id="+ ute2.getId() +"&gr="+gr.getID()+"' values=\""+ ute2.getId() +"\"><li name=\""+ ute2.getId() +"\">"+ ute2.getUsername() +"</li></a>");
+                }
             }
         }	
         out.println("                               </ul>");
@@ -123,21 +122,22 @@ public class modificaGruppo extends HttpServlet {
         //Terzo Blocco
         out.println("                       <div class='col-md-4'>");
         out.println("                           <div class='col-md-12'>");
-        out.println("                               <label>Utenti che non hanno ancora accettato l'invito:</label>");
+        out.println("                               <label>Non hanno ancora accettato l'invito:</label>");
         out.println("                           </div>");
         out.println("                           <div class='col-md-12'>");
         if(utentiInvitati.isEmpty()){
             out.println("<div style='margin-top:10px;'>Nessuno ha ancora accettato l'invito a questo gruppo</div>");
         }else{
             Iterator i3 = utentiInvitati.iterator(); 
-            out.println("                           <ul class='col-md-offset-1'>");
+            out.println("                           <ul>");
             while(i3.hasNext()) {
                 Utente ute3 = (Utente) i3.next();
                 if(!ute3.getUsername().equals(utenteLoggato.getUsername())){
-                    out.println("                       <li  name=\""+ ute3.getId() +"\">"+ ute3.getUsername() +"</li>");
+                    out.println("                       <li class='col-md-offset-1' name=\""+ ute3.getId() +"\">"+ ute3.getUsername() +"</li>");
                 }
-            out.println("                           </ul>");
+            
             }
+            out.println("                           </ul>");
         }
         out.println("                           </div>");
         out.println("                       </div>");
@@ -145,9 +145,9 @@ public class modificaGruppo extends HttpServlet {
         
         
         out.println("                   </div>");
-        out.println("                   <div class='col-md-3 col-md-offset-3' style='margin-top:40px;'><input type='submit' class='btn btn-default' value='Conferma'></div>");
+        out.println("                   <div class='col-md-3 col-md-offset-7' style='margin-top:40px;'><input type='submit' class='btn btn-default' value='Conferma'></div>");
         out.println("               </form>");
-        out.println("           <div class='col-md-3 col-md-offset-3' style='margin-top:-33px;'><a href='Home'><button class='btn btn-primary'>Home</button></a></div>");
+        out.println("           <div class='col-md-4 col-md-offset-3' style='margin-top:-33px;'><a href='Home'><button class='btn btn-primary'>Home</button></a></div>");
         out.println("           </div>");    
         //container
         out.println("       </div>");
