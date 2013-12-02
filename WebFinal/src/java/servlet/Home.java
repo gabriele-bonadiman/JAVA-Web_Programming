@@ -137,15 +137,10 @@ public class Home extends HttpServlet {
                     }
                 }
             }
-        
             out.println("</h5></div>");
             out.println("               </div>");
-            
             out.println("            </div>");
-            
             out.println("       </div>");
-            
-            
             out.println("            </div>");
             out.println("            ");
             out.println("        </div>");
