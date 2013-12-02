@@ -93,8 +93,18 @@ public class GroupFilter implements Filter {
             PrintWriter out = response.getWriter();
             out.println("<head>");
             out.println("<meta http-equiv=\"refresh\" content=\"3; Gruppi\">");
-            out.println("<div align=’center’><H3>IMPOSSIBILE ACCEDERE: NON FAI PARTE DI QUESTO GRUPPO<br><br>");
-            out.println("Redirezione alla pagina di principale in corso</H3></div>");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div class=\"container\">\n" +
+"                           <div class=\"col-md-6 col-md-offset-3\" style=\"margin-top:40px;margin-bottom:10px; text-align:center;\">\n" +
+"                               <h1>Impossibile Accedere. </h1>\n" +
+"                           </div>\n" +
+"                           <div class=\"col-md-6 col-md-offset-3\" style=\"margin-bottom:30px; text-align:center;\">\n" +
+"                               <h1><small>Non fai parte di questo gruppo.</small></h1>\n" +
+"                           </div>"
+                    + "  </div>");
+            out.println("</body>");
             out.close();
             
         } else 
