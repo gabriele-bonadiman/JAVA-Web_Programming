@@ -65,8 +65,6 @@ public class UploadedFileFilter implements Filter {
         
         Utente utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
         
-        
-        
         String myURL = ((HttpServletRequest)request).getRequestURI();
 
         int secondToLastSlashIndex=23;
