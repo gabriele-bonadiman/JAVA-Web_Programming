@@ -67,18 +67,21 @@ public class Login extends HttpServlet {
         Boolean passwordCookieBool=false;
         String usernameCookie = " ";
         String passwordCookie = " ";
-
-        for (int i = 0; i < cookies.length; i++) {
-            cookie = cookies[i];
-            if (cookie.getName().equals("username")) {
-                usernameCookie = cookie.getValue();
-                usernameCookieBool=true;
-            }
-            if (cookie.getName().equals("password")) {
-                passwordCookie = cookie.getValue();
-                passwordCookieBool=true;
+        
+        if (cookies!=null) {
+            for (int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                if (cookie.getName().equals("username")) {
+                    usernameCookie = cookie.getValue();
+                    usernameCookieBool=true;
+                }
+                if (cookie.getName().equals("password")) {
+                    passwordCookie = cookie.getValue();
+                    passwordCookieBool=true;
+                }
             }
         }
+        
         //HttpSession sessions = request.getSession(true);
         if (usernameCookieBool && passwordCookieBool) {
             
