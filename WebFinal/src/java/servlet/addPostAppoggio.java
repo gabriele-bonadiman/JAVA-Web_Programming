@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import services.MetodiPost;
+import services.ParsingText;
 
 public class addPostAppoggio extends HttpServlet {
 
@@ -62,7 +63,7 @@ public class addPostAppoggio extends HttpServlet {
         Utente ute = (Utente) session.getAttribute("utente");
         ArrayList<String> listaFile = new ArrayList<String>();
         String path = "UploadedFile/" + gr.getID() + "/";
-                
+        String newFileName=null;
         
         
         MultipartRequest multi=new MultipartRequest(request,".",1024*1024*5,"UTF-8");
@@ -91,16 +92,41 @@ public class addPostAppoggio extends HttpServlet {
                 
                 System.err.println(pathUpload);
                 
+                newFileName=fileName;
                 
-                File fOUT = new File(pathUpload, fileName);
+                boolean fileDaRinominare = false ;
+                
+                fileDaRinominare = ParsingText.checkExists(newFileName, pathUpload);
+                int i=0;
+                
+                while (fileDaRinominare) {
+                    i++;
+                    String tmp=newFileName;
+                    if (i!=0) {
+                        int nameLenght = newFileName.lastIndexOf(".");
+                        String appoggio= newFileName.substring(0, nameLenght);
+                        appoggio= appoggio.concat(String.valueOf(i));
+                        appoggio= appoggio.concat(newFileName.substring(nameLenght, newFileName.length()));
+                        newFileName=appoggio;
+                    }
+                    fileDaRinominare = ParsingText.checkExists(newFileName, pathUpload);
+                    
+                    if (fileDaRinominare) {
+                        newFileName=tmp;
+                    }
+                
+                }
+                
+                File fOUT = new File(pathUpload, newFileName);
                 //aggiungo nella lista dei nomi del file il nome di questo file
-                listaFile.add(fileName);
+                listaFile.add(newFileName);
                 
                 FileInputStream fIS = new FileInputStream(f);
                 FileOutputStream fOS = new FileOutputStream(fOUT);
                 while (fIS.available() > 0) {
                     fOS.write(fIS.read());
                 }
+                
                 fIS.close();
                 fOS.close();
             }
@@ -114,7 +140,7 @@ public class addPostAppoggio extends HttpServlet {
         while(i.hasNext()) {
             //provo ad inserire ogni singolo file all'interno del DB
             try {
-                MetodiPost.insertFileIntoDB(path, ute.getId(), gr.getID());
+                MetodiPost.insertFileIntoDB(path+newFileName, ute.getId(), gr.getID());
             } catch (SQLException ex) {Logger.getLogger(addPostAppoggio.class.getName()).log(Level.SEVERE, null, ex);}
             
             //il nome del mio file sara' un colelgamento all'interno del testo

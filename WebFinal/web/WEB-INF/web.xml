@@ -5,6 +5,14 @@
             Login
         </welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.html</location>
+    </error-page>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
@@ -117,6 +125,10 @@
         <filter-name>UploadedFileFilter</filter-name>
         <filter-class>filter.UploadedFileFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>UploadedAvatarFilter</filter-name>
+        <filter-class>filter.UploadedAvatarFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <servlet-name>Home</servlet-name>
@@ -140,6 +152,10 @@
     <filter-mapping>
         <filter-name>UploadedFileFilter</filter-name>
         <url-pattern>/UploadedFile/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UploadedAvatarFilter</filter-name>
+        <url-pattern>/UploadedAvatar/*</url-pattern>
     </filter-mapping>
     <listener>
         <description>listener</description>
