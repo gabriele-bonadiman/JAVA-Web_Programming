@@ -107,8 +107,9 @@ public class Home extends HttpServlet {
             out.println("                   <div><a href=\"Logout\"><img src=\"Images/logouticon.png\" alt=\"\" id=\"logout\" /><label for=\"logout\">Logout</label></a></div>");
             out.println("               </div>");
             out.println("             </div>");
-            out.println("           <div class='col-md-3' style='float:right;'><img src='Images/deleteiconred.png'> ");
-            out.println("               <div class='col-md-12 col-md-offset-2 box-shadows notify' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
+            out.println("           <div class='col-md-3' style='float:right;'>");
+            out.println("               <div class='col-md-offset-3'><h3>Time Line</h3></div>");
+            out.println("               <div class='col-md-12 col-md-offset-2 box-shadows row-srtiped-me' style='margin-top:20px; height:350px; overflow-y:scroll;'>");
             
             
             
