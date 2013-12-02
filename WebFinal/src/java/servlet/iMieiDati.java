@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class iMieiDati extends HttpServlet {
-
+    public static boolean wrongPassword =false;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {}
@@ -48,7 +48,11 @@ public class iMieiDati extends HttpServlet {
             out.println("                   </div>");
             out.println("                   <div class=\"form-group\">");
             out.println("                       <label class=\"col-md-3 col-md-offset-1\" for=\"vecchia\">Vecchia password:</label> <div class=\"col-md-3\"><input type=\"password\" name=\"oldPassword\" id=\"vecchia\" class=\"form-control\"></div>");
+            if (wrongPassword) {
+                out.println("<div style=\"color:#FF0000\"> Password Errata</div>");
+            }
             out.println("                   </div>");
+            
             out.println("                   <div class=\"form-group\">");
             out.println("                       <label class=\"col-md-3 col-md-offset-1\" for=\"nuova\">Nuova password:</label> <div class=\"col-md-3\"><input type=\"password\" name=\"newPassword\" id=\"nuova\" class=\"form-control\"></div>");
             out.println("                   </div>");

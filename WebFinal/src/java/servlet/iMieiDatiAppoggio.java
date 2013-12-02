@@ -24,6 +24,7 @@ public class iMieiDatiAppoggio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
     }
 
     @Override
@@ -78,7 +79,11 @@ public class iMieiDatiAppoggio extends HttpServlet {
              
         //modifico la password
         if(!vecchiaPassword.equals(ute.getPassword()) || nuovaPassword.length()<3){
-            out.println("<h1> ERRORE NELL' INSERIMENTO DELLA PASSWORD</h1>");
+            
+            session.setAttribute("utente", ute);
+            iMieiDati.wrongPassword=true;
+            response.sendRedirect("iMieiDati");
+            
         }else {
             try {
                 MetodiUtenti.editPasswordUtente(ute, nuovaPassword);
@@ -87,10 +92,13 @@ public class iMieiDatiAppoggio extends HttpServlet {
             Cookie passwordCookie = new Cookie("password", URLEncoder.encode(nuovaPassword, "UTF-8"));
             passwordCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(passwordCookie);
+            
+            iMieiDati.wrongPassword=false;
+            session.setAttribute("utente", ute);
+            response.sendRedirect("Home");
         }
         
-        session.setAttribute("utente", ute);
-        response.sendRedirect("Home");
+        
     }
     
     
