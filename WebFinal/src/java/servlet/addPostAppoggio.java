@@ -88,6 +88,10 @@ public class addPostAppoggio extends HttpServlet {
                     file2.mkdir();
                 }
                 
+                
+                System.err.println(pathUpload);
+                
+                
                 File fOUT = new File(pathUpload, fileName);
                 //aggiungo nella lista dei nomi del file il nome di questo file
                 listaFile.add(fileName);
