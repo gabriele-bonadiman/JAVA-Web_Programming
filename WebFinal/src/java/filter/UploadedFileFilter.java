@@ -9,15 +9,8 @@ package filter;
 import classi.Utente;
 import classi.Gruppo;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.sql.SQLException;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.Filter;
@@ -27,9 +20,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import services.MetodiGruppi;
 
 /**
@@ -62,34 +52,41 @@ public class UploadedFileFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
-        
-        Utente utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
-        
-        String myURL = ((HttpServletRequest)request).getRequestURI();
-
-        int secondToLastSlashIndex=23;
-        int lastSlashIndex=myURL.lastIndexOf("/");
-        
-        String groupIDstring= myURL.substring(secondToLastSlashIndex, lastSlashIndex);
-        System.err.println("groupIDstring= " + groupIDstring);
-                
-        int groupIDint = Integer.parseInt(groupIDstring);
-        System.err.println("groupIDint= " + groupIDint);
-        
         Gruppo gruppo=null;
         boolean userIsInTheGroup =false;
-        
-        try {
-            gruppo = (Gruppo)MetodiGruppi.searchGruppoById(groupIDint);
-        } catch (SQLException ex) {
-            Logger.getLogger(UploadedFileFilter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if (gruppo!=null && utente!=null) {
+        Utente utente = null;
+        System.err.println("filtro1");
+        utente = (Utente)((HttpServletRequest)request).getSession().getAttribute("utente");
+        System.err.println("filtro2");
+        if (utente!=null) {
+
+            System.err.println(utente.getUsername() + " " + utente.getId());
+
+            String myURL = ((HttpServletRequest)request).getRequestURI();
+
+            int secondToLastSlashIndex=23;
+            int lastSlashIndex=myURL.lastIndexOf("/");
+
+            String groupIDstring= myURL.substring(secondToLastSlashIndex, lastSlashIndex);
+            System.err.println("groupIDstring= " + groupIDstring);
+
+            int groupIDint = Integer.parseInt(groupIDstring);
+            System.err.println("groupIDint= " + groupIDint);
+
+            
+
             try {
-                userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
+                gruppo = (Gruppo)MetodiGruppi.searchGruppoById(groupIDint);
             } catch (SQLException ex) {
                 Logger.getLogger(UploadedFileFilter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (gruppo!=null) {
+                try {
+                    userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UploadedFileFilter.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         

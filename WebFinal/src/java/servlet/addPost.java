@@ -44,7 +44,7 @@ public class addPost extends HttpServlet {
             out.println("    </head>");
         out.println("<body>");
         out.println("<div class=\"container\">");
-        out.println("   <div class=\"col-md-offset-2 col-md-8\"><h1>Aggingi un post</h1></div>");
+        out.println("   <div class=\"col-md-offset-2 col-md-8\"><h1>Aggiungi un post</h1></div>");
         out.println("       <div class=\"col-md-offset-2 col-md-8\" style=\"margin-top:50px;\">");
         out.println("   <form enctype='multipart/form-data' method='POST' action='addPostAppoggio' class=\"form-horizontal\"> "
                         + "     <div class=\"form-group\"><label class=\"col-md-3\" for=\"text\">Testo:</label><input type='textarea' id=\"text\" name='text' class=\"form-control col-md-8\"> </div>"

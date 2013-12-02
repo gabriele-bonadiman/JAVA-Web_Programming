@@ -78,11 +78,11 @@ public class PDF_report extends HttpServlet {
                 FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK)));
         p03.setAlignment(Element.ALIGN_CENTER);
         document.add(p03);
-        
+        /*
         Image userJpg = Image.getInstance(uploadAvatarPathAssoluta + "/" + avatarUtente);
         userJpg.scaleToFit(100,100);
         userJpg.setAlignment(Element.ALIGN_CENTER);
-        document.add(userJpg);
+        document.add(userJpg);*/
         
         Paragraph p2 = new Paragraph(new Phrase(" ",
                 FontFactory.getFont(FontFactory.HELVETICA, 30)));
