@@ -54,8 +54,7 @@ public class creaGruppoAppoggio extends HttpServlet {
                 if(stop==0){
                     String paramValue = paramValues[0];
                     if(paramValue.equals("") || paramValue.equals(" ")){
-                        creaGruppo.errorName=true;
-                        response.sendRedirect("creaGruppo");
+                        response.sendRedirect("GruppoVuoto");
                         return;
                     }
                     id_group = MetodiGruppi.creaGruppo(paramValue, ute);
