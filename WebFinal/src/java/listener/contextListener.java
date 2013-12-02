@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package listener;
 
 import database.DBManager;
@@ -12,12 +6,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- *
- * @author Babol
- */
 public class contextListener implements ServletContextListener{
-    //public static String uploadFilePathAssoluta;
     
  @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -29,13 +18,10 @@ public class contextListener implements ServletContextListener{
             Logger.getLogger(getClass().getName()).severe(ex.toString());
             throw new RuntimeException(ex);
         }
-        
-        //uploadFilePathAssoluta =sce.getServletContext().getRealPath("/UploadedFile");
 }
     
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // Il database Derby deve essere "spento" tentando di connettersi al database con shutdown=true
         DBManager.dbOff();
     }
 }

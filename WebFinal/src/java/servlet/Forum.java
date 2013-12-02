@@ -61,12 +61,12 @@ public class Forum extends HttpServlet {
                 out.println("               <input class=\"btn btn-default \" style=\"margin-top:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Modifica Gruppo\">");
                 out.println("            </form>");
                 out.println("            <form action=\"eliminaGruppo\" method=\"POST\">"); 
-                out.println("               <input class=\"btn btn-default \" style=\"margin-top:20px; margin-bottom:20px;\" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
+                out.println("               <input class=\"btn btn-default \" style=\"margin-top:20px; \" name = \""+g.getID()+"\"type=\"submit\" value=\"Elimina Gruppo\">");
                 out.println("            </form>");
             }
             
             
-            out.println("               <a href=\"Gruppi\"><button class=\"btn btn-primary \">Indietro</button></a>");
+            out.println("               <a href=\"Gruppi\"><button style='margin-top:20px;' class=\"btn btn-primary \">Indietro</button></a>");
             out.println("               </div>");
             out.println("           </div>");
             out.println("           <div class=\"col-md-8\">");

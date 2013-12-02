@@ -11,10 +11,6 @@ public class DBManager {
     
     public static transient Connection con;
     
-    /**********************************************
-     *                  DATABASE                  *
-     **********************************************/
-    
     /**
      * Costruttore di default che prende in input l'indirizzo contentente il db
      * @param dburl
@@ -29,7 +25,7 @@ public class DBManager {
     }
     
     /**
-     * Metodo per settare OFF il db
+     * Metodo per chiudere la connessione con il DB
      */
     public static void dbOff() {
         try {

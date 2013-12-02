@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -24,18 +22,18 @@ import services.MetodiGruppi;
 import services.MetodiPost;
 import services.MetodiUtenti;
 
-public class Home extends HttpServlet {
 
+public class Home extends HttpServlet {
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException, SQLException {
         
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-
+        
         Utente ute = (Utente) session.getAttribute("utente");
         String nome = ute.getUsername();
-        
-        
+
         
         Cookie cookie = null;
         Cookie[] cookies = request.getCookies();
@@ -159,10 +157,9 @@ public class Home extends HttpServlet {
             try {
                 processRequest(request, response);
             } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                        //LOG
             }
         } catch (ParseException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -172,14 +169,11 @@ public class Home extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @Override
     public String getServletInfo() {
         return "Short description";
     }
-
 }
