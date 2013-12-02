@@ -36,6 +36,24 @@ public class MetodiGruppi {
     }
     
     
+   /**
+     * Preso in input un utente ed un gruppo controlla se ne sono l'admin o no
+     */
+    public static int idAdminOfTheGroup(Gruppo gr) throws SQLException{
+        PreparedStatement stm = con.prepareStatement
+            ("SELECT proprietario FROM gruppo WHERE id = ? ");
+        int p=0;
+        try {
+            stm.setInt(1, gr.getID());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {        
+                p=rs.getInt("proprietario");
+            }
+        } finally {stm.close();}
+        return p;
+    }
+    
+    
     /**
      *  Preso in input l'utente che lo crea e i parametri del gruppo
      * e la lista degli utenti di appartenenza,

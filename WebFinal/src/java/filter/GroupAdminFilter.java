@@ -75,22 +75,23 @@ public class GroupAdminFilter implements Filter {
             Logger.getLogger(GroupAdminFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        boolean userIsInTheGroup=false;
+        boolean userIsAdminOfTheGroup=false;
         
-        
-        // qui al posto di uteIntoTheGroup userò il metodo che controlla che l'utente sia admin del gruppo
         try {
-            userIsInTheGroup = MetodiGruppi.uteIntoTheGroup(utente, gruppo);
+            int idAdmin= MetodiGruppi.idAdminOfTheGroup(gruppo);
+            if (idAdmin==utente.getId()) {
+                userIsAdminOfTheGroup=true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(GroupFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (userIsInTheGroup == false){
+        if (userIsAdminOfTheGroup == false){
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             out.println("<head>");
             out.println("<meta http-equiv=\"refresh\" content=\"3; Gruppi\">");
-            out.println("<div align=’center’><H3>IMPOSSIBILE ACCEDERE: NON FAI PARTE DI QUESTO GRUPPO<br><br>");
+            out.println("<div align=’center’><H3>IMPOSSIBILE ACCEDERE: NON SEI L'ADMIN DI QUESTO GRUPPO<br><br>");
             out.println("Redirezione alla pagina di principale in corso</H3></div>");
             out.close();
             

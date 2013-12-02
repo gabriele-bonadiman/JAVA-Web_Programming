@@ -120,19 +120,19 @@
     <filter-mapping>
         <filter-name>GroupFilter</filter-name>
         <servlet-name>Forum</servlet-name>
-        <servlet-name>addPost</servlet-name>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>GroupAdminFilter</filter-name>
-        <servlet-name>PDF_report</servlet-name>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>GroupAdminFilter2</filter-name>
-        <servlet-name>modificaGruppoAppoggio</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>GroupFilter2</filter-name>
         <servlet-name>addPostAppoggio</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GroupAdminFilter</filter-name>
+        <servlet-name>PDF_report</servlet-name>
+        <servlet-name>modificaGruppo</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GroupAdminFilter2</filter-name>
+        <servlet-name>modificaGruppoAppoggio</servlet-name>
     </filter-mapping>
     <listener>
         <description>listener</description>

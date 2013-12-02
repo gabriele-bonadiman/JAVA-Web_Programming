@@ -44,8 +44,6 @@ public class modificaGruppo extends HttpServlet {
             paramName = (String)paramNames.nextElement();
         }
         
-        //System.err.println(paramName);
-        
         Gruppo gr = MetodiGruppi.searchGruppoById(Integer.parseInt(paramName));
         session.setAttribute("gruppoCorrente", gr);
         
