@@ -54,7 +54,7 @@ public class loginFilter implements Filter {
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             out.println("<head>");
-            out.println("<meta http-equiv=\"refresh\" content=\"2; Login\">");
+            out.println("<meta http-equiv=\"refresh\" content=\"2; /WebFinal/Login\">");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href= \"Css/bootstrap.css \" media=\"screen\" />");
             out.println("</head>");
             out.println("<body>");
