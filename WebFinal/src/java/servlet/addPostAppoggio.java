@@ -89,10 +89,7 @@ public class addPostAppoggio extends HttpServlet {
                     file2.mkdir();
                 }
                 
-                
-                System.err.println(pathUpload);
-                
-                newFileName=fileName;
+               newFileName=fileName;
                 
                 boolean fileDaRinominare = false ;
                 

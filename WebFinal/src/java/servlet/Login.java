@@ -60,7 +60,6 @@ public class Login extends HttpServlet {
         out.println("           <form  accept-charset=\"UTF-8\" class=\"form-horizontal col-sm-offset-4\" action= \"LoginAppoggio \" method=\"POST\">");
         out.println("               <h1 class=\"col-sm-offset-2\">Accedi</h1>");
         
-        //HO SOSTITUITO IL VECCHIO FORM CON UNO NUOVO CHE MI INSERISCA USERNAME E PASSWORD SE HO DEI COOKIE SALVATI
         Cookie cookie = null;
         Cookie[] cookies = request.getCookies();
         Boolean usernameCookieBool=false;

@@ -172,7 +172,7 @@
     </listener>
     <context-param>
         <param-name>dburl</param-name>
-        <param-value> jdbc:derby://localhost:1527/WebDB; user = gabri; password = marmotta00</param-value>
+        <param-value> jdbc:derby://localhost:3327/WebDB; user = gabri; password = marmotta00</param-value>
     </context-param>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>

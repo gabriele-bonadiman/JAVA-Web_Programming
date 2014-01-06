@@ -40,8 +40,8 @@ public class UploadedFileFilter implements Filter {
 
             String myURL = ((HttpServletRequest)request).getRequestURI();
 
-            int secondToLastSlashIndex=23;
-            int lastSlashIndex=myURL.lastIndexOf("/");
+            int secondToLastSlashIndex = 23;
+            int lastSlashIndex = myURL.lastIndexOf("/");
 
             String groupIDstring= myURL.substring(secondToLastSlashIndex, lastSlashIndex);
             System.err.println("groupIDstring= " + groupIDstring);

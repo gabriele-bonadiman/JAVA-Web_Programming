@@ -16,6 +16,8 @@ import static database.DBManager.con;
 
 public class MetodiGruppi {
     
+    
+    public String gruppo = "GRUPPO";
     /**
      * Preso in input un utente ed un gruppo controlla che vi appartenga
      */

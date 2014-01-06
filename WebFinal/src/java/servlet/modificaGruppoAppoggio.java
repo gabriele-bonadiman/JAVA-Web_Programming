@@ -42,6 +42,7 @@ public class modificaGruppoAppoggio extends HttpServlet {
         Gruppo gr = (Gruppo) session.getAttribute("gruppoCorrente");
         String nuovoNome = (String) request.getParameter("nuovoNome");
         
+        request.setCharacterEncoding("UTF-8");
         System.err.println("nuovo nome del gruppo = " + nuovoNome);
         
         try {
