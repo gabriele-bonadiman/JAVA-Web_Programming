@@ -1,14 +1,13 @@
 WebFinale
 =========
 
-Questo repo contiene il progetto di PROGRAMMAZIONE PER IL WEB consegnato il 02-12-2012.
-Contiene l'implementazione di un semplice forum utilizzando le seguenti tecnologie:
+This repo contains the project of web-programming class. It is a simply blog using these technologies:
 
-- servlet
-- bootstrap
+- JAVA servlet
+- Bootstrap
 - JavaFilter
-- dbConnection
+- MySQL
 - web.xml
 
 
-Il file al suo interno e' un "projectFile" di NetBeans
+NetBeans project file
