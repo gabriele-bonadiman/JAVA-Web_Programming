@@ -1,4 +1,4 @@
-WebFinale
+WEB PROGRAMMING PROJECT - second
 =========
 
 This repo contains the project of web-programming class. It is a simply blog using these technologies:
